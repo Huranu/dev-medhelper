@@ -58,13 +58,13 @@ const symptoms = [
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[450px] justify-between"
+          className="border-gray-100 w-[450px] justify-between"
         >
           {selected ? selected.label : "Шинж тэмдэг сонгох"}
-          <ChevronsUpDown className="ml-2 h-4 w-6 shrink-0 opacity-50" />
+          <ChevronsUpDown className="h-4 w-6 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="border-gray-100 ml-2 w-[400px] p-0">
         <Command>
           <CommandInput placeholder="Шинж тэмдэг хайх..." />
           <CommandList>
@@ -103,7 +103,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
   const [unit, setUnit] = useState("hours")
 
   return (
-    <Card className="w-[512px]">
+    <Card className=" border-gray-100 ml-2 w-[512px]">
       <CardHeader>
         <CardTitle className="text-sm">
           Таны шинж тэмдэг хэр удаан үргэлжилсэн бэ?
@@ -124,7 +124,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
           <SelectTrigger className="w-64">
             <SelectValue placeholder="Сонгох..." />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="border-gray-100">
             <SelectItem value="minutes">Минут</SelectItem>
             <SelectItem value="hours">Цаг</SelectItem>
             <SelectItem value="days">Өдөр</SelectItem>
@@ -132,7 +132,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
             <SelectItem value="months">Сар</SelectItem>
           </SelectContent>
         </Select>
-        <Button
+        <Button className="bg-sky-500 hover:bg-sky-700 text-white"
           onClick={() => {
             if (duration !== "") onAdd(Number(duration), unit)
           }}
@@ -185,11 +185,12 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
 
 
     return (
-  <div className="space-y-4 flex flex-col justify-center items-center">
-    
-    <div className="grid grid-cols-3 gap-4">
+  <div className="w-full h-[77vh] p-4 bg-white rounded-xl shadow space-y-4 flex flex-col justify-start items-center">
+    <div className="flex flex-row justify-items-center items-center space-x-2
+ text-lg text-sky-600 font-semibold"><ScanHeart className=" mr-2"/>Танд ямар шинж тэмдгүүд илэрч байна вэ?</div>
+    <div className=" grid grid-cols-3 gap-4">
       {addedSymptoms.map((s, i) => (
-        <Card key={i} className="relative">
+        <Card key={i} className="border-gray-100 relative w-[170px] ">
           <button
             onClick={() => handleDelete(i)}
             className="absolute top-4 right-4 text-gray-500 hover:text-red-500"
@@ -223,10 +224,10 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
     {/* Finish & Add more buttons */}
     {showOptions && (
       <div className="space-x-2">
-        <Button variant="secondary" onClick={() => alert("Duusgah")}>
+        <Button className="hover:bg-gray-200" variant="secondary" onClick={() => alert("Duusgah")}>
           Дуусгах
         </Button>
-        <Button onClick={handleAddMore}>Шинж тэмдэг нэмэх</Button>
+        <Button className="bg-sky-500 hover:bg-sky-700" onClick={handleAddMore}>Шинж тэмдэг нэмэх</Button>
       </div>
     )}
   </div>
