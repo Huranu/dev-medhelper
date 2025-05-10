@@ -125,7 +125,7 @@ export default function HomePage() {
               <span className="block">
                 Таны{" "}
                 <span role="img" aria-label="doctor">
-                  🧑‍⚕️
+                  👩🏻‍⚕️
                 </span>{" "}
                 <span className="text-blue-600">Эрүүл мэнд</span>
               </span>
