@@ -106,6 +106,7 @@ const LabTestsScreening: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex text-2xl font-extrabold text-blue-700 gap-6">MedHelper
+                <Image width={30} height={15} src="/logo.jpg" alt="" />
                 <Link href="/">
                   <ChevronLeft className="cursor-pointer pt-1" height={33} width={33}/>
                 </Link>

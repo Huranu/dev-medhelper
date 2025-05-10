@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BloodWorkChart, { Ref } from "../components/chart";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BloodTestResult {
   explanation: string;
@@ -57,6 +58,7 @@ const Result: React.FC = () => {
       >
         <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
           MedHelper
+          <Image width={30} height={15} src="/logo.jpg" alt="" />
           <Link href="/lab-test">
             <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
           </Link>
@@ -67,7 +69,7 @@ const Result: React.FC = () => {
         <div className="flex flex-col w-full mx-auto pt-3">
           <div className="mb-8">
             <h2 className="text-4xl font-semibold mb-4 text-center">Дүгнэлт</h2>
-            <div className="rounded-lg p-6 max-h-[200px] overflow-y-auto">
+            <div className="rounded-lg ml-5 p-6 max-h-[200px] overflow-y-auto">
               <p className="text-gray-700 text-2xl">{result.summary}</p>
             </div>
           </div>

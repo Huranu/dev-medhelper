@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   const [stage, setStage] = useState<
@@ -89,8 +90,9 @@ export default function HomePage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-2xl font-extrabold text-blue-700">
+            <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
               MedHelper
+              <Image width={30} height={15} src="/logo.jpg" alt="" />
             </div>
           </motion.header>
           <motion.section
@@ -126,7 +128,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              Таны эрүүл мэндийн мэдээллийг бид хамгаалахад бид тусална...
+              Таны эрүүл мэндийн мэдээллийг хамгаалахад бид тусална...
             </motion.p>
 
             <motion.div

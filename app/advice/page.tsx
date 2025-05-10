@@ -6,6 +6,7 @@ import SymptomsForm from './_components/Symptoms'
 import Response from './_components/response'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronLeft } from 'lucide-react'
 
 export default function WizardPage() {
@@ -37,6 +38,7 @@ export default function WizardPage() {
       >
         <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
           MedHelper
+          <Image width={30} height={15} src="/logo.jpg" alt="" />
           <Link href="/">
             <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
           </Link>
