@@ -18,7 +18,7 @@ export default function WizardPage() {
   }
 
   return (
-    <div className="flex flex-row justify-center items-center w-full mx-auto p-6 space-y-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen">
+    <div className="flex flex-row justify-center items-center w-full mx-auto p-6 space-y-6 bg-gradient-to-br from-blue-50 via-white to-blue-300 min-h-screen">
       {/* Progress Bar */}
       <div className="flex flex-col items-center">
         {[1, 2, 3].map((s, i) => (
@@ -46,7 +46,7 @@ export default function WizardPage() {
         <div className="p-6 w-2xl h-128 flex flex-col justify-center">
           {step === 1 && <PrivateInfoForm onComplete={handlePrivateInfoComplete} />}
           {step === 2 && <div><SymptomsForm onComplete={() => setStep(3)} /></div>}
-          {step === 3 && <div><Response/></div>}
+          {step === 3 && <div><Response /></div>}
         </div>
       </div>
     </div>
