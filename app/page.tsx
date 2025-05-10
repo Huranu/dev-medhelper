@@ -74,7 +74,7 @@ export default function HomePage() {
       {/* Cursor */}
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div
-          className="absolute w-50 h-50 rounded-full bg-purple-700 opacity-20 mix-blend-overlay blur-3xl"
+          className="absolute w-50 h-50 rounded-full bg-blue-700 opacity-20 mix-blend-overlay blur-3xl"
           animate={{ left: mousePos.x - 128, top: mousePos.y - 128 }}
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         />
@@ -105,7 +105,7 @@ export default function HomePage() {
           </motion.header>
 
           <motion.section
-            className="text-center space-y-10"
+            className="text-center space-y-10 mt-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
@@ -127,14 +127,23 @@ export default function HomePage() {
               <span className="block mt-2 text-black">бидний эрхэм зорилго</span>
             </motion.h1>
 
-            <motion.p
+            {/* <motion.p
               className="text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
               Таны эрүүл мэндийн мэдээллийг бид хамгаалахад бид тусална...
-            </motion.p>
+            </motion.p> */}
+            <motion.p
+  className="text-center text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.8 }}
+>
+  Таны эрүүл мэндийн мэдээллийг бид хамгаалахад бид тусална...
+</motion.p>
+
 
             <motion.div
               className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center mt-4"
@@ -150,13 +159,13 @@ export default function HomePage() {
         </div>
       )}
               <Button
-                className="bg-blue-600 hover:bg-purple-700 transition duration-300 text-white text-[15px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[15px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
                 onClick={() => handleNavigation("/lab-test")}
               >
                 🧪 Шинжилгээний хариу
               </Button>
               <Button
-                className="bg-blue-600 hover:bg-purple-700 transition duration-300 text-white text-[15px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[15px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
                 onClick={() => handleNavigation("/advice")}
               >
                 💬 Зөвлөгөө авах
