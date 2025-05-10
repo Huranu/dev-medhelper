@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { CircleX, Cloud, FileIcon, ChevronLeft, Frown } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -42,7 +43,6 @@ const LabTestsScreening: React.FC = () => {
       console.log("AI response:", result);
 
       localStorage.setItem("labTestResult", JSON.stringify(result.result));
-      console.log("lab-test/result");
       router.push("lab-test/result");
 
     } catch (err) {
@@ -76,6 +76,18 @@ const LabTestsScreening: React.FC = () => {
 
   return (
     <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
+      {/* Dialog for Loading State */}
+      <Dialog open={loading}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Processing</DialogTitle>
+          </DialogHeader>
+          <div className="flex justify-center items-center py-4">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="text-center mb-8">
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div

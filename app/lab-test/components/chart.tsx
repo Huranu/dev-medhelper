@@ -13,12 +13,7 @@ export type Ref = {
 const BloodWorkChart = ({data} : {data : Ref[]}) => {
 
   return (
-    <Card className="w-full max-w-3xl mx-auto mt-6 shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">
-          Таны Цусны Шинжилгээ
-        </CardTitle>
-      </CardHeader>
+    <div className="w-full max-w-4xl">
       <CardContent>
         <div className="space-y-6">
           {data.map((item, index) => {
@@ -81,7 +76,7 @@ const BloodWorkChart = ({data} : {data : Ref[]}) => {
           </p>
         </div>
       </CardContent>
-    </Card>
+    </div>
   );
 };
 

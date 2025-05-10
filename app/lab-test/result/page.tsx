@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import BloodWorkChart, { Ref } from "../components/chart";
-import { ChevronLeft} from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 type LabTestResult = {
   indicators: Ref[];
-  summary:Ref;
-  details:Ref;
-}
+  summary: any;
+  details: any;
+};
 
 const Result: React.FC = () => {
-  const [result, setResult] = useState<LabTestResult>(); 
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [result, setResult] = useState<LabTestResult>();
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const storedResult = localStorage.getItem("labTestResult");
@@ -22,13 +22,17 @@ const Result: React.FC = () => {
       localStorage.removeItem("labTestResult");
     }
   }, []);
-  
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
 
   return (
-    <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
+    <div
+      className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Mouse-following background effect */}
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div
           className="absolute w-64 h-64 rounded-full bg-blue-300 opacity-20 mix-blend-overlay blur-3xl"
@@ -36,22 +40,85 @@ const Result: React.FC = () => {
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         />
       </motion.div>
+
+      {/* Header */}
       <motion.header
-            className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex text-2xl font-extrabold text-blue-700 gap-6">MedHelper
-                <Link href="/lab-test">
-                  <ChevronLeft className="cursor-pointer pt-1" height={33} width={33}/>
-                </Link>
-            </div>
+        className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto w-full max-w-7xl"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
+          MedHelper
+          <Link href="/lab-test">
+            <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
+          </Link>
+        </div>
       </motion.header>
+
+      {/* Main Content */}
       {result ? (
-        <BloodWorkChart data={result.indicators} />
+        <div className="w-full max-w-7xl mx-auto pt-3">
+          {/* Summary Section (Scrollable) */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-center">Дүгнэлт</h2>
+            <div className="rounded-lg p-6 max-h-[200px] overflow-y-auto">
+              <p className="text-gray-700 text-xl">{result.summary}</p>
+            </div>
+          </div>
+
+          {/* Details and Chart Side by Side */}
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Details Section (Scrollable) */}
+            <div className="lg:w-1/2">
+              <h2 className="text-2xl font-semibold mb-4 text-center">Дэлгэрэнгүй</h2>
+              <div className="bg-white shadow-md rounded-lg p-6 max-h-[600px] overflow-y-auto">
+                {result.indicators.map((indicator: any, index: number) => (
+                  <div
+                    key={index}
+                    className="border-b border-gray-200 py-4 last:border-b-0"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        {indicator.label}
+                      </h3>
+                      <span
+                        className={
+                          indicator.value < indicator.refMin ||
+                          indicator.value > indicator.refMax
+                            ? "text-red-500 font-semibold"
+                            : "text-gray-600"
+                        }
+                      >
+                        {indicator.value} {indicator.unit}
+                      </span>
+                    </div>
+                    <p className="text-gray-600 mt-2">
+                      {result.details[indicator.label] ||
+                        "No additional details available."}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Blood Work Chart (Scrollable) */}
+            <div className="lg:w-1/2">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                Тоон үзүүлэлтийн график
+              </h2>
+              <div className="bg-white shadow-md rounded-lg p-6 max-h-[600px] overflow-y-auto">
+                <BloodWorkChart data={result.indicators} />
+              </div>
+            </div>
+          </div>
+        </div>
       ) : (
-        <p>No results available. Please upload a lab test image.</p>
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-purple-500"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-red-500 ml-3"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-blue-500 ml-3"></div>
+        </div>
       )}
     </div>
   );
