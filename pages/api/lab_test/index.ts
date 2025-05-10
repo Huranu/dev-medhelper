@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
-import { IncomingForm } from "formidable";
+import { Fields, Files, IncomingForm } from "formidable";
 import fs from "fs/promises";
 
 export const config = {
@@ -9,7 +9,7 @@ export const config = {
   },
 };
 
-const api = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+const api = new OpenAI({ apiKey: "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"});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const form = new IncomingForm();
   try {
-    const { files } = await new Promise<{ fields: any; files: any }>((resolve, reject) => {
+    const { files } = await new Promise<{ fields: Fields; files: Files }>((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
         if (err) reject(err);
         resolve({ fields, files });

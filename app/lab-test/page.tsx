@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Button from "./components/button";
 import Image from "next/image";
-import { CircleX, Cloud, FileIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { CircleX, Cloud, FileIcon, ChevronLeft, Frown } from "lucide-react";
+import Link from 'next/link';
 import { useRouter } from "next/navigation";
 
 const LabTestsScreening: React.FC = () => {
@@ -11,6 +13,7 @@ const LabTestsScreening: React.FC = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const router = useRouter();
 
   useEffect(() => {
@@ -39,8 +42,9 @@ const LabTestsScreening: React.FC = () => {
       console.log("AI response:", result);
 
       localStorage.setItem("labTestResult", JSON.stringify(result.result));
-
+      console.log("lab-test/result");
       router.push("lab-test/result");
+
     } catch (err) {
       setError("Failed to analyze the image. Please try again.");
       console.error("Error:", err);
@@ -66,40 +70,63 @@ const LabTestsScreening: React.FC = () => {
     }
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
       <div className="text-center mb-8">
+      <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
+        <motion.div
+          className="absolute w-64 h-64 rounded-full bg-blue-300 opacity-20 mix-blend-overlay blur-3xl"
+          animate={{ left: mousePos.x - 128, top: mousePos.y - 128 }}
+          transition={{ type: "spring", stiffness: 100, damping: 30 }}
+        />
+      </motion.div>
+      <motion.header
+            className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex text-2xl font-extrabold text-blue-700 gap-6">MedHelper
+                <Link href="/">
+                  <ChevronLeft className="cursor-pointer pt-1" height={33} width={33}/>
+                </Link>
+            </div>
+      </motion.header>
         <Image
           src="/testResult.png"
           alt="Lab Icon"
-          className="mx-auto mb-4"
-          width={200}
-          height={200}
+          className="mx-auto mb-2"
+          width={250}
+          height={250}
         />
-        <h1 className="text-2xl font-semibold">
+        <h1 className="text-5xl font-semibold">
           Лабораторийн болон эрт илрүүлэх үзлэгийн шинжилгээнүүд
         </h1>
-        <p className="text-gray-600">
+        <p className="mt-3 text-2xl text-gray-600">
           Шинжилгээнүүдийн үр дүнгээ харж, бодит зөвлөгөө аван, биомаркерийн
           динамикаа хянаарай
         </p>
       </div>
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full max-w-[900px] h-full mx-auto">
       <div
-        className="border-2 border-dashed border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
+        className=" border-2 border-dashed h-full border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
         // onClick={handleButtonClick}
       >
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+      {error && <p className="text-red-500 mt-2">{<Frown className="w-40 h-40"/>}</p>}
       {file ? (
-        <div className=" relative flex flex-col items-center space-y-2 mt-4 p-5">
+        <div className=" relative flex flex-col items-center space-y-2 p-5">
           <CircleX className=" absolute right-0 top-0 cursor-pointer" onClick={()=> {
             setFile(null);
             setPreviewUrl(null);
           }}/>
           {previewUrl ? (
             <Image
-              height={300}
-              width={300}
+              height={350}
+              width={350}
               src={previewUrl}
               alt="Preview"
               className="object-cover rounded-md border"
@@ -113,10 +140,10 @@ const LabTestsScreening: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <Cloud className="h-12 w-12 text-blue-500 mb-2" />
-          <p className="text-sm text-gray-500">Upload File</p>
+          <Cloud className="h-25 w-25 text-blue-500 mb-2" />
+          <p className="text-md text-gray-500 p-3">Upload File</p>
           <Input
-              className="w-full h-12 rounded-full px-4 py-2"
+              className="w-full h-auto rounded-full px-4 py-2"
               id="lab-test"
               type="file"
               accept="image/*"
@@ -126,15 +153,19 @@ const LabTestsScreening: React.FC = () => {
       )}
       </div>
     </div>
+    {/* <Link href="lab-test/result" className="flex justify-center"> */}
       <Button
         variant="submit"
-        className="mt-5 w-36"
-        size="medium"
+        className="mt-5 w-50 h-15 mx-auto"
+        size="large"
         disabled={!file || loading}
         handler={handleSend}
       >
-        {loading ? "Processing..." : "Дараах"}
+        <p className="text-lg">
+          {loading ? "Processing..." : "Дараах"}
+        </p>
       </Button>
+    {/* </Link> */}
     </div>
   );
 };

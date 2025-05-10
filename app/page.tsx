@@ -1,24 +1,16 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function HomePage() {
-  const router = useRouter();
   const [stage, setStage] = useState<
     "roll" | "pause" | "grow" | "split" | "done"
   >("roll");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveringText, setHoveringText] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const handleNavigation = (path: string) => {
-    setLoading(true);
-    setTimeout(() => {
-      router.push(path);
-    }, 500);
-  };
 
   useEffect(() => {
     if (stage === "roll") {
@@ -148,25 +140,27 @@ export default function HomePage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              {loading && (
+              {/* {loading && (
                 <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
                   <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
                     <div className="border-8 border-t-8 border-blue-500 border-solid rounded-full w-24 h-24 animate-spin"></div>
                   </div>
                 </div>
-              )}
-              <Button
-                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
-                onClick={() => handleNavigation("/lab-test")}
-              >
-                🧪 Шинжилгээний хариу
-              </Button>
-              <Button
-                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
-                onClick={() => handleNavigation("/advice")}
-              >
-                💬 Зөвлөгөө авах
-              </Button>
+              )} */}
+              <Link href="/lab-test">
+                <Button
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                >
+                  🧪 Шинжилгээний хариу
+                </Button>
+              </Link>
+              <Link href="/advice">
+                <Button
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                  >
+                  💬 Зөвлөгөө авах
+                </Button>
+              </Link>
             </motion.div>
           </motion.section>
 
