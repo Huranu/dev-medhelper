@@ -30,7 +30,7 @@ export default function HomePage() {
     pause: {
       x: "50vw",
       rotate: 360,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.6},
     },
     grow: {
       scale: 12,
