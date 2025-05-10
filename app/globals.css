@@ -112,6 +112,32 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Background of the scrollbar track */
+  border-radius: 4px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* Color of the scrollbar thumb (blue-500) */
+  border-radius: 4px; /* Rounded corners for the thumb */
+  border: 2px solid #f1f5f9; /* Optional: border to match track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb; /* Darker blue (blue-600) on hover */
+}
+
+/* Firefox and other browsers supporting standard scrollbar properties */
+html {
+  scrollbar-width: thin; /* Options: auto, thin, none */
+  scrollbar-color: #3b82f6 #f1f5f9; /* thumb color, track color */
+}
+
 @layer base {
   /* * {
     @apply border-border outline-ring/50;
