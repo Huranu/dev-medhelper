@@ -69,7 +69,6 @@ export default function PrivateInfoForm() {
             smoking: '',
             pregnant: '',
             underlyingDiseases: [],
-            sedentary: '',
             exercisePerWeek: '',
         },
     })
@@ -181,7 +180,7 @@ export default function PrivateInfoForm() {
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                                <Button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
                                     Дараах
                                 </Button>
                             </form>
@@ -245,50 +244,44 @@ export default function PrivateInfoForm() {
                                         )}
                                     />
                                 )}
+
                                 <div>
-                                    <FormLabel>Танд архаг хууч өвчин байгаа юу?</FormLabel>
+                                    <FormLabel>Танд архаг хууч өвчин байгаа уу?</FormLabel>
                                     <div className="flex gap-2 mt-2">
                                         <Input
                                             value={diseaseInput}
                                             onChange={(e) => setDiseaseInput(e.target.value)}
-                                            placeholder="Ямар өвчинтэй вэ?"
+                                            placeholder="Ямар өвчинтэй вэ? Enter дарж нэмнэ үү"
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault()
+                                                    addDisease()
+                                                }
+                                            }}
                                         />
-                                        <Button type="button" variant="ghost" onClick={addDisease}>
+                                        <Button type="button" variant="ghost" className='cursor-pointer' onClick={addDisease}>
                                             <CirclePlus size={20} color="green" />
                                         </Button>
                                     </div>
-                                    <ul className="list-disc pl-5 mt-2 space-y-1">
+                                    <ul className="flex flex-wrap gap-2 mt-3">
                                         {diseases.map((disease, index) => (
-                                            <li key={index} className="flex justify-between items-center">
-                                                <span>{disease}</span>
-                                                <Button variant="ghost" size="sm" onClick={() => removeDisease(index)}>
-                                                    <X size={20} color="red" />
-                                                </Button>
+                                            <li
+                                                key={index}
+                                                className="flex items-center gap-2 bg-gray-100 text-sm rounded-full px-3 py-1"
+                                            >
+                                                {disease}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => removeDisease(index)}
+                                                    className="text-red-500 hover:text-red-700"
+                                                    style={{ cursor: 'pointer' }}
+                                                >
+                                                    <X size={16} />
+                                                </button>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <FormField
-                                    control={formStep2.control}
-                                    name="sedentary"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Сууж ажилладаг уу?</FormLabel>
-                                            <FormControl>
-                                                <Select onValueChange={field.onChange} value={field.value}>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Сонгоно уу" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        <SelectItem value="yes">Тийм</SelectItem>
-                                                        <SelectItem value="no">Үгүй</SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
                                 <FormField
                                     control={formStep2.control}
                                     name="exercisePerWeek"
@@ -303,10 +296,10 @@ export default function PrivateInfoForm() {
                                     )}
                                 />
                                 <div className="flex gap-2">
-                                    <Button type="button" onClick={() => setStep(1)} variant="outline">
+                                    <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer'>
                                         Өмнөх
                                     </Button>
-                                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
                                         Бүртгүүлэх
                                     </Button>
                                 </div>
