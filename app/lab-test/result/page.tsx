@@ -32,7 +32,6 @@ const Result: React.FC = () => {
       className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Mouse-following background effect */}
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div
           className="absolute w-64 h-64 rounded-full bg-blue-300 opacity-20 mix-blend-overlay blur-3xl"
@@ -41,7 +40,6 @@ const Result: React.FC = () => {
         />
       </motion.div>
 
-      {/* Header */}
       <motion.header
         className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto w-full"
         initial={{ y: -20, opacity: 0 }}
@@ -56,10 +54,8 @@ const Result: React.FC = () => {
         </div>
       </motion.header>
 
-      {/* Main Content */}
       {result ? (
         <div className="w-full max-w-7xl mx-auto pt-3">
-          {/* Summary Section (Scrollable) */}
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-4 text-center">Дүгнэлт</h2>
             <div className="rounded-lg p-6 max-h-[200px] overflow-y-auto">
@@ -67,9 +63,7 @@ const Result: React.FC = () => {
             </div>
           </div>
 
-          {/* Details and Chart Side by Side */}
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Details Section (Scrollable) */}
             <div className="lg:w-1/2">
               <h2 className="text-2xl font-semibold mb-4 text-center">Дэлгэрэнгүй</h2>
               <div className="bg-white shadow-md rounded-lg p-6 max-h-[600px] overflow-y-auto">

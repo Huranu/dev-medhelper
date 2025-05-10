@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { CircleX, Cloud, FileIcon, ChevronLeft, Frown } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -76,15 +76,15 @@ const LabTestsScreening: React.FC = () => {
 
   return (
     <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
-      {/* Dialog for Loading State */}
       <Dialog open={loading}>
         <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Processing</DialogTitle>
-          </DialogHeader>
           <div className="flex justify-center items-center py-4">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+            <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-purple-500"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-red-500 ml-3"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-blue-500 ml-3"></div>
           </div>
+            <div className="flex justify-center items-center py-2">Таны шинжилгээний хариуг боловсруулж байна...</div>
+
         </DialogContent>
       </Dialog>
 
@@ -126,7 +126,6 @@ const LabTestsScreening: React.FC = () => {
       <div className="w-full max-w-[900px] h-full mx-auto">
       <div
         className=" border-2 border-dashed h-full border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
-        // onClick={handleButtonClick}
       >
       {error && <p className="text-red-500 mt-2">{<Frown className="w-40 h-40"/>}</p>}
       {file ? (
@@ -153,7 +152,7 @@ const LabTestsScreening: React.FC = () => {
       ) : (
         <div className="flex flex-col items-center">
           <Cloud className="h-25 w-25 text-blue-500 mb-2" />
-          <p className="text-md text-gray-500 p-3">Upload File</p>
+          <p className="text-md text-gray-500 p-3">Файл оруулах</p>
           <Input
               className="w-full h-auto rounded-full px-4 py-2"
               id="lab-test"
@@ -165,7 +164,6 @@ const LabTestsScreening: React.FC = () => {
       )}
       </div>
     </div>
-    {/* <Link href="lab-test/result" className="flex justify-center"> */}
       <Button
         variant="submit"
         className="mt-5 w-50 h-15 mx-auto"
@@ -174,10 +172,9 @@ const LabTestsScreening: React.FC = () => {
         handler={handleSend}
       >
         <p className="text-lg">
-          {loading ? "Processing..." : "Дараах"}
+          {loading ? "Уншиж байна..." : "Үргэлжлүүлэх"}
         </p>
       </Button>
-    {/* </Link> */}
     </div>
   );
 };
