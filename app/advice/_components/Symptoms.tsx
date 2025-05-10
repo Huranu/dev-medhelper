@@ -146,7 +146,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
   )
 }
 
-export default function SymptomsForm({ onComplete, onBack }: { onComplete: () => void, onBack: () => void }) {
+export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data: any) => void, onBack: () => void }) {
   const [selectedSymptom, setSelectedSymptom] = useState("")
   const [addedSymptoms, setAddedSymptoms] = useState<
     { symptom: string; duration: number; unit: string }[]
@@ -250,7 +250,7 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: () =>
               Буцах
             </span>
           </Button>
-          <Button className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer" onClick={onComplete}>
+          <Button className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer" onClick={() => onComplete(addedSymptoms)}>
             Илгээх
           </Button>
         </div>

@@ -46,7 +46,10 @@ const Step2Schema = z.object({
 type Step2Values = z.infer<typeof Step2Schema>
 
 type Props = {
-    onComplete: () => void
+    onComplete: (info: {
+        privacyInfo: Step1Values,
+        lifeStyle: Step2Values & { underlyingDiseases: string[] }
+    }) => void
 }
 
 export default function PrivateInfoForm({ onComplete }: Props) {
@@ -86,10 +89,14 @@ export default function PrivateInfoForm({ onComplete }: Props) {
             ...data,
             underlyingDiseases: diseases,
         }
-        console.log('Step 1:', formStep1.getValues())
-        console.log('Step 2:', finalData)
 
-        onComplete()
+        const info = {
+            privacyInfo: formStep1.getValues(),
+            lifeStyle: finalData,
+        }
+
+        console.log('Final Data:', info)
+        onComplete(info)
     }
 
     const addDisease = () => {
@@ -233,7 +240,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 cursor-pointer">
+                                <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 cursor-pointer">
                                     Дараах
                                 </Button>
                             </form>
@@ -308,7 +315,6 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         )}
                                     />
                                 )}
-
                                 <div>
                                     <FormLabel>Танд архаг хууч өвчин байгаа уу?</FormLabel>
                                     <div className="flex gap-2 mt-2">
@@ -349,8 +355,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                                     type="number"
                                                     {...field}
                                                     placeholder={
-                                                        formStep2.formState.errors.exercisePerWeek?.message ||
-                                                        'Тоо оруулна уу'
+                                                        formStep2.formState.errors.exercisePerWeek?.message || 'Тоо оруулна уу'
                                                     }
                                                     className={
                                                         formStep2.formState.errors.exercisePerWeek
@@ -368,7 +373,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                             Буцах
                                         </span>
                                     </Button>
-                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer">
+                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer">
                                         Дараах
                                     </Button>
                                 </div>
