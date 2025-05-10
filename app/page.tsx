@@ -156,13 +156,13 @@ export default function HomePage() {
                 </div>
               )}
               <Button
-                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[15px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
                 onClick={() => handleNavigation("/lab-test")}
               >
                 🧪 Шинжилгээний хариу
               </Button>
               <Button
-                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[15px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
                 onClick={() => handleNavigation("/advice")}
               >
                 💬 Зөвлөгөө авах
