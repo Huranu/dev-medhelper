@@ -1,17 +1,18 @@
+// LabTestsScreening.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Button from "./components/button";
 import Image from "next/image";
 import { FileIcon } from "lucide-react";
-import BloodWorkChart from "./components/chart";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showChart, setShowChart] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -37,7 +38,10 @@ const LabTestsScreening: React.FC = () => {
 
       const result = await res.json();
       console.log("AI response:", result);
-      setShowChart(true);
+
+      localStorage.setItem("labTestResult", JSON.stringify(result.result));
+
+      router.push("lab-test/result");
     } catch (err) {
       setError("Failed to analyze the image. Please try again.");
       console.error("Error:", err);
@@ -114,7 +118,6 @@ const LabTestsScreening: React.FC = () => {
       >
         {loading ? "Processing..." : "Дараах"}
       </Button>
-      {showChart && <BloodWorkChart />}
     </div>
   );
 };

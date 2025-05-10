@@ -39,14 +39,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         {
           role: "assistant",
           content:
-            "You are a professional medical assistant AI. Your task is to analyze medical test results thoroughly and provide accurate, detailed insights, advice, and explanations. Do not use disclaimers.",
+            "You are a professional medical assistant AI. Your task is to analyze medical test results thoroughly and provide accurate, detailed insights, advice, and explanations.",
         },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "Analyze the provided medical test results. Respond in fluent Mongolian.",
+              text: `
+                  You are a professional AI medical assistant. Based on the attached **blood lab test result image**, please do the following:
+                  
+
+                  1. Extract all measurable **blood test indicators** from the image and format them into a JSON structure like this:
+                  [
+                    { label: "White Blood Cells (WBC)", value: 8.86, refMin: 4, refMax: 8, unit: "10³/µL" },
+                    { label: "Red Blood Cells (RBC)", value: 4.69, refMin: 3.5, refMax: 5.5, unit: "10⁶/µL" },
+                    ...
+                  ]
+                  2. Then, provide a **detailed explanation for each indicator**, specifying whether the value is within the normal range or abnormal. If abnormal, give **warnings, potential health risks, and basic recommendations**.
+                  3. Finally, based on the overall results, give a **summary assessment** and recommend **next steps or health advice**.
+                   The entire response must be:
+                  - in **professional tone**
+                  - **grammatically correct**
+                  - **clearly understandable** as if a real doctor is advising a patient.
+                  The response format must be:
+                  - "indicators": JSON array (label, value, unit, and normal range)
+                  - "details": Explanation and recommendations for each value
+                  - "summary": General health conclusion based on all values
+                  !! just give the answer in json string format i gave you. do not use any disclaimer. and translate all the fields to fluent mongolian except the keys in json. don't be lazy !!
+                  `,
             },
             {
               type: "image_url",
@@ -58,29 +79,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       ],
     });
+    const result = response.choices[0].message.content;
+    const cleaned = result!
+      .trim()
+      .replace(/^"+/, '')
+      .replace(/"+$/, '')
+      .replace(/```json/, '')
+      .replace(/```/, '');
 
-    res.status(200).json({ result: response.choices[0].message.content });
+    let parsed;
+    try {
+      parsed = JSON.parse(cleaned);
+      console.log(parsed);
+    } catch (e) {
+      console.error("Invalid JSON:", e);
+    }
+    res.status(200).json({ result: parsed});
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Failed to process request" });
   }
 }
-
-// Эдгээр шинжилгээний хариу үзүүлэлтээс дараах зүйлсийг анхаарах нь зүйтэй байна:
-
-// ### Биохими:
-// - **CRP**: 4.86 mg/L бөгөөд энэхүү үзүүлэлт өндөр байгаа нь бие махбодид үрэвслийн процесс байгааг илэрхийлж болно.
-// - **ASO**: 181 mmol/L үзүүлэлт нь стандарт хэмжээнд байгаа.
-// - **RF**: 6.18 IU/mL үзүүлэлт нь хэвийн хэмжээнд багтдаг.
-
-// ### Гематологи:
-// - **WBC (Цагаан эсийн тоо)**: 8.86 10^3/uL үзүүлэлт нь хэвийн хэмжээнд байна.
-// - **RBC (Улаан эсийн тоо)**: 4.69 10^6/uL нь ерөнхийдөө хэвийн хэмжээнд байгаа.
-// - **HGB (Гемоглобин)**: 13.7 g/dL нь хэвийн байна.
-// - **HCT (Гематокрит)**: 41.3% нь мөн хэвийн.
-// - **MCV, MCH, MCHC** зэрэг улаан эсийн хэмжүүрүүд нь ерөнхийдөө хэвийн хэмжээнд багтдаг.
-// - **PLT (Ялтасын тоо)**: 289 10^3/uL нь хэвийн.
-// - **NEUT**: 6.26 10^3/uL нь өндөр байна, нейтрофилын тоо нэмэгдсэнийг зааж байгаа нь бактериас үүдсэн халдварын боломжийг илэрхийлж болно.
-// - **LYMPH, MONO, EO, BASO** зэрэг бусад параметрүүд нь хэвийн хэмжээнд байна.
-
-// Эдгээр үзүүлэлтүүдээс зарим нь үрэвсэл байгааг илтгэнэ. Тиймээс илүү нарийвчилсан судалгаа хийх эсвэл эмчийн зөвлөгөө авахыг зөвлөж байна.
