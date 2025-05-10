@@ -9,7 +9,7 @@ export const config = {
   },
 };
 
-const api = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const api = new OpenAI({ apiKey: "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" });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
