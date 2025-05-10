@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const router = useRouter(); 
@@ -52,7 +52,9 @@ export default function HomePage() {
         >
           Шинжилгээний хариу
         </Button>
-        <Button className="bg-purple-600 hover:bg-purple-700 transition duration-300 text-white px-5">
+        <Button className="bg-purple-600 hover:bg-purple-700 transition duration-300 text-white px-5"
+                  onClick={() => router.push("/advice")}
+>
           Зөвлөгөө авах
         </Button>
         </div>
