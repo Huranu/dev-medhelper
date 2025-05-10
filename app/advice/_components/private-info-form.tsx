@@ -267,7 +267,7 @@ export default function PrivateInfoForm() {
                                         {diseases.map((disease, index) => (
                                             <li
                                                 key={index}
-                                                className="flex items-center gap-2 bg-gray-100 text-sm rounded-full px-3 py-1"
+                                                className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border-2 shadow"
                                             >
                                                 {disease}
                                                 <button
