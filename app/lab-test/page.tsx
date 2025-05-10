@@ -1,11 +1,10 @@
-// LabTestsScreening.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Button from "./components/button";
 import Image from "next/image";
-import { FileIcon } from "lucide-react";
-import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import { CircleX, Cloud, FileIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -85,21 +84,25 @@ const LabTestsScreening: React.FC = () => {
           динамикаа хянаарай
         </p>
       </div>
-      <Input
-        className="w-1/2 h-12 rounded-full px-4 py-2"
-        id="lab-test"
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-      />
+      <div className="w-full max-w-md mx-auto">
+      <div
+        className="border-2 border-dashed border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
+        // onClick={handleButtonClick}
+      >
       {error && <p className="text-red-500 mt-2">{error}</p>}
-      {file && (
-        <div className="flex flex-col items-center space-y-2 mt-4">
+      {file ? (
+        <div className=" relative flex flex-col items-center space-y-2 mt-4 p-5">
+          <CircleX className=" absolute right-0 top-0 cursor-pointer" onClick={()=> {
+            setFile(null);
+            setPreviewUrl(null);
+          }}/>
           {previewUrl ? (
-            <img
+            <Image
+              height={300}
+              width={300}
               src={previewUrl}
               alt="Preview"
-              className="w-32 h-20 object-cover rounded-md border"
+              className="object-cover rounded-md border"
             />
           ) : (
             <div className="flex items-center space-x-2 text-zinc-500">
@@ -108,7 +111,21 @@ const LabTestsScreening: React.FC = () => {
             </div>
           )}
         </div>
+      ) : (
+        <div className="flex flex-col items-center">
+          <Cloud className="h-12 w-12 text-blue-500 mb-2" />
+          <p className="text-sm text-gray-500">Upload File</p>
+          <Input
+              className="w-full h-12 rounded-full px-4 py-2"
+              id="lab-test"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+        </div>
       )}
+      </div>
+    </div>
       <Button
         variant="submit"
         className="mt-5 w-36"
