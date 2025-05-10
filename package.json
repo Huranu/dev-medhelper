@@ -21,6 +21,7 @@
     "@radix-ui/react-select": "^2.2.4",
 >>>>>>> f8c8e03a61ffacbdd4f00acd99824b20787e5e36
     "@radix-ui/react-slot": "^1.2.2",
+    "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
