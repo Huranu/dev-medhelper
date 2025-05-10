@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import PrivateInfoForm from './_components/private-info-form'
-
+import SymptomsForm from './_components/Symptoms'
 export default function WizardPage() {
   const [step, setStep] = useState(1)
   const totalSteps = 3
@@ -40,7 +40,7 @@ export default function WizardPage() {
       <div className='flex flex-col items-center ml-10'>
         <div className="p-6 w-2xl h-128 flex flex-col justify-center">
           {step === 1 && <PrivateInfoForm />}
-          {step === 2 && <div>Step 2: (Add content)</div>}
+          {step === 2 && <div><SymptomsForm/></div>}
           {step === 3 && <div>Step 3: (Add content)</div>}
           <div className="flex space-x-4 mt-4">
             <Button onClick={() => setStep((prev) => Math.max(prev - 1, 1))} variant="outline" disabled={step === 1}>
