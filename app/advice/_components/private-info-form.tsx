@@ -100,19 +100,19 @@ export default function PrivateInfoForm() {
     }
 
     return (
-        <div className="w-full mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+        <div className="w-full mx-auto mt-10 p-6 bg-white rounded-xl shadow min-h-[500px]">
             <AnimatePresence mode="wait">
                 {step === 1 && (
                     <motion.div
                         key="step1"
-                        initial={{ opacity: 0, x: -40 }}
+                        initial={{ opacity: 0, x: 40 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 40 }}
+                        exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.4 }}
                     >
                         <div className="text-2xl font-semibold mb-6">Хувийн мэдээлэл</div>
                         <Form {...formStep1}>
-                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="space-y-4">
+                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col justify-end gap-4">
                                 <FormField
                                     control={formStep1.control}
                                     name="name"
@@ -192,9 +192,9 @@ export default function PrivateInfoForm() {
                 {step === 2 && (
                     <motion.div
                         key="step2"
-                        initial={{ opacity: 0, x: 40 }}
+                        initial={{ opacity: 0, x: -40 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -40 }}
+                        exit={{ opacity: 0, x: 40 }}
                         transition={{ duration: 0.4 }}
                     >
                         <div className="text-2xl font-semibold mb-6">Амьдралын хэв маяг</div>
