@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronsUpDown, Plus } from "lucide-react"
+import { useState } from "react"
+import { Check, ChevronsUpDown, Plus, CircleX, ScanHeart } from "lucide-react"
+
 import { cn } from "@/lib/utils"
-import { CircleX } from 'lucide-react';
-import { ScanHeart } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -23,8 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react"
-
 import {
   Popover,
   PopoverContent,
@@ -152,7 +150,7 @@ export default function SymptomsForm({ onComplete }: { onComplete: () => void })
   const [selectedSymptom, setSelectedSymptom] = useState("")
   const [addedSymptoms, setAddedSymptoms] = useState<
     { symptom: string; duration: number; unit: string }[]
-  >([]);
+  >([])
   const [isAddingNewSymptom, setIsAddingNewSymptom] = useState(false)
   const [showOptions, setShowOptions] = useState(false)
 
@@ -167,93 +165,93 @@ export default function SymptomsForm({ onComplete }: { onComplete: () => void })
     }
   }
 
-  const handleAddMore = () => {
-    setShowOptions(false)
+  const handleDelete = (index: number) => {
+    setAddedSymptoms((prev) => prev.filter((_, i) => i !== index))
   }
 
   function getUnitLabel(unit: string) {
     switch (unit) {
-      case "minutes": return "минут";
-      case "hours": return "цаг";
-      case "days": return "өдөр";
-      case "weeks": return "долоо хоног";
-      case "months": return "сар";
-      default: return unit;
+      case "minutes": return "минут"
+      case "hours": return "цаг"
+      case "days": return "өдөр"
+      case "weeks": return "долоо хоног"
+      case "months": return "сар"
+      default: return unit
     }
   }
 
-  const handleDelete = (index: number) => {
-    setAddedSymptoms((prev) => prev.filter((_, i) => i !== index))
-  }
-    return (
-  <div className="w-full h-[77vh] p-4 bg-white rounded-xl shadow flex flex-col justify-between">
-    {/* Title */}
-    <div className="mb-4 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">
-      <ScanHeart className="mr-2" />
-      Танд ямар шинж тэмдгүүд илэрч байна вэ?
-    </div>
+  return (
+    <div className="w-full h-[77vh] p-4 bg-white rounded-xl shadow flex flex-col relative overflow-hidden">
+      {/* Sticky Title */}
+      <div className="sticky top-0 bg-white py-2 z-10">
+        <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">
+          <ScanHeart className="mr-2" />
+          Танд ямар шинж тэмдгүүд илэрч байна вэ?
+        </div>
+      </div>
 
-    {/* Added Symptoms */}
-    <div className="overflow-y-auto max-h-36 p-2 mb-4 grid grid-cols-2 gap-4">
-      {addedSymptoms.map((s, i) => (
-        <div key={i} className="h-10 shadow rounded-full items-center justify-between py-1 px-4 flex border-2 border-gray-300">
-          <div className="pr-2 font-medium text-sm">
-            {symptoms.find((sym) => sym.value === s.symptom)?.label ?? s.symptom}
+      {/* Scrollable Symptoms Area */}
+      <div className="overflow-y-auto flex-grow px-10 py-2">
+        <div className="grid grid-cols-2 gap-4">
+          {addedSymptoms.map((s, i) => (
+            <div key={i} className="h-10 shadow rounded-full items-center justify-between py-1 px-4 flex">
+              <div className="pr-2 font-medium text-sm">
+                {symptoms.find((sym) => sym.value === s.symptom)?.label ?? s.symptom}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {s.duration} {getUnitLabel(s.unit)}
+              </div>
+              <button
+                onClick={() => handleDelete(i)}
+                className="pl-1.5 text-gray-400 hover:text-gray-500 text-xs"
+              >
+                <CircleX size={20} />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Select Symptom & Duration */}
+        {isAddingNewSymptom && !selectedSymptom && (
+          <div className="mt-6 flex justify-center">
+            <Combobox onSymptomSelect={setSelectedSymptom} />
           </div>
-          <div className="text-xs text-muted-foreground">
-            {s.duration} {getUnitLabel(s.unit)}
+        )}
+        {selectedSymptom && (
+          <div className="mt-4 animate-in fade-in duration-300 flex justify-center">
+            <SymptomDuration
+              onAdd={(duration, unit) => {
+                handleAddSymptom(duration, unit)
+                setIsAddingNewSymptom(false)
+              }}
+            />
           </div>
-          <button
-            onClick={() => handleDelete(i)}
-            className="pl-1.5 text-gray-400 hover:text-gray-500 text-xs"
+        )}
+      </div>
+
+      {/* Sticky Add Button */}
+      {!isAddingNewSymptom && (
+        <div className="sticky bottom-4 z-10 flex justify-center bg-white pt-2">
+          <Button
+            className="flex flex-cols justify-center items-center w-64 text-blue-400 bg-white hover:text-blue-800 hover:bg-white border-1 shadow-none"
+            onClick={() => setIsAddingNewSymptom(true)}
           >
-            <CircleX size={20} />
-          </button>
+            <Plus className="mr-2" /> Шинж тэмдэг нэмэх
+          </Button>
         </div>
-      ))}
-    </div>
-
-    {/* Add Symptom Button */}
-    {!isAddingNewSymptom && (
-      <div className="flex justify-center mb-4">
-        <Button
-          className="flex flex-cols justify-center items-center w-64 text-blue-500 bg-white hover:text-blue-700 hover:bg-white border-0"
-          onClick={() => setIsAddingNewSymptom(true)}
-        >
-          <Plus className="mr-2" /> Шинж тэмдэг нэмэх
-        </Button>
-      </div>
-    )}
-
-    {/* Bottom Selector Area */}
-    <div className="flex justify-center space-y-4">
-      {isAddingNewSymptom && !selectedSymptom && (
-        <Combobox onSymptomSelect={setSelectedSymptom} />
       )}
-      {selectedSymptom && (
-        <div className="animate-in fade-in duration-300 flex justify-center">
-          <SymptomDuration
-            onAdd={(duration, unit) => {
-              handleAddSymptom(duration, unit)
-              setIsAddingNewSymptom(false)
-            }}
-          />
+
+      {/* Finish Button Row */}
+      {showOptions && (
+        <div className="mt-6 space-x-2 flex justify-between">
+          <Button className="hover:bg-gray-200" variant="secondary">
+            Өмнөх
+          </Button>
+          <Button className="hover:bg-blue-500 bg-blue-700" onClick={onComplete}>
+            Илгээх
+          </Button>
         </div>
       )}
     </div>
-
-    {/* Finish Button Row */}
-    {showOptions && (
-      <div className="mt-4 space-x-2 flex justify-between">
-        <Button className="hover:bg-gray-200" variant="secondary">
-          Өмнөх
-        </Button>
-        <Button className="hover:bg-blue-500 bg-blue-700" onClick={onComplete}>
-          Илгээх
-        </Button>
-      </div>
-    )}
-  </div>
-
   )
 }
