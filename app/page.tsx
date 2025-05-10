@@ -20,7 +20,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (stage === "roll") {
-      setTimeout(() => setStage("pause"), 1500);
+      setTimeout(() => setStage("pause"), 100);
     } else if (stage === "pause") {
       setTimeout(() => setStage("grow"), 500);
     } else if (stage === "grow") {
@@ -30,30 +30,38 @@ export default function HomePage() {
     }
   }, [stage]);
 
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setMousePos({ x: e.clientX, y: e.clientY });
   };
 
   const variants = {
-    roll: {
-      x: "50vw",
-      rotate: 360,
-      transition: { duration: 1.5, ease: "easeInOut" },
+  roll: {
+    x: ["100vw", "50vw"],
+    rotate: 360,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 12,
+      bounce: 0.4, // adds bounce when reaching center
+      duration: 1.5,
     },
-    pause: {
-      x: "50vw",
-      rotate: 360,
-      transition: { duration: 0.6 },
-    },
-    grow: {
-      scale: 12,
-      transition: { duration: 1 },
-    },
-    split: {
-      opacity: 0,
-      transition: { duration: 0.5 },
-    },
-  };
+  },
+  pause: {
+    x: "50vw",
+    rotate: 360,
+    transition: { duration: 0.6 },
+  },
+  grow: {
+    scale: 12,
+    transition: { duration: 1 },
+  },
+  split: {
+    opacity: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
 
   return (
     <main
@@ -79,7 +87,7 @@ export default function HomePage() {
             className="fixed top-1/2 left-0 transform -translate-y-1/2 w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full z-50"
             animate={stage}
             variants={variants}
-            initial="roll"
+            initial="x:100"
             exit={{ opacity: 0 }}
           />
         )}

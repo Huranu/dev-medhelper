@@ -16,7 +16,7 @@ const Result: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
       {result ? (
-        <BloodWorkChart data={result.indicators} /> // Pass the result as a prop
+        <BloodWorkChart data={result.indicators} />
       ) : (
         <p>No results available. Please upload a lab test image.</p>
       )}
