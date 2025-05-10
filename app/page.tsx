@@ -3,8 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function HomePage() {
+  const router = useRouter(); 
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 px-6 py-10">
       <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-12 border">
@@ -44,7 +46,10 @@ export default function HomePage() {
 
         <motion.div whileHover={{ scale: 1.05 }}>
            <div className="hidden md:flex space-x-4 justify-center mt-10">
-          <Button className="bg-purple-600 hover:bg-purple-700 transition duration-300 text-white px-5">
+         <Button
+          className="bg-purple-600 hover:bg-purple-700 transition duration-300 text-white px-5"
+          onClick={() => router.push("/lab-test")}
+        >
           Шинжилгээний хариу
         </Button>
         <Button className="bg-purple-600 hover:bg-purple-700 transition duration-300 text-white px-5">
