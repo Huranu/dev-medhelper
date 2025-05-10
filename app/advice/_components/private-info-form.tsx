@@ -46,7 +46,7 @@ const Step2Schema = z.object({
 type Step2Values = z.infer<typeof Step2Schema>
 
 type Props = {
-  onComplete: () => void
+    onComplete: () => void
 }
 
 export default function PrivateInfoForm({ onComplete }: Props) {
@@ -233,7 +233,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
+                                <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 hover:to-purple-600 cursor-pointer">
                                     Дараах
                                 </Button>
                             </form>
@@ -329,7 +329,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     </div>
                                     <ul className="flex flex-wrap gap-2 mt-3">
                                         {diseases.map((disease, index) => (
-                                            <li key={index} className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border-2 shadow">
+                                            <li key={index} className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border shadow">
                                                 {disease}
                                                 <button type="button" onClick={() => removeDisease(index)} className="text-red-500 hover:text-red-700 cursor-pointer">
                                                     <X size={16} />
@@ -363,10 +363,12 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     )}
                                 />
                                 <div className="flex gap-2">
-                                    <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer'>
-                                        Өмнөх
+                                    <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer border-purple-700'>
+                                        <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                                            Буцах
+                                        </span>
                                     </Button>
-                                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
+                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer">
                                         Дараах
                                     </Button>
                                 </div>
