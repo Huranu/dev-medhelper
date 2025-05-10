@@ -2,12 +2,38 @@
 import { Button } from "@/components/ui/button";
 import { BriefcaseMedical, Car } from 'lucide-react';
 import Card from "./card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Response({ privateInfo, symptoms }: { privateInfo: any, symptoms: any }) {
+    const [result, setResult] = useState<any>()
+  
+  async function sendReq() {
+  try {
+    const formData = new FormData();
+    formData.append("privateInfo", JSON.stringify(privateInfo));
+    formData.append("symptoms", symptoms);
+
+    const res = await fetch("/api/advice", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      throw new Error(`API error: ${res.statusText}`);
+    }
+
+    const resp = await res.json();
+    console.log("AI response:", resp);
+    setResult(resp)
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
   useEffect(() => {
     console.log("Private Info:", privateInfo);
     console.log("Symptoms:", symptoms);
+    sendReq();
 
   }, [privateInfo, symptoms]);
   return (
