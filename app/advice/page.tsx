@@ -1,9 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
 import PrivateInfoForm from './_components/private-info-form'
 import SymptomsForm from './_components/Symptoms'
 import Response from './_components/response'
@@ -26,10 +23,10 @@ export default function WizardPage() {
             {/* Step Circle */}
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold border transition-colors duration-500 ${step === s
-                  ? 'bg-blue-600 text-white border-blue-600'
-                  : step > s
-                    ? 'bg-blue-500 text-white border-blue-500'
-                    : 'bg-white text-gray-500 border-gray-300'
+                ? 'bg-blue-600 text-white border-blue-600'
+                : step > s
+                  ? 'bg-blue-500 text-white border-blue-500'
+                  : 'bg-white text-gray-500 border-gray-300'
                 }`}
             >
               {s}
@@ -39,8 +36,8 @@ export default function WizardPage() {
             {i < totalSteps - 1 && (
               <div
                 className={`w-px h-52 transition-all duration-500 ease-in-out ${step > s
-                    ? 'bg-blue-500'
-                    : 'bg-gray-300'
+                  ? 'bg-blue-500'
+                  : 'bg-gray-300'
                   }`}
               />
             )}
