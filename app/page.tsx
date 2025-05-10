@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const router = useRouter();
-  const [stage, setStage] = useState<"roll" | "pause" | "grow" | "split" | "done">("roll");
+  const [stage, setStage] = useState<
+    "roll" | "pause" | "grow" | "split" | "done"
+  >("roll");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveringText, setHoveringText] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export default function HomePage() {
     setLoading(true);
     setTimeout(() => {
       router.push(path);
-    }, 500); 
+    }, 500);
   };
 
   useEffect(() => {
@@ -30,38 +32,36 @@ export default function HomePage() {
     }
   }, [stage]);
 
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setMousePos({ x: e.clientX, y: e.clientY });
   };
 
   const variants = {
-  roll: {
-    x: ["100vw", "50vw"],
-    rotate: 360,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 12,
-      bounce: 0.4, // adds bounce when reaching center
-      duration: 1.5,
+    roll: {
+      x: ["100vw", "50vw"],
+      rotate: 360,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        bounce: 0.4, // adds bounce when reaching center
+        duration: 1.5,
+      },
     },
-  },
-  pause: {
-    x: "50vw",
-    rotate: 360,
-    transition: { duration: 0.6 },
-  },
-  grow: {
-    scale: 12,
-    transition: { duration: 1 },
-  },
-  split: {
-    opacity: 0,
-    transition: { duration: 0.5 },
-  },
-};
-
+    pause: {
+      x: "50vw",
+      rotate: 360,
+      transition: { duration: 0.6 },
+    },
+    grow: {
+      scale: 12,
+      transition: { duration: 1 },
+    },
+    split: {
+      opacity: 0,
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
     <main
@@ -101,7 +101,9 @@ export default function HomePage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-2xl font-extrabold text-blue-700">MedHelper</div>
+            <div className="text-2xl font-extrabold text-blue-700">
+              MedHelper
+            </div>
           </motion.header>
 
           <motion.section
@@ -121,29 +123,24 @@ export default function HomePage() {
               transition={{ delay: 0.6 }}
             >
               <span className="block">
-                Таны <span role="img" aria-label="doctor">🧑‍⚕️</span>{" "}
+                Таны{" "}
+                <span role="img" aria-label="doctor">
+                  🧑‍⚕️
+                </span>{" "}
                 <span className="text-blue-600">Эрүүл мэнд</span>
               </span>
-              <span className="block mt-2 text-black">бидний эрхэм зорилго</span>
+              <span className="block mt-2 text-black">
+                бидний эрхэм зорилго
+              </span>
             </motion.h1>
-
-            {/* <motion.p
-              className="text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            <motion.p
+              className="text-center text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
               Таны эрүүл мэндийн мэдээллийг бид хамгаалахад бид тусална...
-            </motion.p> */}
-            <motion.p
-  className="text-center text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.8 }}
->
-  Таны эрүүл мэндийн мэдээллийг бид хамгаалахад бид тусална...
-</motion.p>
-
+            </motion.p>
 
             <motion.div
               className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center mt-4"
@@ -152,12 +149,12 @@ export default function HomePage() {
               transition={{ delay: 1 }}
             >
               {loading && (
-        <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
-<div className="fixed inset-0 bg-white flex justify-center items-center z-50">
-  <div className="border-8 border-t-8 border-blue-500 border-solid rounded-full w-24 h-24 animate-spin"></div>
-</div>
-        </div>
-      )}
+                <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
+                  <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
+                    <div className="border-8 border-t-8 border-blue-500 border-solid rounded-full w-24 h-24 animate-spin"></div>
+                  </div>
+                </div>
+              )}
               <Button
                 className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[15px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
                 onClick={() => handleNavigation("/lab-test")}
