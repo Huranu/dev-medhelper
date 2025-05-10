@@ -6,11 +6,16 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import PrivateInfoForm from './_components/private-info-form'
 import SymptomsForm from './_components/Symptoms'
+import Response from './_components/response'
 export default function WizardPage() {
   const [step, setStep] = useState(1)
   const totalSteps = 3
 
   const progress = step === 1 ? 0 : step === 2 ? 50 : 100
+
+  const handlePrivateInfoComplete = () => {
+    setStep(2)
+  }
 
   return (
     <div className="flex flex-row justify-center items-center w-full mx-auto p-6 space-y-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen">
@@ -39,17 +44,9 @@ export default function WizardPage() {
       {/* Step Content */}
       <div className='flex flex-col items-center ml-10'>
         <div className="p-6 w-2xl h-128 flex flex-col justify-center">
-          {step === 1 && <PrivateInfoForm />}
-          {step === 2 && <div><SymptomsForm/></div>}
-          {step === 3 && <div>Step 3: (Add content)</div>}
-          <div className="flex space-x-4 mt-4">
-            <Button onClick={() => setStep((prev) => Math.max(prev - 1, 1))} variant="outline" disabled={step === 1}>
-              Back
-            </Button>
-            <Button onClick={() => setStep((prev) => Math.min(prev + 1, totalSteps))} disabled={step === totalSteps}>
-              Next
-            </Button>
-          </div>
+          {step === 1 && <PrivateInfoForm onComplete={handlePrivateInfoComplete} />}
+          {step === 2 && <div><SymptomsForm onComplete={() => setStep(3)} /></div>}
+          {step === 3 && <div><Response/></div>}
         </div>
       </div>
     </div>

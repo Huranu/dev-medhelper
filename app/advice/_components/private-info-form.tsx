@@ -45,7 +45,11 @@ const Step2Schema = z.object({
 
 type Step2Values = z.infer<typeof Step2Schema>
 
-export default function PrivateInfoForm() {
+type Props = {
+  onComplete: () => void
+}
+
+export default function PrivateInfoForm({ onComplete }: Props) {
     const [step, setStep] = useState(1)
     const [gender, setGender] = useState<'male' | 'female'>('male')
     const [diseaseInput, setDiseaseInput] = useState('')
@@ -84,6 +88,8 @@ export default function PrivateInfoForm() {
         }
         console.log('Step 1:', formStep1.getValues())
         console.log('Step 2:', finalData)
+
+        onComplete()
     }
 
     const addDisease = () => {
@@ -361,7 +367,7 @@ export default function PrivateInfoForm() {
                                         Өмнөх
                                     </Button>
                                     <Button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer">
-                                        Бүртгүүлэх
+                                        Дараах
                                     </Button>
                                 </div>
                             </form>
