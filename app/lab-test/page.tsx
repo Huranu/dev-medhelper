@@ -1,59 +1,96 @@
 "use client";
-import React from "react";
-// import Input from "./components/input";
-import { Input } from "@/components/ui/input"
+import React, { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
 import Button from "./components/button";
 import Image from "next/image";
 import { FileIcon } from "lucide-react";
 
 const LabTestsScreening: React.FC = () => {
-  const [message, setMessage] = React.useState<string>("");
-  const [file, setFile] = React.useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null)
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Clean up preview URL
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  async function sendImg(file: File) {
+    setLoading(true);
+    setError(null);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/lab_test", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error(`API error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      console.log("AI response:", result);
+      // Optionally display result to user
+    } catch (err) {
+      setError("Failed to analyze the image. Please try again.");
+      console.error("Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleSend = () => {
-    if (message || file) {
-      console.log("Message from child:", message);
-      if (file) console.log("File from child:", file.name);
-
-      setMessage("");
-      setFile(null);
-    } else {
-      console.log("Please enter a message or attach a file.");
+    if (file) {
+      sendImg(file);
+      // Optionally keep file for retry: setFile(null); setPreviewUrl(null);
     }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0] || null
-    setFile(selectedFile)
+    const selectedFile = e.target.files?.[0] || null;
+    setFile(selectedFile);
+    setPreviewUrl(null);
 
     if (selectedFile && selectedFile.type.startsWith("image/")) {
-      const objectUrl = URL.createObjectURL(selectedFile)
-      setPreviewUrl(objectUrl)
-    } else {
-      setPreviewUrl(null)
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setPreviewUrl(objectUrl);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
       <div className="text-center mb-8">
-        <Image src="/testResult.png" alt="Lab Icon" className="mx-auto mb-4" width={200} height={200}/>
-        <h1 className="text-2xl font-semibold">Лабораторийн болон эрт илрүүлэх үзлэгийн шинжилгээнүүд</h1>
+        <Image
+          src="/testResult.png"
+          alt="Lab Icon"
+          className="mx-auto mb-4"
+          width={200}
+          height={200}
+        />
+        <h1 className="text-2xl font-semibold">
+          Лабораторийн болон эрт илрүүлэх үзлэгийн шинжилгээнүүд
+        </h1>
         <p className="text-gray-600">
-          Шинжилгээнүүдийн үр дүнгээ харж, бодит зөвлөгөө аван,
-          биомаркерийн динамикаа хянаарай
+          Шинжилгээнүүдийн үр дүнгээ харж, бодит зөвлөгөө аван, биомаркерийн
+          динамикаа хянаарай
         </p>
       </div>
       <Input
         className="w-1/2 h-12 rounded-full px-4 py-2"
         id="lab-test"
         type="file"
+        accept="image/*"
         onChange={handleFileChange}
       />
-
+      {error && <p className="text-red-500 mt-2">{error}</p>}
       {file && (
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center space-y-2 mt-4">
           {previewUrl ? (
             <img
               src={previewUrl}
@@ -72,10 +109,10 @@ const LabTestsScreening: React.FC = () => {
         variant="submit"
         className="mt-5 w-36"
         size="medium"
-        disabled={file || message ? false : true}
+        disabled={!file || loading}
         handler={handleSend}
       >
-        Дараах
+        {loading ? "Processing..." : "Дараах"}
       </Button>
     </div>
   );
