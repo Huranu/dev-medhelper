@@ -1,33 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-    title: "Шинж тэмдгийн үнэлгээ",
-    description: "Start Symptom Assessment",
-};
-
-export default function RootLayout({
+export default function AdviceLayout({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+}: {
+    children: React.ReactNode
+}) {
     return (
-        <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                {children}
-            </body>
-        </html>
-    );
+        <div className="">
+            {/* Add navigation, layout wrapper, etc. if needed */}
+            {children}
+        </div>
+    )
 }
