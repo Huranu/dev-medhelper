@@ -10,8 +10,6 @@ export default function HomePage() {
   >("roll");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveringText, setHoveringText] = useState(false);
-
-
   useEffect(() => {
     if (stage === "roll") {
       setTimeout(() => setStage("pause"), 100);
@@ -27,7 +25,6 @@ export default function HomePage() {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setMousePos({ x: e.clientX, y: e.clientY });
   };
-
   const variants = {
     roll: {
       x: ["100vw", "50vw"],
@@ -84,7 +81,6 @@ export default function HomePage() {
           />
         )}
       </AnimatePresence>
-
       {stage === "done" && (
         <>
           <motion.header
@@ -97,7 +93,6 @@ export default function HomePage() {
               MedHelper
             </div>
           </motion.header>
-
           <motion.section
             className="text-center space-y-10 mt-50"
             initial={{ opacity: 0 }}
