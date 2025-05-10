@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { CircleX, Cloud, FileIcon, ChevronLeft, Frown } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+  import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -77,6 +77,9 @@ const LabTestsScreening: React.FC = () => {
   return (
     <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
       <Dialog open={loading}>
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+        </DialogHeader>
         <DialogContent className="sm:max-w-[425px]">
           <div className="flex justify-center items-center py-4">
             <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-purple-500"></div>
@@ -97,7 +100,7 @@ const LabTestsScreening: React.FC = () => {
         />
       </motion.div>
       <motion.header
-            className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2"
+             className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto w-full"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -118,7 +121,7 @@ const LabTestsScreening: React.FC = () => {
         <h1 className="text-5xl font-semibold">
           Лабораторийн болон эрт илрүүлэх үзлэгийн шинжилгээнүүд
         </h1>
-        <p className="mt-3 text-2xl text-gray-600">
+        <p className="mt-4 text-2xl text-gray-600">
           Шинжилгээнүүдийн үр дүнгээ харж, бодит зөвлөгөө аван, биомаркерийн
           динамикаа хянаарай
         </p>
@@ -152,7 +155,7 @@ const LabTestsScreening: React.FC = () => {
       ) : (
         <div className="flex flex-col items-center">
           <Cloud className="h-25 w-25 text-blue-500 mb-2" />
-          <p className="text-md text-gray-500 p-3">Файл оруулах</p>
+          <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
           <Input
               className="w-full h-auto rounded-full px-4 py-2"
               id="lab-test"

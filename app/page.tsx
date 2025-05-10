@@ -63,7 +63,7 @@ export default function HomePage() {
       {/* Cursor */}
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div
-          className="absolute w-50 h-50 rounded-full bg-blue-700 opacity-20 mix-blend-overlay blur-3xl"
+          className="absolute w-70 h-70 rounded-full bg-blue-900 opacity-20 mix-blend-overlay blur-3xl"
           animate={{ left: mousePos.x - 128, top: mousePos.y - 128 }}
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         />
@@ -94,7 +94,7 @@ export default function HomePage() {
             </div>
           </motion.header>
           <motion.section
-            className="text-center space-y-10 mt-50"
+            className="text-center space-y-10 mt-60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
@@ -102,7 +102,7 @@ export default function HomePage() {
             <motion.h1
               onMouseEnter={() => setHoveringText(true)}
               onMouseLeave={() => setHoveringText(false)}
-              className={`text-5xl md:text-6xl font-extrabold leading-tight text-center transition-colors duration-300 ${
+              className={`text-8xl md:text-8xl font-extrabold leading-tight text-center transition-colors duration-300 ${
                 hoveringText ? "text-blue-700" : "text-gray-800"
               }`}
               initial={{ y: 20, opacity: 0 }}
@@ -121,7 +121,7 @@ export default function HomePage() {
               </span>
             </motion.h1>
             <motion.p
-              className="text-center text-md md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+              className="text-center text-md md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -144,14 +144,14 @@ export default function HomePage() {
               )} */}
               <Link href="/lab-test">
                 <Button
-                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px] px-6 py-3 rounded-3xl w-[300px] h-[70px]"
                 >
                   🧪 Шинжилгээний хариу
                 </Button>
               </Link>
               <Link href="/advice">
                 <Button
-                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[16px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px]  px-6 py-3 rounded-3xl w-[300px] h-[70px]"
                   >
                   💬 Зөвлөгөө авах
                 </Button>
@@ -160,7 +160,7 @@ export default function HomePage() {
           </motion.section>
 
           <motion.footer
-            className="text-center text-gray-600 mt-20 pt-10 "
+            className="text-center text-gray-600 mt-60 pt-10 text-[20px] "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}

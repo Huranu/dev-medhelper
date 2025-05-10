@@ -5,10 +5,19 @@ import BloodWorkChart, { Ref } from "../components/chart";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
+interface BloodTestResult {
+  explanation: string;
+  recommendation: string;
+}
+
+interface BloodTestResults {
+  [key: string]: BloodTestResult;
+}
+
 type LabTestResult = {
   indicators: Ref[];
-  summary: any;
-  details: any;
+  summary: string;
+  details: BloodTestResults[];
 };
 
 const Result: React.FC = () => {
@@ -55,19 +64,19 @@ const Result: React.FC = () => {
       </motion.header>
 
       {result ? (
-        <div className="w-full max-w-7xl mx-auto pt-3">
+        <div className="flex flex-col w-full mx-auto pt-3">
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Дүгнэлт</h2>
+            <h2 className="text-4xl font-semibold mb-4 text-center">Дүгнэлт</h2>
             <div className="rounded-lg p-6 max-h-[200px] overflow-y-auto">
-              <p className="text-gray-700 text-xl">{result.summary}</p>
+              <p className="text-gray-700 text-2xl">{result.summary}</p>
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8">
-            <div className="lg:w-1/2">
-              <h2 className="text-2xl font-semibold mb-4 text-center">Дэлгэрэнгүй</h2>
+          <div className="w-full flex flex-row lg:flex-row justify-evenly">
+            <div className="w-[900px]">
+              <h2 className="text-4xl font-semibold mb-4 text-center">Дэлгэрэнгүй</h2>
               <div className="bg-white shadow-md rounded-lg p-6 max-h-[600px] overflow-y-auto">
-                {result.indicators.map((indicator: any, index: number) => (
+                {result.indicators.map((indicator: Ref, index: number) => (
                   <div
                     key={index}
                     className="border-b border-gray-200 py-4 last:border-b-0"
@@ -96,9 +105,8 @@ const Result: React.FC = () => {
               </div>
             </div>
 
-            {/* Blood Work Chart (Scrollable) */}
-            <div className="lg:w-1/2">
-              <h2 className="text-2xl font-semibold mb-4 text-center">
+            <div className="w-[900px]">
+              <h2 className="text-4xl font-semibold mb-4 text-center">
                 Тоон үзүүлэлтийн график
               </h2>
               <div className="bg-white shadow-md rounded-lg p-6 max-h-[600px] overflow-y-auto">
