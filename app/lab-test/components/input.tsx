@@ -24,7 +24,6 @@ const Input: React.FC<InputProps> = ({ message, file, setMessage, setFile }) => 
 
   return (
     <div className={`flex items-center bg-zinc-100 w-1/2 h-12 rounded-full px-4 py-2 relative ${file && "mt-12"}`}>
-      {/* Attachment Icon with File Input */}
       <label className="text-black hover:bg-gray-300 cursor-pointer rounded-full" title="attach file">
         <input
           type="file"
