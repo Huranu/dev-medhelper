@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { CirclePlus, X } from 'lucide-react'
+import { CirclePlus, Dumbbell, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ClipboardPlus } from 'lucide-react';
 
 import {
     Form,
@@ -109,7 +110,7 @@ export default function PrivateInfoForm() {
                         exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="text-2xl font-semibold mb-6">Хувийн мэдээлэл</div>
+                        <div className="flex flex-row items-center text-2xl gap-2 text-blue-600  font-semibold mb-6"><ClipboardPlus strokeWidth={2}/>Хувийн мэдээлэл</div>
                         <Form {...formStep1}>
                             <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col justify-end gap-4">
                                 <FormField
@@ -196,7 +197,7 @@ export default function PrivateInfoForm() {
                         exit={{ opacity: 0, x: 40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="text-2xl font-semibold mb-6">Амьдралын хэв маяг</div>
+                        <div className="flex flex-row items-center gap-2 text-blue-600 text-2xl font-semibold mb-6"><Dumbbell size={25} strokeWidth={1.5}/>Амьдралын хэв маяг</div>
                         <Form {...formStep2}>
                             <form onSubmit={formStep2.handleSubmit(handleFinalSubmit)} className="space-y-4">
                                 <FormField
