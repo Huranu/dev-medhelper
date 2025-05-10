@@ -4,13 +4,10 @@ import { useState } from 'react'
 import PrivateInfoForm from './_components/private-info-form'
 import SymptomsForm from './_components/Symptoms'
 import Response from './_components/response'
-<<<<<<< Updated upstream
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
-=======
 
->>>>>>> Stashed changes
 export default function WizardPage() {
   const [step, setStep] = useState(1)
   const [privateInfo, setPrivateInfo] = useState<any>(null)
@@ -74,28 +71,13 @@ export default function WizardPage() {
             </div>
           ))}
         </div>
-
-
         {/* Step Content */}
         <div className='flex flex-col items-center ml-10'>
-          <div className="p-6 w-2xl h-128 flex flex-col justify-center">
+          <div className="p-6 w-4xl h-128 flex flex-col justify-center">
             {step === 1 && <PrivateInfoForm onComplete={handlePrivateInfoComplete} />}
-            {step === 2 && <div><SymptomsForm onComplete={() => setStep(3)} onBack={() => setStep(1)} /></div>}
-            {step === 3 && <div><Response /></div>}
+            {step === 2 && <SymptomsForm onComplete={handleSymptomsComplete} onBack={() => setStep(1)} />}
+            {step === 3 && <Response privateInfo={privateInfo} symptoms={symptoms} />}
           </div>
-<<<<<<< Updated upstream
-=======
-        ))}
-      </div>
-
-
-      {/* Step Content */}
-      <div className='flex flex-col items-center ml-10'>
-        <div className="p-6 w-4xl h-128 flex flex-col justify-center">
-          {step === 1 && <PrivateInfoForm onComplete={handlePrivateInfoComplete} />}
-          {step === 2 && <SymptomsForm onComplete={handleSymptomsComplete} onBack={() => setStep(1)} />}
-          {step === 3 && <Response privateInfo={privateInfo} symptoms={symptoms} />}
->>>>>>> Stashed changes
         </div>
       </div>
     </div>
