@@ -74,7 +74,7 @@ export default function HomePage() {
       {/* Cursor */}
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
         <motion.div
-          className="absolute w-64 h-64 rounded-full bg-blue-300 opacity-20 mix-blend-overlay blur-3xl"
+          className="absolute w-50 h-50 rounded-full bg-purple-700 opacity-20 mix-blend-overlay blur-3xl"
           animate={{ left: mousePos.x - 128, top: mousePos.y - 128 }}
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         />
