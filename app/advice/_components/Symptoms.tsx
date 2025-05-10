@@ -63,7 +63,7 @@ function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="border-gray-100 w-[450px] justify-between"
+          className="border-gray-100 w-[450px] justify-between cursor-pointer"
         >
           {value.length ? `${value.length} шинж тэмдэг сонгогдсон` : "Шинж тэмдэг сонгох"}
           <ChevronsUpDown className="h-4 w-6 shrink-0 opacity-50" />
@@ -134,7 +134,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
           </SelectContent>
         </Select>
         <Button
-          className="bg-blue-500 hover:bg-blue-700 text-white"
+          className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer"
           onClick={() => {
             if (duration !== "") onAdd(Number(duration), unit)
           }}
@@ -146,7 +146,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
   )
 }
 
-export default function SymptomsForm({ onComplete }: { onComplete: () => void }) {
+export default function SymptomsForm({ onComplete, onBack }: { onComplete: () => void, onBack: () => void }) {
   const [selectedSymptom, setSelectedSymptom] = useState("")
   const [addedSymptoms, setAddedSymptoms] = useState<
     { symptom: string; duration: number; unit: string }[]
@@ -203,7 +203,7 @@ export default function SymptomsForm({ onComplete }: { onComplete: () => void })
               </div>
               <button
                 onClick={() => handleDelete(i)}
-                className="pl-1.5 text-gray-400 hover:text-gray-500 text-xs"
+                className="pl-1.5 text-gray-400 hover:text-gray-500 text-xs cursor-pointer"
               >
                 <CircleX size={20} />
               </button>
@@ -233,10 +233,11 @@ export default function SymptomsForm({ onComplete }: { onComplete: () => void })
       {!isAddingNewSymptom && (
         <div className="sticky bottom-4 z-10 flex justify-center bg-white pt-2">
           <Button
-            className="flex flex-cols justify-center items-center w-64 text-blue-400 bg-white hover:text-blue-800 hover:bg-white border-1 shadow-none"
+            className="flex flex-cols justify-center items-center w-64 text-blue-400 bg-white hover:text-blue-800 hover:bg-white border-1 border-purple-500 shadow-none cursor-pointer"
             onClick={() => setIsAddingNewSymptom(true)}
           >
-            <Plus className="mr-2" /> Шинж тэмдэг нэмэх
+            <Plus className="mr-2" />
+            <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent" >Шинж тэмдэг нэмэх</span>
           </Button>
         </div>
       )}
@@ -244,10 +245,12 @@ export default function SymptomsForm({ onComplete }: { onComplete: () => void })
       {/* Finish Button Row */}
       {showOptions && (
         <div className="mt-6 space-x-2 flex justify-between">
-          <Button className="hover:bg-gray-200" variant="secondary">
-            Өмнөх
+          <Button className='cursor-pointer border-purple-700' variant="outline" onClick={onBack}>
+            <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              Буцах
+            </span>
           </Button>
-          <Button className="hover:bg-blue-500 bg-blue-700" onClick={onComplete}>
+          <Button className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer" onClick={onComplete}>
             Илгээх
           </Button>
         </div>
