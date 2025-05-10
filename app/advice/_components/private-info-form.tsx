@@ -4,9 +4,8 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { CirclePlus, Dumbbell, X } from 'lucide-react'
+import { CirclePlus, Dumbbell, X, ClipboardPlus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ClipboardPlus } from 'lucide-react';
 
 import {
     Form,
@@ -14,7 +13,6 @@ import {
     FormItem,
     FormLabel,
     FormControl,
-    FormMessage,
 } from '@/components/ui/form'
 
 import { Input } from '@/components/ui/input'
@@ -41,7 +39,7 @@ const Step2Schema = z.object({
     smoking: z.string().min(1, 'Тамхи татдаг эсэхийг сонгоно уу'),
     pregnant: z.string().optional(),
     underlyingDiseases: z.array(z.string().min(1, 'Өвчин оруулна уу')).optional(),
-    sedentary: z.string().min(1, 'Сууж ажилладаг эсэхийг сонгоно уу'),
+    sedentary: z.string().optional(),
     exercisePerWeek: z.string().min(1, 'Долоо хоногт хийдэг дасгалын тоог оруулна уу'),
 })
 
@@ -110,18 +108,30 @@ export default function PrivateInfoForm() {
                         exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="flex flex-row items-center text-2xl gap-2 text-blue-600  font-semibold mb-6"><ClipboardPlus strokeWidth={2}/>Хувийн мэдээлэл</div>
+                        <div className="flex flex-row items-center text-2xl gap-2 text-blue-600 font-semibold mb-6">
+                            <ClipboardPlus strokeWidth={2} />
+                            Хувийн мэдээлэл
+                        </div>
                         <Form {...formStep1}>
-                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col justify-end gap-4">
+                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col gap-4">
                                 <FormField
                                     control={formStep1.control}
                                     name="name"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input placeholder="Таны нэр" {...field} />
+                                                <Input
+                                                    {...field}
+                                                    placeholder={
+                                                        formStep1.formState.errors.name?.message || 'Таны нэр'
+                                                    }
+                                                    className={
+                                                        formStep1.formState.errors.name
+                                                            ? 'border-red-500 placeholder:text-red-500'
+                                                            : ''
+                                                    }
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -132,8 +142,18 @@ export default function PrivateInfoForm() {
                                         <FormItem>
                                             <Select onValueChange={(val) => { field.onChange(val); setGender(val as 'male' | 'female') }} value={field.value}>
                                                 <FormControl>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Хүйс сонгоно уу" />
+                                                    <SelectTrigger
+                                                        className={
+                                                            formStep1.formState.errors.gender
+                                                                ? 'border-red-500'
+                                                                : ''
+                                                        }
+                                                    >
+                                                        <SelectValue
+                                                            placeholder={
+                                                                formStep1.formState.errors.gender?.message || 'Хүйс сонгоно уу'
+                                                            }
+                                                        />
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent>
@@ -141,7 +161,6 @@ export default function PrivateInfoForm() {
                                                     <SelectItem value="female">Эмэгтэй</SelectItem>
                                                 </SelectContent>
                                             </Select>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -151,9 +170,16 @@ export default function PrivateInfoForm() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input type="date" {...field} />
+                                                <Input
+                                                    type="date"
+                                                    {...field}
+                                                    className={
+                                                        formStep1.formState.errors.birthday
+                                                            ? 'border-red-500'
+                                                            : ''
+                                                    }
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -163,9 +189,19 @@ export default function PrivateInfoForm() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input type="text" placeholder="Өндөр (см)" {...field} />
+                                                <Input
+                                                    type="text"
+                                                    {...field}
+                                                    placeholder={
+                                                        formStep1.formState.errors.height?.message || 'Өндөр (см)'
+                                                    }
+                                                    className={
+                                                        formStep1.formState.errors.height
+                                                            ? 'border-red-500 placeholder:text-red-500'
+                                                            : ''
+                                                    }
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -175,9 +211,19 @@ export default function PrivateInfoForm() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input type="text" placeholder="Жин (кг)" {...field} />
+                                                <Input
+                                                    type="text"
+                                                    {...field}
+                                                    placeholder={
+                                                        formStep1.formState.errors.weight?.message || 'Жин (кг)'
+                                                    }
+                                                    className={
+                                                        formStep1.formState.errors.weight
+                                                            ? 'border-red-500 placeholder:text-red-500'
+                                                            : ''
+                                                    }
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -197,7 +243,10 @@ export default function PrivateInfoForm() {
                         exit={{ opacity: 0, x: 40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="flex flex-row items-center gap-2 text-blue-600 text-2xl font-semibold mb-6"><Dumbbell size={25} strokeWidth={1.5}/>Амьдралын хэв маяг</div>
+                        <div className="flex flex-row items-center gap-2 text-blue-600 text-2xl font-semibold mb-6">
+                            <Dumbbell size={25} strokeWidth={1.5} />
+                            Амьдралын хэв маяг
+                        </div>
                         <Form {...formStep2}>
                             <form onSubmit={formStep2.handleSubmit(handleFinalSubmit)} className="space-y-4">
                                 <FormField
@@ -208,8 +257,18 @@ export default function PrivateInfoForm() {
                                             <FormLabel>Та тамхи татдаг уу?</FormLabel>
                                             <FormControl>
                                                 <Select onValueChange={field.onChange} value={field.value}>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder="Сонгоно уу" />
+                                                    <SelectTrigger
+                                                        className={
+                                                            formStep2.formState.errors.smoking
+                                                                ? 'border-red-500'
+                                                                : ''
+                                                        }
+                                                    >
+                                                        <SelectValue
+                                                            placeholder={
+                                                                formStep2.formState.errors.smoking?.message || 'Сонгоно уу'
+                                                            }
+                                                        />
                                                     </SelectTrigger>
                                                     <SelectContent>
                                                         <SelectItem value="1">1</SelectItem>
@@ -218,7 +277,6 @@ export default function PrivateInfoForm() {
                                                     </SelectContent>
                                                 </Select>
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -240,7 +298,6 @@ export default function PrivateInfoForm() {
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
-                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
@@ -260,23 +317,15 @@ export default function PrivateInfoForm() {
                                                 }
                                             }}
                                         />
-                                        <Button type="button" variant="ghost" className='cursor-pointer' onClick={addDisease}>
+                                        <Button type="button" variant="ghost" onClick={addDisease} className='cursor-pointer'>
                                             <CirclePlus size={20} color="green" />
                                         </Button>
                                     </div>
                                     <ul className="flex flex-wrap gap-2 mt-3">
                                         {diseases.map((disease, index) => (
-                                            <li
-                                                key={index}
-                                                className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border-2 shadow"
-                                            >
+                                            <li key={index} className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border-2 shadow">
                                                 {disease}
-                                                <button
-                                                    type="button"
-                                                    onClick={() => removeDisease(index)}
-                                                    className="text-red-500 hover:text-red-700"
-                                                    style={{ cursor: 'pointer' }}
-                                                >
+                                                <button type="button" onClick={() => removeDisease(index)} className="text-red-500 hover:text-red-700 cursor-pointer">
                                                     <X size={16} />
                                                 </button>
                                             </li>
@@ -290,9 +339,20 @@ export default function PrivateInfoForm() {
                                         <FormItem>
                                             <FormLabel>Долоо хоногт дасгал хийдэг удаа</FormLabel>
                                             <FormControl>
-                                                <Input type="number" {...field} />
+                                                <Input
+                                                    type="number"
+                                                    {...field}
+                                                    placeholder={
+                                                        formStep2.formState.errors.exercisePerWeek?.message ||
+                                                        'Тоо оруулна уу'
+                                                    }
+                                                    className={
+                                                        formStep2.formState.errors.exercisePerWeek
+                                                            ? 'border-red-500 placeholder:text-red-500'
+                                                            : ''
+                                                    }
+                                                />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
