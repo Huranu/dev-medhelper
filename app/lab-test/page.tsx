@@ -4,14 +4,15 @@ import { Input } from "@/components/ui/input";
 import Button from "./components/button";
 import Image from "next/image";
 import { FileIcon } from "lucide-react";
+import BloodWorkChart from "./components/chart";
 
 const LabTestsScreening: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showChart, setShowChart] = useState(false);
 
-  // Clean up preview URL
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -36,7 +37,7 @@ const LabTestsScreening: React.FC = () => {
 
       const result = await res.json();
       console.log("AI response:", result);
-      // Optionally display result to user
+      setShowChart(true);
     } catch (err) {
       setError("Failed to analyze the image. Please try again.");
       console.error("Error:", err);
@@ -48,7 +49,6 @@ const LabTestsScreening: React.FC = () => {
   const handleSend = () => {
     if (file) {
       sendImg(file);
-      // Optionally keep file for retry: setFile(null); setPreviewUrl(null);
     }
   };
 
@@ -114,6 +114,7 @@ const LabTestsScreening: React.FC = () => {
       >
         {loading ? "Processing..." : "Дараах"}
       </Button>
+      {showChart && <BloodWorkChart />}
     </div>
   );
 };
