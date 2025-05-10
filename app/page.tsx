@@ -141,6 +141,14 @@ export default function HomePage() {
   const [stage, setStage] = useState<"roll" | "pause" | "grow" | "split" | "done">("roll");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveringText, setHoveringText] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleNavigation = (path: string) => {
+    setLoading(true);
+    setTimeout(() => {
+      router.push(path);
+    }, 500); 
+  };
 
   useEffect(() => {
     if (stage === "roll") {
@@ -259,15 +267,22 @@ export default function HomePage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1 }}
             >
+              {loading && (
+        <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
+<div className="fixed inset-0 bg-white flex justify-center items-center z-50">
+  <div className="border-8 border-t-8 border-blue-500 border-solid rounded-full w-24 h-24 animate-spin"></div>
+</div>
+        </div>
+      )}
               <Button
                 className="bg-blue-600 hover:bg-purple-700 transition duration-300 text-white text-[15px] px-6 py-3 rounded-2xl w-[200px] h-[50px]"
-                onClick={() => router.push("/lab-test")}
+                onClick={() => handleNavigation("/lab-test")}
               >
                 🧪 Шинжилгээний хариу
               </Button>
               <Button
                 className="bg-blue-600 hover:bg-purple-700 transition duration-300 text-white text-[15px]  px-6 py-3 rounded-2xl w-[200px] h-[50px]"
-                onClick={() => router.push("/advice")}
+                onClick={() => handleNavigation("/advice")}
               >
                 💬 Зөвлөгөө авах
               </Button>
