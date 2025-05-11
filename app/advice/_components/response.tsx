@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { BriefcaseMedical, Car } from 'lucide-react';
 import Card from "./card";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Response({ privateInfo, symptoms }: { privateInfo: any, symptoms: any }) {
   const [result, setResult] = useState<any>()
-
+  const router = useRouter();
   async function sendReq() {
     try {
       const formData = new FormData();
@@ -55,7 +56,7 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
             ))}
           </ul>
         </div>
-        <Button className="w-32 flex flex-cols items-center justify-center hover:bg-blue-500 bg-blue-700" >
+        <Button className="w-32 flex flex-cols items-center justify-center hover:bg-blue-500 bg-blue-700 cursor-pointer" onClick={() => router.push("/")} >
           Ойлголоо.
         </Button>
       </div>
