@@ -107,7 +107,7 @@ Be accurate, clear, and concise. No matter what give full data in summmary and c
       .replace(/"+$/, "")
       .replace(/```json/, "")
       .replace(/```/, "");
-console.log(result)
+    console.log(result)
     let parsed;
     try {
       parsed = JSON.parse(cleaned);

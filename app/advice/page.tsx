@@ -26,7 +26,12 @@ export default function WizardPage() {
   }
 
   return (
+<<<<<<< Updated upstream
     <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-6 overflow-hidden">
+=======
+    <div className="w-screen h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 overflow-hidden">
+      {/* Header */}
+>>>>>>> Stashed changes
       <motion.header
         className="w-full flex items-center px-6 py-4 bg-white shadow-md"
         initial={{ y: -20, opacity: 0 }}

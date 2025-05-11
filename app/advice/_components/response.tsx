@@ -44,13 +44,15 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
           Өвчний шинж тэмдгүүдийн үнэлгээний дүн:
         </div>
         <div>
-          <div className="text-blue-500 text-2xl font-semibold">Дүгнэлт:</div>
-          <p className="text-gray-700 text-xl">{result.summary}</p>
-          <div className="text-blue-500 text-2xl font-semibold">Үүсэх шалтгаанууд:</div>
+          <div className="text-blue-500 text-xl font-semibold">Дүгнэлт:</div>
+          <p className="text-gray-700 text-lg">{result.result.summary}</p>
+          <div className="text-blue-500 text-xl font-semibold">Үүсэх шалтгаанууд:</div>
           <ul>
-            <li><Card /></li>
-            <li><Card /></li>
-            <li><Card /></li>
+            {result.result.causes.map((cause: any, index: number) => (
+              <li key={index} className="mb-4">
+                <Card cause={cause} ind={index} />
+              </li>
+            ))}
           </ul>
         </div>
         <Button className="w-32 flex flex-cols items-center justify-center hover:bg-blue-500 bg-blue-700" >
