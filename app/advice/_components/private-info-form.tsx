@@ -111,7 +111,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
     }
 
     return (
-        <div className="w-full mx-auto mt-10 p-6 bg-white min-h-[500px]">
+        <div className="w-full mx-auto my-auto p-6 bg-white min-h-[500px]">
             <AnimatePresence mode="wait">
                 {step === 1 && (
                     <motion.div
@@ -126,12 +126,13 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                             Хувийн мэдээлэл
                         </div>
                         <Form {...formStep1}>
-                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col gap-4">
+                            <form onSubmit={formStep1.handleSubmit(handleStep1Submit)} className="flex flex-col gap-6">
                                 <FormField
                                     control={formStep1.control}
                                     name="name"
                                     render={({ field }) => (
                                         <FormItem>
+                                            <FormLabel>Нэр</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     {...field}
@@ -153,6 +154,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="gender"
                                     render={({ field }) => (
                                         <FormItem>
+                                            <FormLabel>Хүйс</FormLabel>
                                             <Select onValueChange={(val) => { field.onChange(val); setGender(val as 'male' | 'female') }} value={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger
@@ -182,6 +184,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="birthday"
                                     render={({ field }) => (
                                         <FormItem>
+                                            <FormLabel>Төрсөн сар, өдөр, он</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="date"
@@ -201,6 +204,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="height"
                                     render={({ field }) => (
                                         <FormItem>
+                                            <FormLabel>Өндөр</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="number"
@@ -223,6 +227,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="weight"
                                     render={({ field }) => (
                                         <FormItem>
+                                            <FormLabel>Жин</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="number"

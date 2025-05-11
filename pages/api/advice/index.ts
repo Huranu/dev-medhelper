@@ -9,7 +9,7 @@ export const config = {
 };
 
 const api = new OpenAI({
-  apiKey: "",
+  apiKey: process.env.OPENAI_API_KEY || "",
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

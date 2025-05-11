@@ -43,7 +43,7 @@ export default function WizardPage() {
       </motion.header>
 
       {/* Main content */}
-      <div className="flex flex-row justify-center items-center w-full h-[calc(100vh-72px)] px-4">
+      <div className="flex flex-row justify-center items-center w-full h-full mt-50 px-4">
         {/* Progress Bar */}
         <div className="flex flex-col items-center mr-10">
           {[1, 2, 3].map((s, i) => (
@@ -69,7 +69,7 @@ export default function WizardPage() {
         </div>
 
         {/* Step Content */}
-        <div className="flex justify-center items-center w-full max-w-3xl h-full">
+        <div className="flex justify-center items-center w-full max-w-5xl h-full">
           <div className="w-full h-auto max-h-full overflow-y-auto p-6 bg-white rounded-xl shadow-md">
             {step === 1 && <PrivateInfoForm onComplete={handlePrivateInfoComplete} />}
             {step === 2 && <SymptomsForm onComplete={handleSymptomsComplete} onBack={() => setStep(1)} />}
