@@ -267,7 +267,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="smoking"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Та тамхи татдаг уу? (Хэрэв тийм бол 7 хоногт хэдэн хайрцаг тамхи татдаг вэ?)</FormLabel>
+                                            <FormLabel>Та тамхи татдаг уу?</FormLabel>
                                             <FormControl>
                                                 <Select onValueChange={field.onChange} value={field.value}>
                                                     <SelectTrigger
@@ -284,11 +284,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                                         />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        <SelectItem value="1">1</SelectItem>
-                                                        <SelectItem value="2">2</SelectItem>
-                                                        <SelectItem value="3">3</SelectItem>
-                                                        <SelectItem value="4">4</SelectItem>
-                                                        <SelectItem value="5">5</SelectItem>
+                                                        <SelectItem value="yes">Тийм</SelectItem>
                                                         <SelectItem value="no">Үгүй</SelectItem>
                                                     </SelectContent>
                                                 </Select>
