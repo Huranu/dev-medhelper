@@ -38,7 +38,7 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
   }, [privateInfo, symptoms]);
   return (
     result ? (
-      <div className="w-full h-[77vh] p-4 bg-white rounded-xl shadow space-y-4 flex flex-col justify-between">
+      <div className="w-full h-[77vh] p-4 bg-white space-y-4 flex flex-col justify-between">
         <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">
           <BriefcaseMedical className="mr-2" />
           Өвчний шинж тэмдгүүдийн үнэлгээний дүн:

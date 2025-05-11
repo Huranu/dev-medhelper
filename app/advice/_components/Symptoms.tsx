@@ -181,7 +181,7 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
   }
 
   return (
-    <div className="w-full h-[77vh] p-4 bg-white rounded-xl shadow flex flex-col relative overflow-hidden">
+    <div className="w-full min-h-[500px] p-4 bg-white flex flex-col relative overflow-hidden">
       {/* Sticky Title */}
       <div className="sticky top-0 bg-white py-2 z-10">
         <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">

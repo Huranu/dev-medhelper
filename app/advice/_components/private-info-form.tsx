@@ -111,7 +111,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
     }
 
     return (
-        <div className="w-full mx-auto mt-10 p-6 bg-white rounded-xl shadow min-h-[500px]">
+        <div className="w-full mx-auto mt-10 p-6 bg-white min-h-[500px]">
             <AnimatePresence mode="wait">
                 {step === 1 && (
                     <motion.div
