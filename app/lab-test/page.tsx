@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "./components/input";
 import Button from "./components/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
