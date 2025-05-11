@@ -25,7 +25,6 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
       const resp = await res.json();
       console.log("AI response:", resp);
       setResult(resp)
-      console.log("Result:", result);
     } catch (err) {
       console.error("Error:", err);
     }

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
-import formidable, { Fields, Files, IncomingForm } from "formidable";
+import { Fields, Files, IncomingForm } from "formidable";
 
 export const config = {
   api: {
@@ -9,7 +9,7 @@ export const config = {
 };
 
 const api = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || "",
+  apiKey: "",
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -72,7 +72,7 @@ ${parsedLabResults ? JSON.stringify(parsedLabResults, null, 2) : "None provided"
 Please return a JSON object with the following format:
 
 {
-  "summary": "[Short explanation of what the data, symptoms, and lab results suggest]",
+  "summary": "Short explanation of what the user data and symptoms suggest",
   "causes": [
     {
       "name": "[Likely medical condition]",
@@ -82,7 +82,8 @@ Please return a JSON object with the following format:
   ]
 }
 
-Be accurate, clear, and concise. Translate to mongolian.
+Be accurate, clear, and concise. No matter what give full data in summmary and causes. And always give 3 causes, no more no less.
+ And also in the causes just give 3 common medical condition. Translate to fluent Mongolian but do not translate the keys like summary and causes
 `;
 
     const response = await api.chat.completions.create({
@@ -106,7 +107,7 @@ Be accurate, clear, and concise. Translate to mongolian.
       .replace(/"+$/, "")
       .replace(/```json/, "")
       .replace(/```/, "");
-
+console.log(result)
     let parsed;
     try {
       parsed = JSON.parse(cleaned);
