@@ -82,7 +82,7 @@ Please return a JSON object with the following format:
   ]
 }
 
-Be accurate, clear, and concise.
+Be accurate, clear, and concise. Translate to mongolian.
 `;
 
     const response = await api.chat.completions.create({

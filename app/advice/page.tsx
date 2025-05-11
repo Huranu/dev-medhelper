@@ -29,7 +29,7 @@ export default function WizardPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-10 overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-auto overflow-hidden">
       <motion.header
         className="w-full flex items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto"
         initial={{ y: -20, opacity: 0 }}
