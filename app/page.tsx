@@ -56,7 +56,7 @@ export default function HomePage() {
   return (
     <main
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-10 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-6 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] bg-blue-100 rounded-full blur-[120px] opacity-30 z-[-1] animate-pulse"></div>
@@ -132,7 +132,7 @@ export default function HomePage() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center mt-4"
+              className="flex flex-col md:flex-row space-y-4 gap-4 md:space-y-0 md:space-x-4 justify-center mt-4"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1 }}
@@ -146,16 +146,14 @@ export default function HomePage() {
               )} */}
               <Link href="/lab-test">
                 <Button
-                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px] px-6 py-3 rounded-3xl w-[300px] h-[70px]"
-                >
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px] px-6 py-3 rounded-3xl w-[300px] h-[70px]">
                   🧪 Шинжилгээний хариу
                 </Button>
               </Link>
               <Link href="/advice">
                 <Button
-                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px]  px-6 py-3 rounded-3xl w-[300px] h-[70px]"
-                  >
-                  💬 Зөвлөгөө авах
+                  className="bg-blue-400 hover:bg-purple-400 transition duration-300 text-white text-[22px]  px-6 py-3 rounded-3xl w-[300px] h-[70px]">
+                    💬 Зөвлөгөө авах
                 </Button>
               </Link>
             </motion.div>

@@ -100,7 +100,7 @@ const Result: React.FC = () => {
                     </div>
                     <p className="text-gray-600 mt-2">
                       {result.details[indicator.label] ||
-                        "No additional details available."}
+                        "Нэмэлт мэдээлэл байхгүй байна."}
                     </p>
                   </div>
                 ))}

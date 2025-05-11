@@ -75,7 +75,7 @@ const LabTestsScreening: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden" onMouseMove={handleMouseMove}>
+    <div className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-6 overflow-hidden" onMouseMove={handleMouseMove}>
       <Dialog open={loading}>
         <DialogHeader>
           <DialogTitle></DialogTitle>
