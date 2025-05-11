@@ -158,7 +158,7 @@ const LabTestsScreening: React.FC = () => {
           <Cloud className="h-25 w-25 text-blue-500 mb-2" />
           <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
           <Input
-              className="w-full h-auto rounded-full px-4 py-2"
+              className="w-full h-auto border-none shadow-none px-auto py-2"
               id="lab-test"
               type="file"
               accept="image/*"
