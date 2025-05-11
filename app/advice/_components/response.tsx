@@ -61,7 +61,11 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
         </Button>
       </div>
     ) : (
-      <div>loading</div>
+      <div className="w-full h-[50vh] p-4 bg-white space-y-4 flex flex-row justify-center">
+        <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-purple-500"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-red-500 ml-3"></div>
+          <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-blue-500 ml-3"></div>
+      </div>
     )
   );
 }
