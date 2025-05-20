@@ -6,23 +6,23 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-interface BloodTestResult {
-  explanation: string;
-  recommendation: string;
-}
+// interface BloodTestResult {
+//   explanation: string;
+//   recommendation: string;
+// }
 
-interface BloodTestResults {
-  [key: string]: BloodTestResult;
-}
+// interface BloodTestResults {
+//   [key: string]: BloodTestResult;
+// }
 
-type LabTestResult = {
-  indicators: Ref[];
-  summary: string;
-  details: BloodTestResults;
-};
+// type LabTestResult = {
+//   indicators: Ref[];
+//   summary: string;
+//   details: BloodTestResults;
+// };
 
 const Result: React.FC = () => {
-  const [result, setResult] = useState<LabTestResult>();
+  const [result, setResult] = useState<any>();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
