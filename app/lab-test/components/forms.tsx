@@ -116,7 +116,7 @@ export default function Forms({ onSubmit }: FormsProps) {
 
           <Button
   type="submit"
-  className="bg-blue-600 hover:bg-blue-700 mt-5 w-50 h-15 mt-auto mx-auto block"
+  className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15 mt-auto mx-auto block"
 >
   <p className="text-lg">Үргэлжлүүлэх</p>
 </Button>

@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { Button } from "@/components/ui/button"; 
+import { Syringe } from 'lucide-react';
 
 interface SpecimenProps {
   onNext: () => void;
@@ -23,12 +25,12 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
   return (
     <div className="h-full space-y-6">
       <div className="p-4">
-        <p className="text-sm text-gray-600 mb-2">Сорьцын төрлийг сонгоно уу</p>
+      <h1 className="text-2xl font-bold mb-6 text-center">Сорьцын төрлийг сонгоно уу.</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
           {specimens.map((specimen) => (
             <div
               key={specimen.en}
-              className={`p-3 text-sm border rounded-lg text-center cursor-pointer ${
+              className={`p-3 text-lg border rounded-lg text-center cursor-pointer ${
                 selected === specimen.en
                   ? "border-blue-200 bg-blue-100"
                   : "border-gray-300"
@@ -42,21 +44,17 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
       </div>
 
       <div className="flex justify-between px-4">
-        <button
-          onClick={onBack}
-          className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
-        >
-          Буцах
-        </button>
-        <button
-          onClick={onNext}
-          disabled={!selected}
-          className={`px-4 py-2 rounded text-white ${
-            selected ? "bg-blue-600 hover:bg-blue-700" : "bg-blue-300 cursor-not-allowed"
-          }`}
-        >
-          Дараах
-        </button>
+        <Button className="mt-5 w-50 h-15" variant="outline" onClick={onBack}>
+  
+  <p className="text-lg">Буцах</p>
+</Button>
+<Button
+  onClick={onNext}
+  className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15"
+>
+  <p className="text-lg">Үргэлжлүүлэх</p>
+</Button>
+
       </div>
     </div>
   );

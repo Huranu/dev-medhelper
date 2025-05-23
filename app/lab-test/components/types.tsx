@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 interface Types {
   en: string;
@@ -36,14 +37,12 @@ const TypeSelection: React.FC<TypeSelectionProps> = ({ onNext, onBack }) => {
   return (
     <div className="h-full space-y-6">
       <div className="p-4">
-        <p className="text-sm text-gray-600 mb-2">
-          Шинжилгээний төрлийг сонгоно уу
-        </p>
+              <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний төрлийг сонгоно уу.</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
           {types.map((t) => (
             <div
               key={t.en}
-              className={`p-3 text-sm border rounded-lg text-center cursor-pointer ${
+              className={`p-3 text-lg border rounded-lg text-center cursor-pointer ${
                 selectedTypes.some((e) => e.en === t.en)
                   ? "border-blue-200 bg-blue-100"
                   : "border-gray-300"
@@ -57,23 +56,17 @@ const TypeSelection: React.FC<TypeSelectionProps> = ({ onNext, onBack }) => {
       </div>
 
       <div className="flex justify-between px-4">
-        <button
-          onClick={onBack}
-          className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
-        >
-          Буцах
-        </button>
-        <button
-          onClick={onNext}
-          disabled={selectedTypes.length === 0}
-          className={`px-4 py-2 rounded text-white ${
-            selectedTypes.length > 0
-              ? "bg-blue-600 hover:bg-blue-700"
-              : "bg-blue-300 cursor-not-allowed"
-          }`}
-        >
-          Дараах
-        </button>
+        <Button className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent mt-5 w-50 h-15" variant="outline" onClick={onBack}>
+  
+  <p className="text-lg">Буцах</p>
+</Button>
+        <Button
+            onClick={onNext}
+            className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15"
+            >
+            <p className="text-lg">Үргэлжлүүлэх</p>
+            </Button>
+
       </div>
     </div>
   );

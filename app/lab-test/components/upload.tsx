@@ -101,9 +101,8 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
                     width={250}
                     height={250}
             />
-        <p className="mt-2 text-2xl text-center">
-            Шинжилгээний хариугаа оруулна уу...
-        </p>
+        <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
+
         <div className="w-full max-w-[900px] h-full mx-auto">
               <div
                 className=" border-2 border-dashed h-full border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
@@ -148,7 +147,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         <div className="mt-5 flex justify-center items-center gap-4">
   <Button
           handler={onBack}
-          className="h-15"
+          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
           size="large"
         >
           <p className="text-lg">Буцах</p>
