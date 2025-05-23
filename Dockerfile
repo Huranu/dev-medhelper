@@ -52,7 +52,8 @@ COPY . .
 EXPOSE 3000
 
 # Start the Next.js dev server
-CMD ["npm", "run", "dev"]
+CMD ["next", "dev", "--turbopack", "--port", "80", "--hostname", "0.0.0.0"]
+
 
 
 # USER nodejs
