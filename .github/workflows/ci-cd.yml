@@ -24,12 +24,10 @@ jobs:
          - name: Connect to GCP and Deploy
            run: |
               ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
-                cd /home/sukhbatsuugii2004/
+                cd /home/sukhbatsuugii2004/dev-medhelper
                 echo "success connected"
-                docker compose down medhelper
-                cd dev-medhelper
+                docker compose down 
                 git pull origin main
-                cd ..
                 docker compose build 
                 docker compose up -d 
                 docker image prune -af
