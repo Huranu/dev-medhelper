@@ -18,12 +18,12 @@ jobs:
               mkdir -p ~/.ssh
               echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
               chmod 400 ~/.ssh/id_rsa
-              ssh-keyscan -H 34.28.117.95 >> ~/.ssh/known_hosts
+              ssh-keyscan -H 35.208.42.42 >> ~/.ssh/known_hosts
            shell: bash
 
          - name: Connect to GCP and Deploy
            run: |
-              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@34.28.117.95 << 'EOF'
+              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.208.42.42 << 'EOF'
                 cd /home/sukhbatsuugii2004/dev-medhelper
                 echo "success connected"
                 docker compose down 
