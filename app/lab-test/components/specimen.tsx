@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button"; 
 import { Syringe } from 'lucide-react';
+import Image from "next/image";
 
 interface SpecimenProps {
   onNext: () => void;
@@ -25,6 +26,13 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
   return (
     <div className="h-full space-y-6">
       <div className="p-4">
+        <Image
+                            src="/specimen.png"
+                            alt="Lab Icon"
+                            className="mx-auto mb-2"
+                            width={90}
+                            height={90}
+                    />
       <h1 className="text-2xl font-bold mb-6 text-center">Сорьцын төрлийг сонгоно уу.</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
           {specimens.map((specimen) => (
