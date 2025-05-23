@@ -18,21 +18,13 @@ jobs:
               mkdir -p ~/.ssh
               echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
               chmod 400 ~/.ssh/id_rsa
-              ssh-keyscan -H "${{ secrets.HOST_IP }}" >> ~/.ssh/known_hosts
+              ssh-keyscan -H 35.192.179.216 >> ~/.ssh/known_hosts
            shell: bash
-
-         - name: Debug SSH Connection
-           run: |
-              ls -l ~/.ssh/
-              head -n 2 ~/.ssh/id_rsa
-              ssh -v -i ~/.ssh/id_rsa "${{ secrets.USER }}@${{ secrets.HOST_IP }}" whoami
-           shell: bash
-           continue-on-error: true # Allows pipeline to continue even if debug fails
 
          - name: Connect to GCP and Deploy
            run: |
-              ssh -i ~/.ssh/id_rsa "${{ secrets.USER }}@${{ secrets.HOST_IP }}" << 'EOF'
-                cd /home/${{ secrets.USER }}
+              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
+                cd /home/sukhbatsuugii2004/
                 echo "success connected"
                 docker-compose down medhelper
                 cd dev-medhelper
