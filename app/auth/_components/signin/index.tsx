@@ -1,10 +1,10 @@
 import React from 'react'
-import GoogleLoginButton from '../button/google-button'
+import SignInForm from './form'
 
 const SignIn = () => {
     return (
-        <div className=''>
-            <GoogleLoginButton />
+        <div className='flex flex-col justify-center items-center h-full w-full'>
+            <SignInForm />
         </div>
     )
 }

@@ -7,12 +7,12 @@ const GoogleLoginButton = () => {
     return (
         <Button
             type='button'
-            className="py-6 flex items-center gap-2"
+            className="py-6 flex items-center gap-4 rounded-full"
             variant="outline"
             onClick={googleLogin}
         >
-            Login with Google
             <FcGoogle size={20} />
+            Гүүглээр нэвтрэх
         </Button>
     )
 }

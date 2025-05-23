@@ -15,9 +15,9 @@ const Auth = () => {
                     <>
                         <motion.div
                             key="signin-form"
-                            initial={{ x: 300, opacity: 0 }}
+                            initial={{ x: 600, opacity: 1 }}
                             animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: 300, opacity: 0 }}
+                            exit={{ x: 600, opacity: 0 }}
                             transition={{ duration: 1 }}
                             className="col-span-7 z-0"
                         >
@@ -30,7 +30,7 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-green-400 flex items-center justify-center z-10"
+                            className="col-span-5 bg-primary flex flex-col items-center justify-center z-10"
                         >
                             <Button onClick={() => setPage("signup")}>Sign Up</Button>
                         </motion.div>
@@ -43,16 +43,16 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: 900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-green-400 flex items-center justify-center z-10"
+                            className="col-span-5 bg-primary flex items-center justify-center z-10"
                         >
                             <Button onClick={() => setPage("signin")}>Sign In</Button>
                         </motion.div>
 
                         <motion.div
                             key="signup-form"
-                            initial={{ x: -300, opacity: 0 }}
+                            initial={{ x: -600, opacity: 1 }}
                             animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: -300, opacity: 0 }}
+                            exit={{ x: -600, opacity: 0 }}
                             transition={{ duration: 1 }}
                             className="col-span-7 z-0"
                         >

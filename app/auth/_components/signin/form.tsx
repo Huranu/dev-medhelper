@@ -23,7 +23,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-const SignUpForm = () => {
+const SignInForm = () => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -57,7 +57,7 @@ const SignUpForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-[400px] flex flex-col gap-6">
-            <p className='text-center font-mono font-bold text-4xl mb-6 text-primary'>Бүртгүүлэх</p>
+            <p className='text-center font-mono font-bold text-primary text-4xl mb-6'>Нэвтрэх</p>
             <div className="flex flex-col gap-2">
                 <Label className="text-sm font-normal text-gray-500">И-Мэйл</Label>
                 <Input
@@ -110,4 +110,4 @@ const SignUpForm = () => {
     )
 }
 
-export default SignUpForm
+export default SignInForm
