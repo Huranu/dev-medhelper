@@ -12,7 +12,7 @@ const GoogleLoginButton = () => {
             onClick={googleLogin}
         >
             <FcGoogle size={20} />
-            Гүүглээр нэвтрэх
+            Google-ээр нэвтрэх
         </Button>
     )
 }

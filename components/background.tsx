@@ -1,6 +1,13 @@
 "use client"
 import React from 'react'
 import { motion } from 'framer-motion'
+import { HeartHandshake } from 'lucide-react';
+import { LiaFileMedicalAltSolid } from "react-icons/lia";
+import { CiMedicalCross } from "react-icons/ci";
+import { GiMedicines } from "react-icons/gi";
+import { TbHealthRecognition } from "react-icons/tb";
+import { SiWorldhealthorganization } from "react-icons/si";
+import { RiMailSendFill } from "react-icons/ri";
 
 const GeometricShape = ({ type = '', className = '', delay = 0, duration = 8 }) => {
   const baseAnimation = {
@@ -20,6 +27,48 @@ const GeometricShape = ({ type = '', className = '', delay = 0, duration = 8 }) 
   }
 
   switch (type) {
+    case 'hearthandshake':
+      return (
+        <motion.div {...floatingAnimation}>
+            <HeartHandshake className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'filemedical':
+      return (
+        <motion.div {...floatingAnimation}>
+            <LiaFileMedicalAltSolid className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'medicalcross':
+      return (
+        <motion.div {...floatingAnimation}>
+            <CiMedicalCross className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'medicines':
+      return (
+        <motion.div {...floatingAnimation}>
+            <GiMedicines className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'healthrecognition':
+      return (
+        <motion.div {...floatingAnimation}>
+            <TbHealthRecognition className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'healthworld':
+      return (
+        <motion.div {...floatingAnimation}>
+            <SiWorldhealthorganization className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
+    case 'sendmail':
+      return (
+        <motion.div {...floatingAnimation}>
+            <RiMailSendFill className={`w-10 h-10 text-white ${className}`} />
+        </motion.div>
+      );
     case 'square':
       return (
         <motion.div 
@@ -31,55 +80,6 @@ const GeometricShape = ({ type = '', className = '', delay = 0, duration = 8 }) 
       return (
         <motion.div 
           className={`w-16 h-16 bg-gradient-to-br to-cyan-400 from-blue-100 rounded-full shadow-lg ${className}`}
-          {...floatingAnimation}
-        />
-      );
-    case 'triangle':
-      return (
-        <motion.div 
-          className={`w-0 h-0 border-l-8 border-r-8 border-b-12 border-l-transparent border-r-transparent border-b-gradient-to-r from-green-400 to-emerald-500 ${className}`}
-          style={{
-            borderBottomColor: '#10b981',
-            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.25))'
-          }}
-          {...floatingAnimation}
-        />
-      );
-    case 'triangle2':
-      return (
-        <motion.div 
-          className={`w-0 h-0 border-l-6 border-r-6 border-t-10 border-l-transparent border-r-transparent ${className}`}
-          style={{
-            borderTopColor: '#f59e0b',
-            filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.25))'
-          }}
-          {...floatingAnimation}
-        />
-      );
-    case 'square2':
-      return (
-        <motion.div 
-          className={`w-10 h-10 bg-gradient-to-br from-cyan-200 to-white transform rotate-45 shadow-lg ${className}`}
-          {...floatingAnimation}
-        />
-      );
-    case 'hexagon':
-      return (
-        <motion.div 
-          className={`w-14 h-14 bg-gradient-to-br from-cyan-200 to-white shadow-lg ${className}`}
-          style={{
-            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-          }}
-          {...floatingAnimation}
-        />
-      );
-    case 'star':
-      return (
-        <motion.div 
-          className={`w-12 h-12 bg-gradient-to-br from-cyan-200 to-white shadow-lg ${className}`}
-          style={{
-            clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)'
-          }}
           {...floatingAnimation}
         />
       );
@@ -110,18 +110,17 @@ const AnimatedBackground = ({ className = "fixed inset-0", asBackground = false 
   }, []);
 
   const shapes = [
-    { type: 'circle', position: 'top-10 left-10', delay: 0, duration: 8 },
-    { type: 'square', position: 'top-20 right-16', delay: 1, duration: 10 },
-    { type: 'triangle', position: 'top-1/3 left-1/4', delay: 2, duration: 9 },
-    { type: 'hexagon', position: 'top-1/4 right-1/3', delay: 0.5, duration: 11 },
-    { type: 'square2', position: 'top-1/2 left-12', delay: 1.5, duration: 8.5 },
-    { type: 'star', position: 'top-2/3 right-20', delay: 2.5, duration: 12 },
-    { type: 'circle', position: 'bottom-1/3 left-1/3', delay: 3, duration: 9.5 },
-    { type: 'triangle2', position: 'bottom-20 right-1/4', delay: 1.2, duration: 10.5 },
-    { type: 'square', position: 'bottom-1/4 left-16', delay: 2.8, duration: 8.8 },
-    { type: 'hexagon', position: 'bottom-10 right-10', delay: 0.8, duration: 11.5 },
-    { type: 'star', position: 'top-3/4 left-3/4', delay: 3.5, duration: 9.2 },
-    { type: 'triangle', position: 'top-1/2 right-1/2', delay: 4, duration: 10.8 },
+    { type: 'hearthandshake', position: 'top-10 left-10', delay: 0, duration: 8 },
+    { type: 'medicines', position: 'top-20 right-16', delay: 1, duration: 10 },
+    { type: 'healthrecognition', position: 'top-1/3 left-1/4', delay: 2, duration: 9 },
+    { type: 'filemedical', position: 'top-1/4 right-1/3', delay: 0.5, duration: 11 },
+    { type: 'sendmail', position: 'top-1/2 left-12', delay: 1.5, duration: 8.5 },
+    { type: 'medicalcross', position: 'top-2/3 right-20', delay: 2.5, duration: 12 },
+    { type: 'healthworld', position: 'bottom-1/3 left-1/3', delay: 3, duration: 9.5 },
+    { type: 'healthrecognition', position: 'bottom-20 right-1/4', delay: 1.2, duration: 10.5 },
+    { type: 'medicines', position: 'bottom-1/4 left-16', delay: 2.8, duration: 8.8 },
+    { type: 'medicalcross', position: 'top-3/4 left-3/4', delay: 3.5, duration: 9.2 },
+    { type: 'healthrecognition', position: 'top-1/2 right-1/2', delay: 4, duration: 10.8 },
   ];
 
   return (

@@ -34,8 +34,17 @@ const Auth = () => {
                             className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
                         >
                             <AnimatedBackground asBackground={true} className="absolute inset-0"/>
-
-                            <Button onClick={() => setPage("signup")} className="relative z-10">Sign Up</Button>
+                            <div className="relative z-10 text-center flex flex-col gap-8 text-white font-semibold">
+                                <p className='text-6xl font-bold'>Сайн байна уу!</p>
+                                <p>Та шинээр бүртгүүлэх бол доорх товчин дээр дарна уу.</p>
+                                <Button 
+                                    onClick={() => setPage("signup")} 
+                                    variant={'ghost'} 
+                                    className='rounded-full border py-6'
+                                >
+                                    Бүртгүүлэх
+                                </Button>
+                            </div>
                         </motion.div>
                     </>
                 ) : (
@@ -49,10 +58,17 @@ const Auth = () => {
                             className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
                         >
                             <AnimatedBackground asBackground={true} className="absolute inset-0"/>
-                            
-                            <Button onClick={() => setPage("signin")} className="relative z-10">
-                                Sign In
-                            </Button>
+                            <div className="relative z-10 text-center flex flex-col gap-8 text-white font-semibold">
+                                <p className='text-6xl font-bold'>Сайн байна уу!</p>
+                                <p>Та шинээр бүртгэлтэй бол нэвтэрнэ үү.</p>
+                                <Button 
+                                    onClick={() => setPage("signin")} 
+                                    variant={'ghost'} 
+                                    className='rounded-full border py-6'
+                                >
+                                    Нэвтрэх
+                                </Button>
+                            </div>
                         </motion.div>
 
                         <motion.div
