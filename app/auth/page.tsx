@@ -4,6 +4,7 @@ import SignIn from './_components/signin'
 import SignUp from './_components/signup'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedBackground from '@/components/background'
 
 const Auth = () => {
     const [page, setPage] = React.useState<"signin" | "signup">("signin")
@@ -30,9 +31,11 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-primary flex flex-col items-center justify-center z-10"
+                            className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
                         >
-                            <Button onClick={() => setPage("signup")}>Sign Up</Button>
+                            <AnimatedBackground asBackground={true} className="absolute inset-0"/>
+
+                            <Button onClick={() => setPage("signup")} className="relative z-10">Sign Up</Button>
                         </motion.div>
                     </>
                 ) : (
@@ -43,9 +46,13 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: 900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-primary flex items-center justify-center z-10"
+                            className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
                         >
-                            <Button onClick={() => setPage("signin")}>Sign In</Button>
+                            <AnimatedBackground asBackground={true} className="absolute inset-0"/>
+                            
+                            <Button onClick={() => setPage("signin")} className="relative z-10">
+                                Sign In
+                            </Button>
                         </motion.div>
 
                         <motion.div
