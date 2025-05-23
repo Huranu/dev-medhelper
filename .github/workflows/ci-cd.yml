@@ -26,12 +26,11 @@ jobs:
               ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
                 cd /home/sukhbatsuugii2004/
                 echo "success connected"
-                docker compose down medhelper
-                cd dev-medhelper
-                git pull origin main
-                cd ..
+                docker compose down 
+                git clone https://github.com/Huranu/dev-medhelper.git
                 docker compose build 
                 docker compose up -d 
                 docker image prune -af
+                rm -rf dev-medhelper
               EOF
            shell: bash
