@@ -51,11 +51,5 @@ COPY . .
 # Expose the development port
 EXPOSE 3000
 
-# Start the Next.js dev server
-CMD ["next", "dev", "--turbopack", "--port", "80", "--hostname", "0.0.0.0"]
 
-
-
-# USER nodejs
-
-# CMD ["node_modules/.bin/next", "start"]
+CMD ["npm", "run", "dev"]
