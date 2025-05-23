@@ -10,7 +10,7 @@ const Auth = () => {
     const [page, setPage] = React.useState<"signin" | "signup">("signin")
 
     return (
-        <div className="grid grid-cols-12 h-screen overflow-hidden relative">
+        <div className="grid grid-cols-1 sm:grid-cols-12 h-screen overflow-hidden relative">
             <AnimatePresence mode="wait">
                 {page === "signin" ? (
                     <>
@@ -31,7 +31,7 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
+                            className="col-span-5 bg-primary sm:flex items-center justify-center z-10 relative hidden"
                         >
                             <AnimatedBackground asBackground={true} className="absolute inset-0"/>
                             <div className="relative z-10 text-center flex flex-col gap-8 text-white font-semibold">
@@ -46,6 +46,15 @@ const Auth = () => {
                                 </Button>
                             </div>
                         </motion.div>
+                        <div className='flex sm:hidden justify-center'>
+                            <div className='w-[300px] flex gap-6 justify-center text-sm'>
+                                <p>Та бүртгэлгүй юу?</p>
+                                <p 
+                                    onClick={() => setPage("signup")}
+                                    className='hover:underline'
+                                    >Бүртгүүлэх</p>
+                            </div>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -55,10 +64,10 @@ const Auth = () => {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: 900, opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="col-span-5 bg-primary flex items-center justify-center z-10 relative"
+                            className="col-span-5 bg-primary sm:flex hidden items-center justify-center z-10 relative"
                         >
                             <AnimatedBackground asBackground={true} className="absolute inset-0"/>
-                            <div className="relative z-10 text-center flex flex-col gap-8 text-white font-semibold">
+                            <div className="relative z-10 text-center sm:flex flex-col gap-8 text-white font-semibold hidden">
                                 <p className='text-6xl font-bold'>Сайн байна уу!</p>
                                 <p>Та шинээр бүртгэлтэй бол нэвтэрнэ үү.</p>
                                 <Button 
@@ -81,6 +90,15 @@ const Auth = () => {
                         >
                             <SignUp />
                         </motion.div>
+                        <div className='flex sm:hidden justify-center'>
+                            <div className='w-[300px] flex gap-6 justify-center text-sm'>
+                                <p>Та бүртгэлтэй юу?</p>
+                                <p 
+                                    onClick={() => setPage("signin")}
+                                    className='hover:underline'
+                                    >Нэвтрэх</p>
+                            </div>
+                        </div>
                     </>
                 )}
             </AnimatePresence>

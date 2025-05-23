@@ -56,7 +56,7 @@ const SignUpForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="w-[400px] flex flex-col gap-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[300px] sm:w-[400px] flex flex-col gap-6">
             <p className='text-center font-mono font-bold text-4xl mb-6 text-primary'>Бүртгүүлэх</p>
             <div className="flex flex-col gap-2">
                 <Label className="text-sm font-normal text-gray-500">И-Мэйл</Label>
