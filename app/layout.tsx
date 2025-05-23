@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <Toaster />
         {children}
       </body>
     </html>
