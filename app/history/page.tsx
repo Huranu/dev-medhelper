@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import BloodWorkChart, { Ref } from "../components/chart";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import BloodWorkChart from "../lab-test/components/prev-chart";
 
-const Result: React.FC = () => {
+const History: React.FC = () => {
   const [result, setResult] = useState<any>();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -27,6 +27,7 @@ const Result: React.FC = () => {
             unit: '10³/µL',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.'
           },
           {
@@ -37,6 +38,7 @@ const Result: React.FC = () => {
             unit: '10⁶/µL',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.'
           },
           {
@@ -47,6 +49,7 @@ const Result: React.FC = () => {
             unit: 'g/L',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: "Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг."
           },
           {
@@ -57,6 +60,7 @@ const Result: React.FC = () => {
             unit: '%',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: "Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна."
           },
           {
@@ -67,6 +71,7 @@ const Result: React.FC = () => {
             unit: 'fL',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.'
           },
           {
@@ -77,6 +82,7 @@ const Result: React.FC = () => {
             unit: 'pg',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.'
           },
           {
@@ -87,6 +93,7 @@ const Result: React.FC = () => {
             unit: 'g/L',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.'
           },
           {
@@ -97,6 +104,7 @@ const Result: React.FC = () => {
             unit: '10³/µL',
             prevValue: 42,
             currentValue: 15,
+            date:"May",
             desc: 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
           }
         ],
@@ -140,10 +148,7 @@ const Result: React.FC = () => {
       {result ? (
         <div className="flex flex-col w-full mx-auto pt-3">
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Шинжилгээний хариуны дүгнэлт</h2>
-            <div className="rounded-lg ml-5 p-4 max-h-[200px] overflow-y-auto">
-              <p className="text-gray-700 text-xl">{result.summary}</p>
-            </div>
+            <h2 className="text-2xl font-semibold text-center">Цусны шинжилгээний түүх</h2>
           </div>
 
           <div className="w-full">
@@ -163,4 +168,4 @@ const Result: React.FC = () => {
   );
 };
 
-export default Result;
+export default History;

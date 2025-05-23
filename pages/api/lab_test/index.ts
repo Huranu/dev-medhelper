@@ -50,12 +50,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               type: "text",
               text: `
                   You are a professional AI medical assistant. Based on the attached **blood lab test result image**, please do the following:
-                  
 
                   1. Extract all measurable **blood test indicators** from the image and format them into a JSON structure like this:
                   [
-                    { label: "White Blood Cells (WBC)", value: 8.86, refMin: 4, refMax: 8, unit: "10³/µL" },
-                    { label: "Red Blood Cells (RBC)", value: 4.69, refMin: 3.5, refMax: 5.5, unit: "10⁶/µL" },
+                    { label: "White Blood Cells (WBC)", value: 8.86, refMin: 4, refMax: 8, unit: "10³/µL", desc: "..." },
+                    { label: "Red Blood Cells (RBC)", value: 4.69, refMin: 3.5, refMax: 5.5, unit: "10⁶/µL", desc: "..." },
                     ...
                   ]
                   2. Then, provide a **detailed explanation for each indicator**, specifying whether the value is within the normal range or abnormal. If abnormal, give **warnings, potential health risks, and basic recommendations**.
@@ -65,8 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   - **grammatically correct**
                   - **clearly understandable** as if a real doctor is advising a patient.
                   The response format must be:
-                  - "indicators": JSON array (label, value, unit, and normal range)
-                  - "details": Explanation and recommendations for each value
+                  - "indicators": JSON array (label, value, unit description and normal range)
                   - "summary": General health conclusion based on all values
                   !! just give the answer in json string format i gave you. do not use any disclaimer. and translate all the fields to fluent mongolian except the keys in json. don't be lazy !!
                   `,
@@ -101,68 +99,66 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             value: 8.86,
             refMin: 4,
             refMax: 8,
-            unit: '10³/µL'
+            unit: '10³/µL',
+            desc: 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.'
           },
           {
             label: 'Улаан цусны эс (RBC)',
             value: 4.69,
             refMin: 3.5,
             refMax: 5.5,
-            unit: '10⁶/µL'
+            unit: '10⁶/µL',
+            desc: 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.'
           },
           {
             label: 'Гемоглобин (HGB)',
             value: 140,
             refMin: 115,
             refMax: 165,
-            unit: 'g/L'
+            unit: 'g/L',
+            desc: "Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг."
           },
           {
             label: 'Гематокрит (HCT)',
             value: 41.3,
             refMin: 35,
             refMax: 48,
-            unit: '%'
+            unit: '%',
+            desc: "Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна."
           },
           {
             label: 'Дундаж биетэвч (MCV)',
             value: 88.1,
             refMin: 86,
             refMax: 100,
-            unit: 'fL'
+            unit: 'fL',
+            desc: 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.'
           },
           {
             label: 'Дундаж цус задлагч (MCH)',
             value: 29.9,
             refMin: 27,
             refMax: 32,
-            unit: 'pg'
+            unit: 'pg',
+            desc: 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.'
           },
           {
             label: 'Дундаж цус задлагч концентрац (MCHC)',
             value: 342,
             refMin: 310,
             refMax: 370,
-            unit: 'g/L'
+            unit: 'g/L',
+            desc: 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.'
           },
           {
             label: 'Хавтгай цусны хавтгай эсүүд (PLT)',
             value: 191,
             refMin: 150,
             refMax: 400,
-            unit: '10³/µL'
+            unit: '10³/µL',
+            desc: 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
           }
         ],
-        details: {
-          'Цагаан цусны эс (WBC)': 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.',
-          'Улаан цусны эс (RBC)': 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.',
-          'Гемоглобин (HGB)': 'Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг.',
-          'Гематокрит (HCT)': 'Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна.',
-          'Дундаж биетэвч (MCV)': 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.',
-          'Дундаж цус задлагч (MCH)': 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.',
-          'Дундаж цус задлагч концентрац (MCHC)': 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.',
-          'Хавтгай цусны хавтгай эсүүд (PLT)': 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
-        },
         summary: 'Таны цусны шинжилгээний ихэнх утгууд хэвийн байгаа боловч цагаан цусны эсүүд дээд хязгаараас бага зэрэг давсан байна. Энэ нь өвчин, бэртэл эсвэл үрэвслийн үед тохиолдож болох юм. Тохиолдолын чихахгүй зовиур байгаа эсэхийг ажиглаж, шаардлага гарвал нарийн шинжилгээ хийлгэх нь зүйтэй байна. Амин дэм, эрүүл хоол хүнсийг хангалттай хэмжээгээр авахыг зөвлөж байна.'
       }
     }
