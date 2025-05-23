@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - Logistic
+name: CI/CD Pipeline - Medhelper
 
 on:
    push:
