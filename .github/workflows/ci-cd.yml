@@ -13,27 +13,19 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-         - name: print HOST_IP and USER
-           run: |
-              echo "HOST_IP=${{ secrets.HOST_IP }}"
-              echo "USER=${{ secrets.USER }}"
-
          - name: Setup SSH Key
            run: |
-             mkdir -p ~/.ssh
-             echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-             chmod 400 ~/.ssh/id_rsa
-             if [ -z "${{ secrets.HOST_IP }}" ]; then
-               echo "Error: HOST_IP is not set."
-               exit 1
-             fi
-             ssh-keyscan -H "${{ secrets.HOST_IP }}" >> ~/.ssh/known_hosts
+              mkdir -p ~/.ssh
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              chmod 400 ~/.ssh/id_rsa
+
+              ssh-keyscan -H "35.192.179.216" >> ~/.ssh/known_hosts
            shell: bash
 
          - name: Connect to GCP and Deploy
            run: |
-              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST_IP }} << 'EOF'
-                cd /home/${{ secrets.USER }}
+              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
+                cd /home/sukhbatsuugii2004
                 echo "success connected"
                 # docker-compose down medhelper
                 # cd dev-medhelper
