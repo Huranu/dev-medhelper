@@ -1,36 +1,41 @@
 name: CI/CD Pipeline - Medhelper
 
 on:
-   push:
-      branches:
-         - main
-   pull_request:
-      branches:
-         - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-   deploy:
-      runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-         - name: Setup SSH Key
-           run: |
-              mkdir -p ~/.ssh
-              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-              chmod 400 ~/.ssh/id_rsa
-              ssh-keyscan -H ${{ secrets.HOST_IP }} >> ~/.ssh/known_hosts
-           shell: bash
+    steps:
+      - name: Debug: print HOST_IP and USER
+        run: |
+          echo "HOST_IP=${{ secrets.HOST_IP }}"
+          echo "USER=${{ secrets.USER }}"
 
-         - name: Connect to GCP and Deploy
-           run: |
-              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST_IP }} << 'EOF'
-                cd /home/${{ secrets.USER }}
-                echo "success connected"
-               #  docker-compose down medhelper
-               #  cd dev-medhelper
-               #  git pull origin main
-               #  docker-compose build medhelper
-               #  docker-compose up -d medhelper 
-               #  docker image prune -af
-              EOF
-           shell: bash
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST_IP }} >> ~/.ssh/known_hosts
+        shell: bash
+
+      - name: Connect to GCP and Deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST_IP }} << 'EOF'
+            cd /home/${{ secrets.USER }}
+            echo "success connected"
+            # docker-compose down medhelper
+            # cd dev-medhelper
+            # git pull origin main
+            # docker-compose build medhelper
+            # docker-compose up -d medhelper
+            # docker image prune -af
+          EOF
+        shell: bash
