@@ -27,10 +27,10 @@ jobs:
                 cd /home/sukhbatsuugii2004/
                 echo "success connected"
                 docker compose down 
-                git clone https://github.com/Huranu/dev-medhelper.git
+                cd dev-medhelper
+                git pull origin main
                 docker compose build 
                 docker compose up -d 
                 docker image prune -af
-                rm -rf dev-medhelper
               EOF
            shell: bash
