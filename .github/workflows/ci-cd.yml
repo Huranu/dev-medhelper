@@ -16,14 +16,62 @@ jobs:
          - name: Setup SSH Key
            run: |
               mkdir -p ~/.ssh
-              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              echo "-----BEGIN OPENSSH PRIVATE KEY-----
+               b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+               NhAAAAAwEAAQAAAgEA6L+/3bDI6WbiFf2QTwKIU9SC0SQGZnkbOxWINMzeL2RugaN7RyaJ
+               7s6Jlwxi8uXerrZXVvDo+wtv3uH+9YMrPItUWeorfT1X7L4ehVra3iRwhA+pglhkiltmU3
+               yMBQwrgfstKwy/Q+zVaVFBvhTbZepSR9iNo96cp+JTu1QIFb2W3evs3uQGYy/LYFMkyjDJ
+               HPUd2wh9qbQwXwWj+RAQqYBvyHw/RzFT2z7H97n4ptkdvS2u9G6zm/KChcuemCHgtw0rO4
+               Ip+7boCd6FPW2U6Ubb9Pf8CYDdmNCRMVWDjoeCqxFo2QRiZVhnE674sXkRJbONmUVwVilM
+               cY+lnaFPUiXEgmmsyBm7D4DuBsv3k9y/Xq4oLEqKrowX9+7lP0c4e+jZIqb7N3PkxDO5fS
+               p/sNkv8fLk5ikYtuPfpfXH8qGCR9HAlkc28LeZeCXZ3vx6cMkByMAD05pbVTV7PZ2IR9LC
+               HNyDx1a1bOiU5jfMlG9Aq3SIUoqUqtBABPB5cW4vUkvyHfUhtPtG6WSoNc/Ec4knwcq2Sr
+               h76WLkQY9kuBBT4g15ecNz1AkeJJ5o1H+9imZ044DfuhTb3dJVjL269OxBf1QNh8/nbuWn
+               y3eJp1T4uXS/k77R/CCKpd6bG6N7JDX8u22Eslc4yDAxZFtso30oEXHvSWWmmZpTcf3nZA
+               UAAAdAa4ek+muHpPoAAAAHc3NoLXJzYQAAAgEA6L+/3bDI6WbiFf2QTwKIU9SC0SQGZnkb
+               OxWINMzeL2RugaN7RyaJ7s6Jlwxi8uXerrZXVvDo+wtv3uH+9YMrPItUWeorfT1X7L4ehV
+               ra3iRwhA+pglhkiltmU3yMBQwrgfstKwy/Q+zVaVFBvhTbZepSR9iNo96cp+JTu1QIFb2W
+               3evs3uQGYy/LYFMkyjDJHPUd2wh9qbQwXwWj+RAQqYBvyHw/RzFT2z7H97n4ptkdvS2u9G
+               6zm/KChcuemCHgtw0rO4Ip+7boCd6FPW2U6Ubb9Pf8CYDdmNCRMVWDjoeCqxFo2QRiZVhn
+               E674sXkRJbONmUVwVilMcY+lnaFPUiXEgmmsyBm7D4DuBsv3k9y/Xq4oLEqKrowX9+7lP0
+               c4e+jZIqb7N3PkxDO5fSp/sNkv8fLk5ikYtuPfpfXH8qGCR9HAlkc28LeZeCXZ3vx6cMkB
+               yMAD05pbVTV7PZ2IR9LCHNyDx1a1bOiU5jfMlG9Aq3SIUoqUqtBABPB5cW4vUkvyHfUhtP
+               tG6WSoNc/Ec4knwcq2Srh76WLkQY9kuBBT4g15ecNz1AkeJJ5o1H+9imZ044DfuhTb3dJV
+               jL269OxBf1QNh8/nbuWny3eJp1T4uXS/k77R/CCKpd6bG6N7JDX8u22Eslc4yDAxZFtso3
+               0oEXHvSWWmmZpTcf3nZAUAAAADAQABAAACABPjFHINEbGtvoop+wthOERPb2kO1rQpS2wa
+               PCPk0GRExNNzZExxTM5Ym/WJ06eVABi2EFLnrUSMFuA4t7gDH+3hqtCu+03NcMaT/Rggaf
+               yaqPmDvBRc2KRgyGbASNeCkXIfA94+jdYwNZD05jTnY9K6uZKVfI7AreqDYmuqc7Fl3G70
+               Ym4uFiSh+BLwL7/N+NUuVYF6YYBfWtW3renRV1cgWAzNnvuGibd9TwlJ/ObGvO2F6oHMtr
+               CPwVrMye2OUXzalXPVfKBbIcr8Fi7oPtXK3e75xHGMbwLIaWuJdr72MbJLv8VxRDYMHmyW
+               Yf4KDe7Gf4YV4pIeH7/BSiGkn5oH07wzAkaAXNVtKwnoG04aVotqlSepwrZQYtBFT75FKN
+               lPfxklhudi3icmkyfwETZ6Gsmyl5WTQ0kgBb81g/Ud1fU6SGDmu47zQAgdxyLs0BL0CT2s
+               xGKXEE7kD8cl8MXWexfE1lbTlx0UTFo2run7/MzsPMATnPpB//XZRS3Jx7RNnnrn6UqR2R
+               reK6A+xubtzLX46OJIgSxSxuwBv+QdAKy9g/mVXngSjx6QEayEP9xLA2RMFwMPQI8Ep2gQ
+               CFVcbSwPNxqkre/Xo0ZLfO/Om1jCnAzqCGewET/1umsMtW8lv5PD/3KOqk4DN4QFtCYQmb
+               BZF603PfaxFPZwLpgpAAABAQDwYFVm/elTmpRN6WQKSmKGz7Bo9Iv1KysZj4VnLDcF/zD+
+               sRrzm7I9xi7Frcck31FwQz2w7WqyeEOX4kUFGWEjEyFsnRfXzK9qPox2vBWptwRUD1LWkP
+               Wp+LCZvIIWJQjw2B0s/SulUXrJwxKLhbPRvuFnExL0J12s0QUZp4XYar5ilgKYqi/zA54l
+               Fw4XEeVGmz0+kOZYgxWenGM00yIXXiURTujGYmHrjd3T4C1CeXAiFD9UNNK12ZTVrug34u
+               xLfpaTLS6uNCHtGuZb6OdiO1eMR8sIO8Kg3UcYD3vwsTzQRTTXqsP4GCrt/5grWliblTF8
+               9zp9bl2PccIieU9fAAABAQD3kAzP0YSDaSQCSWMTcH6gi5OhTJM945HvOWk81hxpY7x4W5
+               uEv/z/TBC94QayZfPqeo36CvXcWceFheBJesbyIcW7zdpuB89Y8XGD8xjuT84GkWuOMrdY
+               cGwVUZhKNQ0qNugwD05CZlnBvdI6XAslP+t9wT4AQ7oou9KuKtv/3IWLsGDCb/0hgbwqNI
+               kKgxg9ZkaozdMl3RNmpWbzQyZngsq14oxa4mDb60Rz9LESG2rJ2RVkjFdwZQNLRAHB2PHa
+               Z5maukVkYi7Kg0cvUqF+cIhuZGaeBrvpKoSz2ZIKQ30xHyXBkDPvo+CUw1jshIrwuSgaBS
+               KLGsjPboSPAnMpAAABAQDwrnPC3X4Bn658djYQRT3qiOfEBFqpdDzN02JPijB7pljb6pym
+               IdBkgKdEOrTic+N6y0w0f4zCbQ/tZyUg0DXguW9XrAZrBWILU+cNGD2pulJLM61qOmD1xT
+               JegCeD/ma0tR3ABy47xrfWXwDstogguDDTDcn+oKEnmoNH2Uu6B68fm6xhHx5Coq9tYU/s
+               09Vw00lXhFzD5Kn8U2P07acmpjK6nNrDamBltO7a4o/wgHxaZDkE5LXv20TDPBJxtcNxjo
+               jeJ1gNwK4+otKVB9dsKnqnKRq5NYIj+MZuuvbpcFjklF6Lugr9FJIjtX0ET6pWhahhC50L
+               qP8/68XHcgF9AAAABWNob2NlAQIDBAU=
+               -----END OPENSSH PRIVATE KEY-----" > ~/.ssh/id_rsa
               chmod 400 ~/.ssh/id_rsa
-              ssh-keyscan -H 35.192.179.216 >> ~/.ssh/known_hosts
+              ssh-keyscan -H 34.28.117.95 >> ~/.ssh/known_hosts
            shell: bash
 
          - name: Connect to GCP and Deploy
            run: |
-              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
+              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@34.28.117.95 << 'EOF'
                 cd /home/sukhbatsuugii2004/dev-medhelper
                 echo "success connected"
                 docker compose down 
