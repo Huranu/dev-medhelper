@@ -1,0 +1,37 @@
+name: CI/CD Pipeline - Medhelper
+
+on:
+   push:
+      branches:
+         - main
+   pull_request:
+      branches:
+         - main
+
+jobs:
+   deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+         - name: Setup SSH Key
+           run: |
+              mkdir -p ~/.ssh
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+              chmod 400 ~/.ssh/id_rsa
+              ssh-keyscan -H 35.192.179.216 >> ~/.ssh/known_hosts
+           shell: bash
+
+         - name: Connect to GCP and Deploy
+           run: |
+              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.192.179.216 << 'EOF'
+                cd /home/sukhbatsuugii2004/
+                echo "success connected"
+                docker compose down medhelper
+                cd dev-medhelper
+                git pull origin main
+                cd ..
+                docker compose build 
+                docker compose up -d 
+                docker image prune -af
+              EOF
+           shell: bash
