@@ -1,7 +1,6 @@
-node_modules
-.next/cache
+ode_modules
+.next
 .git
-*.log
-tests
+Dockerfile
+docker-compose.yml
 *.md
-.vscode

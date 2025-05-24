@@ -1,12 +1,23 @@
-import { PrismaClient } from '@/app/prisma'
+import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-const globalForPrisma = global as unknown as { 
-    prisma: PrismaClient
+// 1. First create the extended client type
+type AcceleratedClient = ReturnType<typeof withAccelerate>
+
+// 2. Define global type
+const globalForPrisma = global as unknown as {
+  prisma: PrismaClient | undefined
 }
 
-const prisma = globalForPrisma.prisma || new PrismaClient().$extends(withAccelerate())
+// 3. Initialize client
+const prisma = globalForPrisma.prisma || 
+  new PrismaClient().$extends(withAccelerate())
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+// 4. Type assertion for the extended client
+const acceleratedPrisma = prisma as unknown as PrismaClient & AcceleratedClient
 
-export default prisma
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prisma = prisma
+}
+
+export default acceleratedPrisma
