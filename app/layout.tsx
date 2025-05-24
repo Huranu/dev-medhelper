@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner"
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "Welcome to Med Helper",
@@ -31,7 +22,9 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <Toaster />
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

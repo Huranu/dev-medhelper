@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import GoogleLoginButton from '../button/google-button'
 import Link from 'next/link'
-import { handwrittenLogin } from '../../_lib/queries'
+import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
@@ -44,13 +44,22 @@ const SignInForm = () => {
         console.log('Submitting...', data)
         setLoading(true)
         try {
-            const user = await handwrittenLogin(data)
-            console.log(user)
-            console.log("FAAK")
-            toast.success('Login successful')
-            router.push("/")
-        } catch (err: any) {
-            toast.error(err?.message || 'Login failed')
+            const result = await signIn("credentials", {
+                email: data.email,
+                password: data.password,
+                redirect: false,
+            })
+
+            if (result?.error) {
+                toast.error('Invalid email or password')
+            } else if (result?.ok) {
+                toast.success('Login successful')
+                router.push("/")
+                router.refresh()
+            }
+        } catch (error) {
+            console.error('Login error:', error)
+            toast.error('Login failed')
         } finally {
             setLoading(false)
         }

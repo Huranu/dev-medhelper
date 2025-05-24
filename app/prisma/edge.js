@@ -201,7 +201,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/deprrous/Documents/code/dev-medhelper/app/prisma",
+      "value": "C:\\Users\\Javkhaa\\Code\\next\\dev-medhelper\\app\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -210,7 +210,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       },
       {
@@ -223,7 +223,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/deprrous/Documents/code/dev-medhelper/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\Javkhaa\\Code\\next\\dev-medhelper\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

@@ -1,33 +1,34 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { compare, hash } from 'bcryptjs'
+import { hash } from 'bcryptjs'
+import { signIn } from "@/app/auth"
+import { AuthError } from "next-auth"
 
 export async function handwrittenLogin(data: { email: string; password: string }) {
-    const { email, password } = data
+    try {
+        const result = await signIn("credentials", {
+            email: data.email,
+            password: data.password,
+            redirect: false,
+        })
 
-    const account = await prisma.account.findUnique({
-        where: {
-            provider_providerAccountId: {
-                provider: 'credentials',
-                providerAccountId: email,
-            },
-        },
-        include: {
-            user: true,
-        },
-    })
+        if (result?.error) {
+            throw new Error('Invalid email or password')
+        }
 
-    if (!account || !account.access_token) {
-        throw new Error('Invalid email or password')
+        return { success: true }
+
+    } catch (error) {
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                    throw new Error('Invalid email or password')
+                default:
+                    throw new Error('Authentication failed')
+            }
+        }
+        throw error
     }
-
-    const passwordMatch = await compare(password, account.access_token)
-
-    if (!passwordMatch) {
-        throw new Error('Invalid email or password')
-    }
-
-    return account.user
 }
 
 export async function signUp(data: { fullName: string; email: string; password: string }) {
