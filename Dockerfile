@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma
 
-# Install all dependencies (including devDependencies)
+# Install all dependencies
 RUN npm install --include=dev
 
 # Generate Prisma client
@@ -24,9 +24,8 @@ COPY . .
 # Build the application
 RUN npm run build
 
-
 # Stage 2: Production
-FROM node:20-slim AS production
+FROM node:20-slim
 
 # Install runtime dependencies
 RUN apt-get update && \
@@ -43,14 +42,19 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma
 
-# Explicitly copy Prisma engine files
-COPY --from=builder /app/node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node ./node_modules/prisma/
-COPY --from=builder /app/node_modules/@prisma/client/runtime/libquery_engine-debian-openssl-3.0.x.so.node ./node_modules/@prisma/client/runtime/
+# Ensure Prisma engine is in all required locations
+RUN cp -v ./node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node ./node_modules/.prisma/client/ && \
+   cp -v ./node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node ./node_modules/@prisma/client/runtime/
 
-# Environment variables (set these in docker-compose or deployment)
+# Environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+   CMD curl -f http://localhost:3000/api/health || exit 1
+
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+# Use npm start to maintain consistency with your package.json
+CMD ["npm", "start"]
