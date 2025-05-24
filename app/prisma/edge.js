@@ -201,7 +201,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/javkhaa/code/dev-medhelper/app/prisma",
+      "value": "/home/deprrous/Documents/code/dev-medhelper/app/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -210,12 +210,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/javkhaa/code/dev-medhelper/prisma/schema.prisma",
+    "sourceFilePath": "/home/deprrous/Documents/code/dev-medhelper/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -229,6 +229,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

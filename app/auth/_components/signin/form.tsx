@@ -46,6 +46,7 @@ const SignInForm = () => {
         try {
             const user = await handwrittenLogin(data)
             console.log(user)
+            console.log("FAAK")
             toast.success('Login successful')
             router.push("/")
         } catch (err: any) {
