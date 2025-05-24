@@ -26,8 +26,12 @@ jobs:
               ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.208.42.42 << 'EOF'
                 cd /home/sukhbatsuugii2004/dev-medhelper
                 echo "success connected"
-                docker compose down 
+                docker compose down
                 git pull origin main
+                rm -rf .next node_modules package-lock.json 
+                cd app
+                rm -rf prisma
+                cd ..
                 docker compose up -d --build
                 docker image prune -af
               EOF
