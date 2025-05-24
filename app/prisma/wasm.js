@@ -171,6 +171,25 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
   transports: 'transports'
 };
 
+exports.Prisma.LabTestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  summary: 'summary',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.LabTestIndicatorScalarFieldEnum = {
+  id: 'id',
+  labTestId: 'labTestId',
+  label: 'label',
+  desc: 'desc',
+  refMin: 'refMin',
+  refMax: 'refMax',
+  unit: 'unit',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,14 +204,19 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.LabTestType = exports.$Enums.LabTestType = {
+  blood: 'blood',
+  urine: 'urine'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
-  Authenticator: 'Authenticator'
+  Authenticator: 'Authenticator',
+  LabTest: 'LabTest',
+  LabTestIndicator: 'LabTestIndicator'
 };
 
 /**

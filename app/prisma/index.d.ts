@@ -38,6 +38,33 @@ export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTok
  * 
  */
 export type Authenticator = $Result.DefaultSelection<Prisma.$AuthenticatorPayload>
+/**
+ * Model LabTest
+ * 
+ */
+export type LabTest = $Result.DefaultSelection<Prisma.$LabTestPayload>
+/**
+ * Model LabTestIndicator
+ * 
+ */
+export type LabTestIndicator = $Result.DefaultSelection<Prisma.$LabTestIndicatorPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const LabTestType: {
+  blood: 'blood',
+  urine: 'urine'
+};
+
+export type LabTestType = (typeof LabTestType)[keyof typeof LabTestType]
+
+}
+
+export type LabTestType = $Enums.LabTestType
+
+export const LabTestType: typeof $Enums.LabTestType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +240,26 @@ export class PrismaClient<
     * ```
     */
   get authenticator(): Prisma.AuthenticatorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.labTest`: Exposes CRUD operations for the **LabTest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LabTests
+    * const labTests = await prisma.labTest.findMany()
+    * ```
+    */
+  get labTest(): Prisma.LabTestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.labTestIndicator`: Exposes CRUD operations for the **LabTestIndicator** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LabTestIndicators
+    * const labTestIndicators = await prisma.labTestIndicator.findMany()
+    * ```
+    */
+  get labTestIndicator(): Prisma.LabTestIndicatorDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +704,9 @@ export namespace Prisma {
     Account: 'Account',
     Session: 'Session',
     VerificationToken: 'VerificationToken',
-    Authenticator: 'Authenticator'
+    Authenticator: 'Authenticator',
+    LabTest: 'LabTest',
+    LabTestIndicator: 'LabTestIndicator'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +725,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "labTest" | "labTestIndicator"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1099,154 @@ export namespace Prisma {
           }
         }
       }
+      LabTest: {
+        payload: Prisma.$LabTestPayload<ExtArgs>
+        fields: Prisma.LabTestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LabTestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LabTestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          findFirst: {
+            args: Prisma.LabTestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LabTestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          findMany: {
+            args: Prisma.LabTestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>[]
+          }
+          create: {
+            args: Prisma.LabTestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          createMany: {
+            args: Prisma.LabTestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LabTestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>[]
+          }
+          delete: {
+            args: Prisma.LabTestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          update: {
+            args: Prisma.LabTestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          deleteMany: {
+            args: Prisma.LabTestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LabTestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LabTestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>[]
+          }
+          upsert: {
+            args: Prisma.LabTestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestPayload>
+          }
+          aggregate: {
+            args: Prisma.LabTestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLabTest>
+          }
+          groupBy: {
+            args: Prisma.LabTestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LabTestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LabTestCountArgs<ExtArgs>
+            result: $Utils.Optional<LabTestCountAggregateOutputType> | number
+          }
+        }
+      }
+      LabTestIndicator: {
+        payload: Prisma.$LabTestIndicatorPayload<ExtArgs>
+        fields: Prisma.LabTestIndicatorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LabTestIndicatorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LabTestIndicatorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          findFirst: {
+            args: Prisma.LabTestIndicatorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LabTestIndicatorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          findMany: {
+            args: Prisma.LabTestIndicatorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>[]
+          }
+          create: {
+            args: Prisma.LabTestIndicatorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          createMany: {
+            args: Prisma.LabTestIndicatorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LabTestIndicatorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>[]
+          }
+          delete: {
+            args: Prisma.LabTestIndicatorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          update: {
+            args: Prisma.LabTestIndicatorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          deleteMany: {
+            args: Prisma.LabTestIndicatorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LabTestIndicatorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LabTestIndicatorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>[]
+          }
+          upsert: {
+            args: Prisma.LabTestIndicatorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LabTestIndicatorPayload>
+          }
+          aggregate: {
+            args: Prisma.LabTestIndicatorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLabTestIndicator>
+          }
+          groupBy: {
+            args: Prisma.LabTestIndicatorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LabTestIndicatorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LabTestIndicatorCountArgs<ExtArgs>
+            result: $Utils.Optional<LabTestIndicatorCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1336,8 @@ export namespace Prisma {
     session?: SessionOmit
     verificationToken?: VerificationTokenOmit
     authenticator?: AuthenticatorOmit
+    labTest?: LabTestOmit
+    labTestIndicator?: LabTestIndicatorOmit
   }
 
   /* Types for Logging */
@@ -1236,12 +1435,14 @@ export namespace Prisma {
     accounts: number
     sessions: number
     Authenticator: number
+    labTests: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     Authenticator?: boolean | UserCountOutputTypeCountAuthenticatorArgs
+    labTests?: boolean | UserCountOutputTypeCountLabTestsArgs
   }
 
   // Custom InputTypes
@@ -1274,6 +1475,44 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAuthenticatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AuthenticatorWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLabTestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabTestWhereInput
+  }
+
+
+  /**
+   * Count Type LabTestCountOutputType
+   */
+
+  export type LabTestCountOutputType = {
+    labTestIndicators: number
+  }
+
+  export type LabTestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labTestIndicators?: boolean | LabTestCountOutputTypeCountLabTestIndicatorsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LabTestCountOutputType without action
+   */
+  export type LabTestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestCountOutputType
+     */
+    select?: LabTestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LabTestCountOutputType without action
+   */
+  export type LabTestCountOutputTypeCountLabTestIndicatorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabTestIndicatorWhereInput
   }
 
 
@@ -1464,6 +1703,7 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    labTests?: boolean | User$labTestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1502,6 +1742,7 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    labTests?: boolean | User$labTestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1513,6 +1754,7 @@ export namespace Prisma {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       Authenticator: Prisma.$AuthenticatorPayload<ExtArgs>[]
+      labTests: Prisma.$LabTestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1919,6 +2161,7 @@ export namespace Prisma {
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Authenticator<T extends User$AuthenticatorArgs<ExtArgs> = {}>(args?: Subset<T, User$AuthenticatorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    labTests<T extends User$labTestsArgs<ExtArgs> = {}>(args?: Subset<T, User$labTestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2412,6 +2655,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * User.labTests
+   */
+  export type User$labTestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    where?: LabTestWhereInput
+    orderBy?: LabTestOrderByWithRelationInput | LabTestOrderByWithRelationInput[]
+    cursor?: LabTestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LabTestScalarFieldEnum | LabTestScalarFieldEnum[]
   }
 
   /**
@@ -6788,6 +7055,2233 @@ export namespace Prisma {
 
 
   /**
+   * Model LabTest
+   */
+
+  export type AggregateLabTest = {
+    _count: LabTestCountAggregateOutputType | null
+    _min: LabTestMinAggregateOutputType | null
+    _max: LabTestMaxAggregateOutputType | null
+  }
+
+  export type LabTestMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: $Enums.LabTestType | null
+    summary: string | null
+    createdAt: Date | null
+  }
+
+  export type LabTestMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    type: $Enums.LabTestType | null
+    summary: string | null
+    createdAt: Date | null
+  }
+
+  export type LabTestCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    summary: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LabTestMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    summary?: true
+    createdAt?: true
+  }
+
+  export type LabTestMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    summary?: true
+    createdAt?: true
+  }
+
+  export type LabTestCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    summary?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LabTestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LabTest to aggregate.
+     */
+    where?: LabTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTests to fetch.
+     */
+    orderBy?: LabTestOrderByWithRelationInput | LabTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LabTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LabTests
+    **/
+    _count?: true | LabTestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LabTestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LabTestMaxAggregateInputType
+  }
+
+  export type GetLabTestAggregateType<T extends LabTestAggregateArgs> = {
+        [P in keyof T & keyof AggregateLabTest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLabTest[P]>
+      : GetScalarType<T[P], AggregateLabTest[P]>
+  }
+
+
+
+
+  export type LabTestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabTestWhereInput
+    orderBy?: LabTestOrderByWithAggregationInput | LabTestOrderByWithAggregationInput[]
+    by: LabTestScalarFieldEnum[] | LabTestScalarFieldEnum
+    having?: LabTestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LabTestCountAggregateInputType | true
+    _min?: LabTestMinAggregateInputType
+    _max?: LabTestMaxAggregateInputType
+  }
+
+  export type LabTestGroupByOutputType = {
+    id: string
+    userId: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt: Date
+    _count: LabTestCountAggregateOutputType | null
+    _min: LabTestMinAggregateOutputType | null
+    _max: LabTestMaxAggregateOutputType | null
+  }
+
+  type GetLabTestGroupByPayload<T extends LabTestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LabTestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LabTestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LabTestGroupByOutputType[P]>
+            : GetScalarType<T[P], LabTestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LabTestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    summary?: boolean
+    createdAt?: boolean
+    labTestIndicators?: boolean | LabTest$labTestIndicatorsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | LabTestCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTest"]>
+
+  export type LabTestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    summary?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTest"]>
+
+  export type LabTestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    summary?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTest"]>
+
+  export type LabTestSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    summary?: boolean
+    createdAt?: boolean
+  }
+
+  export type LabTestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "type" | "summary" | "createdAt", ExtArgs["result"]["labTest"]>
+  export type LabTestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labTestIndicators?: boolean | LabTest$labTestIndicatorsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | LabTestCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LabTestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LabTestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LabTestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LabTest"
+    objects: {
+      labTestIndicators: Prisma.$LabTestIndicatorPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      type: $Enums.LabTestType
+      summary: string
+      createdAt: Date
+    }, ExtArgs["result"]["labTest"]>
+    composites: {}
+  }
+
+  type LabTestGetPayload<S extends boolean | null | undefined | LabTestDefaultArgs> = $Result.GetResult<Prisma.$LabTestPayload, S>
+
+  type LabTestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LabTestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LabTestCountAggregateInputType | true
+    }
+
+  export interface LabTestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LabTest'], meta: { name: 'LabTest' } }
+    /**
+     * Find zero or one LabTest that matches the filter.
+     * @param {LabTestFindUniqueArgs} args - Arguments to find a LabTest
+     * @example
+     * // Get one LabTest
+     * const labTest = await prisma.labTest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LabTestFindUniqueArgs>(args: SelectSubset<T, LabTestFindUniqueArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LabTest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LabTestFindUniqueOrThrowArgs} args - Arguments to find a LabTest
+     * @example
+     * // Get one LabTest
+     * const labTest = await prisma.labTest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LabTestFindUniqueOrThrowArgs>(args: SelectSubset<T, LabTestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LabTest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestFindFirstArgs} args - Arguments to find a LabTest
+     * @example
+     * // Get one LabTest
+     * const labTest = await prisma.labTest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LabTestFindFirstArgs>(args?: SelectSubset<T, LabTestFindFirstArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LabTest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestFindFirstOrThrowArgs} args - Arguments to find a LabTest
+     * @example
+     * // Get one LabTest
+     * const labTest = await prisma.labTest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LabTestFindFirstOrThrowArgs>(args?: SelectSubset<T, LabTestFindFirstOrThrowArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LabTests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LabTests
+     * const labTests = await prisma.labTest.findMany()
+     * 
+     * // Get first 10 LabTests
+     * const labTests = await prisma.labTest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const labTestWithIdOnly = await prisma.labTest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LabTestFindManyArgs>(args?: SelectSubset<T, LabTestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LabTest.
+     * @param {LabTestCreateArgs} args - Arguments to create a LabTest.
+     * @example
+     * // Create one LabTest
+     * const LabTest = await prisma.labTest.create({
+     *   data: {
+     *     // ... data to create a LabTest
+     *   }
+     * })
+     * 
+     */
+    create<T extends LabTestCreateArgs>(args: SelectSubset<T, LabTestCreateArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LabTests.
+     * @param {LabTestCreateManyArgs} args - Arguments to create many LabTests.
+     * @example
+     * // Create many LabTests
+     * const labTest = await prisma.labTest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LabTestCreateManyArgs>(args?: SelectSubset<T, LabTestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LabTests and returns the data saved in the database.
+     * @param {LabTestCreateManyAndReturnArgs} args - Arguments to create many LabTests.
+     * @example
+     * // Create many LabTests
+     * const labTest = await prisma.labTest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LabTests and only return the `id`
+     * const labTestWithIdOnly = await prisma.labTest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LabTestCreateManyAndReturnArgs>(args?: SelectSubset<T, LabTestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LabTest.
+     * @param {LabTestDeleteArgs} args - Arguments to delete one LabTest.
+     * @example
+     * // Delete one LabTest
+     * const LabTest = await prisma.labTest.delete({
+     *   where: {
+     *     // ... filter to delete one LabTest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LabTestDeleteArgs>(args: SelectSubset<T, LabTestDeleteArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LabTest.
+     * @param {LabTestUpdateArgs} args - Arguments to update one LabTest.
+     * @example
+     * // Update one LabTest
+     * const labTest = await prisma.labTest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LabTestUpdateArgs>(args: SelectSubset<T, LabTestUpdateArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LabTests.
+     * @param {LabTestDeleteManyArgs} args - Arguments to filter LabTests to delete.
+     * @example
+     * // Delete a few LabTests
+     * const { count } = await prisma.labTest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LabTestDeleteManyArgs>(args?: SelectSubset<T, LabTestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LabTests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LabTests
+     * const labTest = await prisma.labTest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LabTestUpdateManyArgs>(args: SelectSubset<T, LabTestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LabTests and returns the data updated in the database.
+     * @param {LabTestUpdateManyAndReturnArgs} args - Arguments to update many LabTests.
+     * @example
+     * // Update many LabTests
+     * const labTest = await prisma.labTest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LabTests and only return the `id`
+     * const labTestWithIdOnly = await prisma.labTest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LabTestUpdateManyAndReturnArgs>(args: SelectSubset<T, LabTestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LabTest.
+     * @param {LabTestUpsertArgs} args - Arguments to update or create a LabTest.
+     * @example
+     * // Update or create a LabTest
+     * const labTest = await prisma.labTest.upsert({
+     *   create: {
+     *     // ... data to create a LabTest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LabTest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LabTestUpsertArgs>(args: SelectSubset<T, LabTestUpsertArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LabTests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestCountArgs} args - Arguments to filter LabTests to count.
+     * @example
+     * // Count the number of LabTests
+     * const count = await prisma.labTest.count({
+     *   where: {
+     *     // ... the filter for the LabTests we want to count
+     *   }
+     * })
+    **/
+    count<T extends LabTestCountArgs>(
+      args?: Subset<T, LabTestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LabTestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LabTest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LabTestAggregateArgs>(args: Subset<T, LabTestAggregateArgs>): Prisma.PrismaPromise<GetLabTestAggregateType<T>>
+
+    /**
+     * Group by LabTest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LabTestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LabTestGroupByArgs['orderBy'] }
+        : { orderBy?: LabTestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LabTestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLabTestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LabTest model
+   */
+  readonly fields: LabTestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LabTest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LabTestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    labTestIndicators<T extends LabTest$labTestIndicatorsArgs<ExtArgs> = {}>(args?: Subset<T, LabTest$labTestIndicatorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LabTest model
+   */
+  interface LabTestFieldRefs {
+    readonly id: FieldRef<"LabTest", 'String'>
+    readonly userId: FieldRef<"LabTest", 'String'>
+    readonly type: FieldRef<"LabTest", 'LabTestType'>
+    readonly summary: FieldRef<"LabTest", 'String'>
+    readonly createdAt: FieldRef<"LabTest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LabTest findUnique
+   */
+  export type LabTestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTest to fetch.
+     */
+    where: LabTestWhereUniqueInput
+  }
+
+  /**
+   * LabTest findUniqueOrThrow
+   */
+  export type LabTestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTest to fetch.
+     */
+    where: LabTestWhereUniqueInput
+  }
+
+  /**
+   * LabTest findFirst
+   */
+  export type LabTestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTest to fetch.
+     */
+    where?: LabTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTests to fetch.
+     */
+    orderBy?: LabTestOrderByWithRelationInput | LabTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LabTests.
+     */
+    cursor?: LabTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LabTests.
+     */
+    distinct?: LabTestScalarFieldEnum | LabTestScalarFieldEnum[]
+  }
+
+  /**
+   * LabTest findFirstOrThrow
+   */
+  export type LabTestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTest to fetch.
+     */
+    where?: LabTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTests to fetch.
+     */
+    orderBy?: LabTestOrderByWithRelationInput | LabTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LabTests.
+     */
+    cursor?: LabTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LabTests.
+     */
+    distinct?: LabTestScalarFieldEnum | LabTestScalarFieldEnum[]
+  }
+
+  /**
+   * LabTest findMany
+   */
+  export type LabTestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTests to fetch.
+     */
+    where?: LabTestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTests to fetch.
+     */
+    orderBy?: LabTestOrderByWithRelationInput | LabTestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LabTests.
+     */
+    cursor?: LabTestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTests.
+     */
+    skip?: number
+    distinct?: LabTestScalarFieldEnum | LabTestScalarFieldEnum[]
+  }
+
+  /**
+   * LabTest create
+   */
+  export type LabTestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LabTest.
+     */
+    data: XOR<LabTestCreateInput, LabTestUncheckedCreateInput>
+  }
+
+  /**
+   * LabTest createMany
+   */
+  export type LabTestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LabTests.
+     */
+    data: LabTestCreateManyInput | LabTestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LabTest createManyAndReturn
+   */
+  export type LabTestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * The data used to create many LabTests.
+     */
+    data: LabTestCreateManyInput | LabTestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LabTest update
+   */
+  export type LabTestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LabTest.
+     */
+    data: XOR<LabTestUpdateInput, LabTestUncheckedUpdateInput>
+    /**
+     * Choose, which LabTest to update.
+     */
+    where: LabTestWhereUniqueInput
+  }
+
+  /**
+   * LabTest updateMany
+   */
+  export type LabTestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LabTests.
+     */
+    data: XOR<LabTestUpdateManyMutationInput, LabTestUncheckedUpdateManyInput>
+    /**
+     * Filter which LabTests to update
+     */
+    where?: LabTestWhereInput
+    /**
+     * Limit how many LabTests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LabTest updateManyAndReturn
+   */
+  export type LabTestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * The data used to update LabTests.
+     */
+    data: XOR<LabTestUpdateManyMutationInput, LabTestUncheckedUpdateManyInput>
+    /**
+     * Filter which LabTests to update
+     */
+    where?: LabTestWhereInput
+    /**
+     * Limit how many LabTests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LabTest upsert
+   */
+  export type LabTestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LabTest to update in case it exists.
+     */
+    where: LabTestWhereUniqueInput
+    /**
+     * In case the LabTest found by the `where` argument doesn't exist, create a new LabTest with this data.
+     */
+    create: XOR<LabTestCreateInput, LabTestUncheckedCreateInput>
+    /**
+     * In case the LabTest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LabTestUpdateInput, LabTestUncheckedUpdateInput>
+  }
+
+  /**
+   * LabTest delete
+   */
+  export type LabTestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+    /**
+     * Filter which LabTest to delete.
+     */
+    where: LabTestWhereUniqueInput
+  }
+
+  /**
+   * LabTest deleteMany
+   */
+  export type LabTestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LabTests to delete
+     */
+    where?: LabTestWhereInput
+    /**
+     * Limit how many LabTests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LabTest.labTestIndicators
+   */
+  export type LabTest$labTestIndicatorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    where?: LabTestIndicatorWhereInput
+    orderBy?: LabTestIndicatorOrderByWithRelationInput | LabTestIndicatorOrderByWithRelationInput[]
+    cursor?: LabTestIndicatorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LabTestIndicatorScalarFieldEnum | LabTestIndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * LabTest without action
+   */
+  export type LabTestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTest
+     */
+    select?: LabTestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTest
+     */
+    omit?: LabTestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LabTestIndicator
+   */
+
+  export type AggregateLabTestIndicator = {
+    _count: LabTestIndicatorCountAggregateOutputType | null
+    _avg: LabTestIndicatorAvgAggregateOutputType | null
+    _sum: LabTestIndicatorSumAggregateOutputType | null
+    _min: LabTestIndicatorMinAggregateOutputType | null
+    _max: LabTestIndicatorMaxAggregateOutputType | null
+  }
+
+  export type LabTestIndicatorAvgAggregateOutputType = {
+    refMin: Decimal | null
+    refMax: Decimal | null
+    unit: Decimal | null
+  }
+
+  export type LabTestIndicatorSumAggregateOutputType = {
+    refMin: Decimal | null
+    refMax: Decimal | null
+    unit: Decimal | null
+  }
+
+  export type LabTestIndicatorMinAggregateOutputType = {
+    id: string | null
+    labTestId: string | null
+    label: string | null
+    desc: string | null
+    refMin: Decimal | null
+    refMax: Decimal | null
+    unit: Decimal | null
+    createdAt: Date | null
+  }
+
+  export type LabTestIndicatorMaxAggregateOutputType = {
+    id: string | null
+    labTestId: string | null
+    label: string | null
+    desc: string | null
+    refMin: Decimal | null
+    refMax: Decimal | null
+    unit: Decimal | null
+    createdAt: Date | null
+  }
+
+  export type LabTestIndicatorCountAggregateOutputType = {
+    id: number
+    labTestId: number
+    label: number
+    desc: number
+    refMin: number
+    refMax: number
+    unit: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LabTestIndicatorAvgAggregateInputType = {
+    refMin?: true
+    refMax?: true
+    unit?: true
+  }
+
+  export type LabTestIndicatorSumAggregateInputType = {
+    refMin?: true
+    refMax?: true
+    unit?: true
+  }
+
+  export type LabTestIndicatorMinAggregateInputType = {
+    id?: true
+    labTestId?: true
+    label?: true
+    desc?: true
+    refMin?: true
+    refMax?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type LabTestIndicatorMaxAggregateInputType = {
+    id?: true
+    labTestId?: true
+    label?: true
+    desc?: true
+    refMin?: true
+    refMax?: true
+    unit?: true
+    createdAt?: true
+  }
+
+  export type LabTestIndicatorCountAggregateInputType = {
+    id?: true
+    labTestId?: true
+    label?: true
+    desc?: true
+    refMin?: true
+    refMax?: true
+    unit?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LabTestIndicatorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LabTestIndicator to aggregate.
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTestIndicators to fetch.
+     */
+    orderBy?: LabTestIndicatorOrderByWithRelationInput | LabTestIndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LabTestIndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTestIndicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTestIndicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LabTestIndicators
+    **/
+    _count?: true | LabTestIndicatorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LabTestIndicatorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LabTestIndicatorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LabTestIndicatorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LabTestIndicatorMaxAggregateInputType
+  }
+
+  export type GetLabTestIndicatorAggregateType<T extends LabTestIndicatorAggregateArgs> = {
+        [P in keyof T & keyof AggregateLabTestIndicator]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLabTestIndicator[P]>
+      : GetScalarType<T[P], AggregateLabTestIndicator[P]>
+  }
+
+
+
+
+  export type LabTestIndicatorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LabTestIndicatorWhereInput
+    orderBy?: LabTestIndicatorOrderByWithAggregationInput | LabTestIndicatorOrderByWithAggregationInput[]
+    by: LabTestIndicatorScalarFieldEnum[] | LabTestIndicatorScalarFieldEnum
+    having?: LabTestIndicatorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LabTestIndicatorCountAggregateInputType | true
+    _avg?: LabTestIndicatorAvgAggregateInputType
+    _sum?: LabTestIndicatorSumAggregateInputType
+    _min?: LabTestIndicatorMinAggregateInputType
+    _max?: LabTestIndicatorMaxAggregateInputType
+  }
+
+  export type LabTestIndicatorGroupByOutputType = {
+    id: string
+    labTestId: string
+    label: string
+    desc: string
+    refMin: Decimal
+    refMax: Decimal
+    unit: Decimal
+    createdAt: Date
+    _count: LabTestIndicatorCountAggregateOutputType | null
+    _avg: LabTestIndicatorAvgAggregateOutputType | null
+    _sum: LabTestIndicatorSumAggregateOutputType | null
+    _min: LabTestIndicatorMinAggregateOutputType | null
+    _max: LabTestIndicatorMaxAggregateOutputType | null
+  }
+
+  type GetLabTestIndicatorGroupByPayload<T extends LabTestIndicatorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LabTestIndicatorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LabTestIndicatorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LabTestIndicatorGroupByOutputType[P]>
+            : GetScalarType<T[P], LabTestIndicatorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LabTestIndicatorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    labTestId?: boolean
+    label?: boolean
+    desc?: boolean
+    refMin?: boolean
+    refMax?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTestIndicator"]>
+
+  export type LabTestIndicatorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    labTestId?: boolean
+    label?: boolean
+    desc?: boolean
+    refMin?: boolean
+    refMax?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTestIndicator"]>
+
+  export type LabTestIndicatorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    labTestId?: boolean
+    label?: boolean
+    desc?: boolean
+    refMin?: boolean
+    refMax?: boolean
+    unit?: boolean
+    createdAt?: boolean
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["labTestIndicator"]>
+
+  export type LabTestIndicatorSelectScalar = {
+    id?: boolean
+    labTestId?: boolean
+    label?: boolean
+    desc?: boolean
+    refMin?: boolean
+    refMax?: boolean
+    unit?: boolean
+    createdAt?: boolean
+  }
+
+  export type LabTestIndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "labTestId" | "label" | "desc" | "refMin" | "refMax" | "unit" | "createdAt", ExtArgs["result"]["labTestIndicator"]>
+  export type LabTestIndicatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }
+  export type LabTestIndicatorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }
+  export type LabTestIndicatorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    labTest?: boolean | LabTestDefaultArgs<ExtArgs>
+  }
+
+  export type $LabTestIndicatorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LabTestIndicator"
+    objects: {
+      labTest: Prisma.$LabTestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      labTestId: string
+      label: string
+      desc: string
+      refMin: Prisma.Decimal
+      refMax: Prisma.Decimal
+      unit: Prisma.Decimal
+      createdAt: Date
+    }, ExtArgs["result"]["labTestIndicator"]>
+    composites: {}
+  }
+
+  type LabTestIndicatorGetPayload<S extends boolean | null | undefined | LabTestIndicatorDefaultArgs> = $Result.GetResult<Prisma.$LabTestIndicatorPayload, S>
+
+  type LabTestIndicatorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LabTestIndicatorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LabTestIndicatorCountAggregateInputType | true
+    }
+
+  export interface LabTestIndicatorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LabTestIndicator'], meta: { name: 'LabTestIndicator' } }
+    /**
+     * Find zero or one LabTestIndicator that matches the filter.
+     * @param {LabTestIndicatorFindUniqueArgs} args - Arguments to find a LabTestIndicator
+     * @example
+     * // Get one LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LabTestIndicatorFindUniqueArgs>(args: SelectSubset<T, LabTestIndicatorFindUniqueArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LabTestIndicator that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LabTestIndicatorFindUniqueOrThrowArgs} args - Arguments to find a LabTestIndicator
+     * @example
+     * // Get one LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LabTestIndicatorFindUniqueOrThrowArgs>(args: SelectSubset<T, LabTestIndicatorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LabTestIndicator that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorFindFirstArgs} args - Arguments to find a LabTestIndicator
+     * @example
+     * // Get one LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LabTestIndicatorFindFirstArgs>(args?: SelectSubset<T, LabTestIndicatorFindFirstArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LabTestIndicator that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorFindFirstOrThrowArgs} args - Arguments to find a LabTestIndicator
+     * @example
+     * // Get one LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LabTestIndicatorFindFirstOrThrowArgs>(args?: SelectSubset<T, LabTestIndicatorFindFirstOrThrowArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LabTestIndicators that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LabTestIndicators
+     * const labTestIndicators = await prisma.labTestIndicator.findMany()
+     * 
+     * // Get first 10 LabTestIndicators
+     * const labTestIndicators = await prisma.labTestIndicator.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const labTestIndicatorWithIdOnly = await prisma.labTestIndicator.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LabTestIndicatorFindManyArgs>(args?: SelectSubset<T, LabTestIndicatorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LabTestIndicator.
+     * @param {LabTestIndicatorCreateArgs} args - Arguments to create a LabTestIndicator.
+     * @example
+     * // Create one LabTestIndicator
+     * const LabTestIndicator = await prisma.labTestIndicator.create({
+     *   data: {
+     *     // ... data to create a LabTestIndicator
+     *   }
+     * })
+     * 
+     */
+    create<T extends LabTestIndicatorCreateArgs>(args: SelectSubset<T, LabTestIndicatorCreateArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LabTestIndicators.
+     * @param {LabTestIndicatorCreateManyArgs} args - Arguments to create many LabTestIndicators.
+     * @example
+     * // Create many LabTestIndicators
+     * const labTestIndicator = await prisma.labTestIndicator.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LabTestIndicatorCreateManyArgs>(args?: SelectSubset<T, LabTestIndicatorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LabTestIndicators and returns the data saved in the database.
+     * @param {LabTestIndicatorCreateManyAndReturnArgs} args - Arguments to create many LabTestIndicators.
+     * @example
+     * // Create many LabTestIndicators
+     * const labTestIndicator = await prisma.labTestIndicator.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LabTestIndicators and only return the `id`
+     * const labTestIndicatorWithIdOnly = await prisma.labTestIndicator.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LabTestIndicatorCreateManyAndReturnArgs>(args?: SelectSubset<T, LabTestIndicatorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LabTestIndicator.
+     * @param {LabTestIndicatorDeleteArgs} args - Arguments to delete one LabTestIndicator.
+     * @example
+     * // Delete one LabTestIndicator
+     * const LabTestIndicator = await prisma.labTestIndicator.delete({
+     *   where: {
+     *     // ... filter to delete one LabTestIndicator
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LabTestIndicatorDeleteArgs>(args: SelectSubset<T, LabTestIndicatorDeleteArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LabTestIndicator.
+     * @param {LabTestIndicatorUpdateArgs} args - Arguments to update one LabTestIndicator.
+     * @example
+     * // Update one LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LabTestIndicatorUpdateArgs>(args: SelectSubset<T, LabTestIndicatorUpdateArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LabTestIndicators.
+     * @param {LabTestIndicatorDeleteManyArgs} args - Arguments to filter LabTestIndicators to delete.
+     * @example
+     * // Delete a few LabTestIndicators
+     * const { count } = await prisma.labTestIndicator.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LabTestIndicatorDeleteManyArgs>(args?: SelectSubset<T, LabTestIndicatorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LabTestIndicators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LabTestIndicators
+     * const labTestIndicator = await prisma.labTestIndicator.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LabTestIndicatorUpdateManyArgs>(args: SelectSubset<T, LabTestIndicatorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LabTestIndicators and returns the data updated in the database.
+     * @param {LabTestIndicatorUpdateManyAndReturnArgs} args - Arguments to update many LabTestIndicators.
+     * @example
+     * // Update many LabTestIndicators
+     * const labTestIndicator = await prisma.labTestIndicator.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LabTestIndicators and only return the `id`
+     * const labTestIndicatorWithIdOnly = await prisma.labTestIndicator.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LabTestIndicatorUpdateManyAndReturnArgs>(args: SelectSubset<T, LabTestIndicatorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LabTestIndicator.
+     * @param {LabTestIndicatorUpsertArgs} args - Arguments to update or create a LabTestIndicator.
+     * @example
+     * // Update or create a LabTestIndicator
+     * const labTestIndicator = await prisma.labTestIndicator.upsert({
+     *   create: {
+     *     // ... data to create a LabTestIndicator
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LabTestIndicator we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LabTestIndicatorUpsertArgs>(args: SelectSubset<T, LabTestIndicatorUpsertArgs<ExtArgs>>): Prisma__LabTestIndicatorClient<$Result.GetResult<Prisma.$LabTestIndicatorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LabTestIndicators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorCountArgs} args - Arguments to filter LabTestIndicators to count.
+     * @example
+     * // Count the number of LabTestIndicators
+     * const count = await prisma.labTestIndicator.count({
+     *   where: {
+     *     // ... the filter for the LabTestIndicators we want to count
+     *   }
+     * })
+    **/
+    count<T extends LabTestIndicatorCountArgs>(
+      args?: Subset<T, LabTestIndicatorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LabTestIndicatorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LabTestIndicator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LabTestIndicatorAggregateArgs>(args: Subset<T, LabTestIndicatorAggregateArgs>): Prisma.PrismaPromise<GetLabTestIndicatorAggregateType<T>>
+
+    /**
+     * Group by LabTestIndicator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LabTestIndicatorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LabTestIndicatorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LabTestIndicatorGroupByArgs['orderBy'] }
+        : { orderBy?: LabTestIndicatorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LabTestIndicatorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLabTestIndicatorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LabTestIndicator model
+   */
+  readonly fields: LabTestIndicatorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LabTestIndicator.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LabTestIndicatorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    labTest<T extends LabTestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LabTestDefaultArgs<ExtArgs>>): Prisma__LabTestClient<$Result.GetResult<Prisma.$LabTestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LabTestIndicator model
+   */
+  interface LabTestIndicatorFieldRefs {
+    readonly id: FieldRef<"LabTestIndicator", 'String'>
+    readonly labTestId: FieldRef<"LabTestIndicator", 'String'>
+    readonly label: FieldRef<"LabTestIndicator", 'String'>
+    readonly desc: FieldRef<"LabTestIndicator", 'String'>
+    readonly refMin: FieldRef<"LabTestIndicator", 'Decimal'>
+    readonly refMax: FieldRef<"LabTestIndicator", 'Decimal'>
+    readonly unit: FieldRef<"LabTestIndicator", 'Decimal'>
+    readonly createdAt: FieldRef<"LabTestIndicator", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LabTestIndicator findUnique
+   */
+  export type LabTestIndicatorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTestIndicator to fetch.
+     */
+    where: LabTestIndicatorWhereUniqueInput
+  }
+
+  /**
+   * LabTestIndicator findUniqueOrThrow
+   */
+  export type LabTestIndicatorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTestIndicator to fetch.
+     */
+    where: LabTestIndicatorWhereUniqueInput
+  }
+
+  /**
+   * LabTestIndicator findFirst
+   */
+  export type LabTestIndicatorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTestIndicator to fetch.
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTestIndicators to fetch.
+     */
+    orderBy?: LabTestIndicatorOrderByWithRelationInput | LabTestIndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LabTestIndicators.
+     */
+    cursor?: LabTestIndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTestIndicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTestIndicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LabTestIndicators.
+     */
+    distinct?: LabTestIndicatorScalarFieldEnum | LabTestIndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * LabTestIndicator findFirstOrThrow
+   */
+  export type LabTestIndicatorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTestIndicator to fetch.
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTestIndicators to fetch.
+     */
+    orderBy?: LabTestIndicatorOrderByWithRelationInput | LabTestIndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LabTestIndicators.
+     */
+    cursor?: LabTestIndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTestIndicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTestIndicators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LabTestIndicators.
+     */
+    distinct?: LabTestIndicatorScalarFieldEnum | LabTestIndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * LabTestIndicator findMany
+   */
+  export type LabTestIndicatorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter, which LabTestIndicators to fetch.
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LabTestIndicators to fetch.
+     */
+    orderBy?: LabTestIndicatorOrderByWithRelationInput | LabTestIndicatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LabTestIndicators.
+     */
+    cursor?: LabTestIndicatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LabTestIndicators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LabTestIndicators.
+     */
+    skip?: number
+    distinct?: LabTestIndicatorScalarFieldEnum | LabTestIndicatorScalarFieldEnum[]
+  }
+
+  /**
+   * LabTestIndicator create
+   */
+  export type LabTestIndicatorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LabTestIndicator.
+     */
+    data: XOR<LabTestIndicatorCreateInput, LabTestIndicatorUncheckedCreateInput>
+  }
+
+  /**
+   * LabTestIndicator createMany
+   */
+  export type LabTestIndicatorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LabTestIndicators.
+     */
+    data: LabTestIndicatorCreateManyInput | LabTestIndicatorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LabTestIndicator createManyAndReturn
+   */
+  export type LabTestIndicatorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * The data used to create many LabTestIndicators.
+     */
+    data: LabTestIndicatorCreateManyInput | LabTestIndicatorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LabTestIndicator update
+   */
+  export type LabTestIndicatorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LabTestIndicator.
+     */
+    data: XOR<LabTestIndicatorUpdateInput, LabTestIndicatorUncheckedUpdateInput>
+    /**
+     * Choose, which LabTestIndicator to update.
+     */
+    where: LabTestIndicatorWhereUniqueInput
+  }
+
+  /**
+   * LabTestIndicator updateMany
+   */
+  export type LabTestIndicatorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LabTestIndicators.
+     */
+    data: XOR<LabTestIndicatorUpdateManyMutationInput, LabTestIndicatorUncheckedUpdateManyInput>
+    /**
+     * Filter which LabTestIndicators to update
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * Limit how many LabTestIndicators to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LabTestIndicator updateManyAndReturn
+   */
+  export type LabTestIndicatorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * The data used to update LabTestIndicators.
+     */
+    data: XOR<LabTestIndicatorUpdateManyMutationInput, LabTestIndicatorUncheckedUpdateManyInput>
+    /**
+     * Filter which LabTestIndicators to update
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * Limit how many LabTestIndicators to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LabTestIndicator upsert
+   */
+  export type LabTestIndicatorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LabTestIndicator to update in case it exists.
+     */
+    where: LabTestIndicatorWhereUniqueInput
+    /**
+     * In case the LabTestIndicator found by the `where` argument doesn't exist, create a new LabTestIndicator with this data.
+     */
+    create: XOR<LabTestIndicatorCreateInput, LabTestIndicatorUncheckedCreateInput>
+    /**
+     * In case the LabTestIndicator was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LabTestIndicatorUpdateInput, LabTestIndicatorUncheckedUpdateInput>
+  }
+
+  /**
+   * LabTestIndicator delete
+   */
+  export type LabTestIndicatorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+    /**
+     * Filter which LabTestIndicator to delete.
+     */
+    where: LabTestIndicatorWhereUniqueInput
+  }
+
+  /**
+   * LabTestIndicator deleteMany
+   */
+  export type LabTestIndicatorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LabTestIndicators to delete
+     */
+    where?: LabTestIndicatorWhereInput
+    /**
+     * Limit how many LabTestIndicators to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LabTestIndicator without action
+   */
+  export type LabTestIndicatorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LabTestIndicator
+     */
+    select?: LabTestIndicatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LabTestIndicator
+     */
+    omit?: LabTestIndicatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LabTestIndicatorInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6865,6 +9359,31 @@ export namespace Prisma {
   };
 
   export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
+
+
+  export const LabTestScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    summary: 'summary',
+    createdAt: 'createdAt'
+  };
+
+  export type LabTestScalarFieldEnum = (typeof LabTestScalarFieldEnum)[keyof typeof LabTestScalarFieldEnum]
+
+
+  export const LabTestIndicatorScalarFieldEnum: {
+    id: 'id',
+    labTestId: 'labTestId',
+    label: 'label',
+    desc: 'desc',
+    refMin: 'refMin',
+    refMax: 'refMax',
+    unit: 'unit',
+    createdAt: 'createdAt'
+  };
+
+  export type LabTestIndicatorScalarFieldEnum = (typeof LabTestIndicatorScalarFieldEnum)[keyof typeof LabTestIndicatorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6946,6 +9465,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'LabTestType'
+   */
+  export type EnumLabTestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabTestType'>
+    
+
+
+  /**
+   * Reference to a field of type 'LabTestType[]'
+   */
+  export type ListEnumLabTestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LabTestType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6976,6 +9523,7 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Authenticator?: AuthenticatorListRelationFilter
+    labTests?: LabTestListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6989,6 +9537,7 @@ export namespace Prisma {
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     Authenticator?: AuthenticatorOrderByRelationAggregateInput
+    labTests?: LabTestOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7005,6 +9554,7 @@ export namespace Prisma {
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     Authenticator?: AuthenticatorListRelationFilter
+    labTests?: LabTestListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7302,6 +9852,136 @@ export namespace Prisma {
     transports?: StringNullableWithAggregatesFilter<"Authenticator"> | string | null
   }
 
+  export type LabTestWhereInput = {
+    AND?: LabTestWhereInput | LabTestWhereInput[]
+    OR?: LabTestWhereInput[]
+    NOT?: LabTestWhereInput | LabTestWhereInput[]
+    id?: StringFilter<"LabTest"> | string
+    userId?: StringFilter<"LabTest"> | string
+    type?: EnumLabTestTypeFilter<"LabTest"> | $Enums.LabTestType
+    summary?: StringFilter<"LabTest"> | string
+    createdAt?: DateTimeFilter<"LabTest"> | Date | string
+    labTestIndicators?: LabTestIndicatorListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LabTestOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+    labTestIndicators?: LabTestIndicatorOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type LabTestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LabTestWhereInput | LabTestWhereInput[]
+    OR?: LabTestWhereInput[]
+    NOT?: LabTestWhereInput | LabTestWhereInput[]
+    userId?: StringFilter<"LabTest"> | string
+    type?: EnumLabTestTypeFilter<"LabTest"> | $Enums.LabTestType
+    summary?: StringFilter<"LabTest"> | string
+    createdAt?: DateTimeFilter<"LabTest"> | Date | string
+    labTestIndicators?: LabTestIndicatorListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type LabTestOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+    _count?: LabTestCountOrderByAggregateInput
+    _max?: LabTestMaxOrderByAggregateInput
+    _min?: LabTestMinOrderByAggregateInput
+  }
+
+  export type LabTestScalarWhereWithAggregatesInput = {
+    AND?: LabTestScalarWhereWithAggregatesInput | LabTestScalarWhereWithAggregatesInput[]
+    OR?: LabTestScalarWhereWithAggregatesInput[]
+    NOT?: LabTestScalarWhereWithAggregatesInput | LabTestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LabTest"> | string
+    userId?: StringWithAggregatesFilter<"LabTest"> | string
+    type?: EnumLabTestTypeWithAggregatesFilter<"LabTest"> | $Enums.LabTestType
+    summary?: StringWithAggregatesFilter<"LabTest"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LabTest"> | Date | string
+  }
+
+  export type LabTestIndicatorWhereInput = {
+    AND?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
+    OR?: LabTestIndicatorWhereInput[]
+    NOT?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
+    id?: StringFilter<"LabTestIndicator"> | string
+    labTestId?: StringFilter<"LabTestIndicator"> | string
+    label?: StringFilter<"LabTestIndicator"> | string
+    desc?: StringFilter<"LabTestIndicator"> | string
+    refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
+    labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
+  }
+
+  export type LabTestIndicatorOrderByWithRelationInput = {
+    id?: SortOrder
+    labTestId?: SortOrder
+    label?: SortOrder
+    desc?: SortOrder
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    labTest?: LabTestOrderByWithRelationInput
+  }
+
+  export type LabTestIndicatorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
+    OR?: LabTestIndicatorWhereInput[]
+    NOT?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
+    labTestId?: StringFilter<"LabTestIndicator"> | string
+    label?: StringFilter<"LabTestIndicator"> | string
+    desc?: StringFilter<"LabTestIndicator"> | string
+    refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
+    labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
+  }, "id">
+
+  export type LabTestIndicatorOrderByWithAggregationInput = {
+    id?: SortOrder
+    labTestId?: SortOrder
+    label?: SortOrder
+    desc?: SortOrder
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+    _count?: LabTestIndicatorCountOrderByAggregateInput
+    _avg?: LabTestIndicatorAvgOrderByAggregateInput
+    _max?: LabTestIndicatorMaxOrderByAggregateInput
+    _min?: LabTestIndicatorMinOrderByAggregateInput
+    _sum?: LabTestIndicatorSumOrderByAggregateInput
+  }
+
+  export type LabTestIndicatorScalarWhereWithAggregatesInput = {
+    AND?: LabTestIndicatorScalarWhereWithAggregatesInput | LabTestIndicatorScalarWhereWithAggregatesInput[]
+    OR?: LabTestIndicatorScalarWhereWithAggregatesInput[]
+    NOT?: LabTestIndicatorScalarWhereWithAggregatesInput | LabTestIndicatorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    labTestId?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    label?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    desc?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    refMin?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"LabTestIndicator"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -7313,6 +9993,7 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    labTests?: LabTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7326,6 +10007,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    labTests?: LabTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -7339,6 +10021,7 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7352,6 +10035,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -7668,6 +10352,141 @@ export namespace Prisma {
     transports?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type LabTestCreateInput = {
+    id?: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+    labTestIndicators?: LabTestIndicatorCreateNestedManyWithoutLabTestInput
+    user: UserCreateNestedOneWithoutLabTestsInput
+  }
+
+  export type LabTestUncheckedCreateInput = {
+    id?: string
+    userId: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+    labTestIndicators?: LabTestIndicatorUncheckedCreateNestedManyWithoutLabTestInput
+  }
+
+  export type LabTestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labTestIndicators?: LabTestIndicatorUpdateManyWithoutLabTestNestedInput
+    user?: UserUpdateOneRequiredWithoutLabTestsNestedInput
+  }
+
+  export type LabTestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labTestIndicators?: LabTestIndicatorUncheckedUpdateManyWithoutLabTestNestedInput
+  }
+
+  export type LabTestCreateManyInput = {
+    id?: string
+    userId: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+  }
+
+  export type LabTestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorCreateInput = {
+    id?: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    labTest: LabTestCreateNestedOneWithoutLabTestIndicatorsInput
+  }
+
+  export type LabTestIndicatorUncheckedCreateInput = {
+    id?: string
+    labTestId: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+  }
+
+  export type LabTestIndicatorUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labTest?: LabTestUpdateOneRequiredWithoutLabTestIndicatorsNestedInput
+  }
+
+  export type LabTestIndicatorUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    labTestId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorCreateManyInput = {
+    id?: string
+    labTestId: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+  }
+
+  export type LabTestIndicatorUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    labTestId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7738,6 +10557,12 @@ export namespace Prisma {
     none?: AuthenticatorWhereInput
   }
 
+  export type LabTestListRelationFilter = {
+    every?: LabTestWhereInput
+    some?: LabTestWhereInput
+    none?: LabTestWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -7752,6 +10577,10 @@ export namespace Prisma {
   }
 
   export type AuthenticatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LabTestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8075,6 +10904,134 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type EnumLabTestTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.LabTestType | EnumLabTestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumLabTestTypeFilter<$PrismaModel> | $Enums.LabTestType
+  }
+
+  export type LabTestIndicatorListRelationFilter = {
+    every?: LabTestIndicatorWhereInput
+    some?: LabTestIndicatorWhereInput
+    none?: LabTestIndicatorWhereInput
+  }
+
+  export type LabTestIndicatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LabTestCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LabTestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LabTestMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumLabTestTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LabTestType | EnumLabTestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumLabTestTypeWithAggregatesFilter<$PrismaModel> | $Enums.LabTestType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLabTestTypeFilter<$PrismaModel>
+    _max?: NestedEnumLabTestTypeFilter<$PrismaModel>
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type LabTestScalarRelationFilter = {
+    is?: LabTestWhereInput
+    isNot?: LabTestWhereInput
+  }
+
+  export type LabTestIndicatorCountOrderByAggregateInput = {
+    id?: SortOrder
+    labTestId?: SortOrder
+    label?: SortOrder
+    desc?: SortOrder
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LabTestIndicatorAvgOrderByAggregateInput = {
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+  }
+
+  export type LabTestIndicatorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    labTestId?: SortOrder
+    label?: SortOrder
+    desc?: SortOrder
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LabTestIndicatorMinOrderByAggregateInput = {
+    id?: SortOrder
+    labTestId?: SortOrder
+    label?: SortOrder
+    desc?: SortOrder
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LabTestIndicatorSumOrderByAggregateInput = {
+    refMin?: SortOrder
+    refMax?: SortOrder
+    unit?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -8096,6 +11053,13 @@ export namespace Prisma {
     connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
   }
 
+  export type LabTestCreateNestedManyWithoutUserInput = {
+    create?: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput> | LabTestCreateWithoutUserInput[] | LabTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LabTestCreateOrConnectWithoutUserInput | LabTestCreateOrConnectWithoutUserInput[]
+    createMany?: LabTestCreateManyUserInputEnvelope
+    connect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -8115,6 +11079,13 @@ export namespace Prisma {
     connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
     createMany?: AuthenticatorCreateManyUserInputEnvelope
     connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+  }
+
+  export type LabTestUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput> | LabTestCreateWithoutUserInput[] | LabTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LabTestCreateOrConnectWithoutUserInput | LabTestCreateOrConnectWithoutUserInput[]
+    createMany?: LabTestCreateManyUserInputEnvelope
+    connect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8175,6 +11146,20 @@ export namespace Prisma {
     deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
   }
 
+  export type LabTestUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput> | LabTestCreateWithoutUserInput[] | LabTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LabTestCreateOrConnectWithoutUserInput | LabTestCreateOrConnectWithoutUserInput[]
+    upsert?: LabTestUpsertWithWhereUniqueWithoutUserInput | LabTestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LabTestCreateManyUserInputEnvelope
+    set?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    disconnect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    delete?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    connect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    update?: LabTestUpdateWithWhereUniqueWithoutUserInput | LabTestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LabTestUpdateManyWithWhereWithoutUserInput | LabTestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LabTestScalarWhereInput | LabTestScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -8215,6 +11200,20 @@ export namespace Prisma {
     update?: AuthenticatorUpdateWithWhereUniqueWithoutUserInput | AuthenticatorUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AuthenticatorUpdateManyWithWhereWithoutUserInput | AuthenticatorUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+  }
+
+  export type LabTestUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput> | LabTestCreateWithoutUserInput[] | LabTestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LabTestCreateOrConnectWithoutUserInput | LabTestCreateOrConnectWithoutUserInput[]
+    upsert?: LabTestUpsertWithWhereUniqueWithoutUserInput | LabTestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LabTestCreateManyUserInputEnvelope
+    set?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    disconnect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    delete?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    connect?: LabTestWhereUniqueInput | LabTestWhereUniqueInput[]
+    update?: LabTestUpdateWithWhereUniqueWithoutUserInput | LabTestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LabTestUpdateManyWithWhereWithoutUserInput | LabTestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LabTestScalarWhereInput | LabTestScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -8277,6 +11276,88 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAuthenticatorInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuthenticatorInput, UserUpdateWithoutAuthenticatorInput>, UserUncheckedUpdateWithoutAuthenticatorInput>
+  }
+
+  export type LabTestIndicatorCreateNestedManyWithoutLabTestInput = {
+    create?: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput> | LabTestIndicatorCreateWithoutLabTestInput[] | LabTestIndicatorUncheckedCreateWithoutLabTestInput[]
+    connectOrCreate?: LabTestIndicatorCreateOrConnectWithoutLabTestInput | LabTestIndicatorCreateOrConnectWithoutLabTestInput[]
+    createMany?: LabTestIndicatorCreateManyLabTestInputEnvelope
+    connect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutLabTestsInput = {
+    create?: XOR<UserCreateWithoutLabTestsInput, UserUncheckedCreateWithoutLabTestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLabTestsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type LabTestIndicatorUncheckedCreateNestedManyWithoutLabTestInput = {
+    create?: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput> | LabTestIndicatorCreateWithoutLabTestInput[] | LabTestIndicatorUncheckedCreateWithoutLabTestInput[]
+    connectOrCreate?: LabTestIndicatorCreateOrConnectWithoutLabTestInput | LabTestIndicatorCreateOrConnectWithoutLabTestInput[]
+    createMany?: LabTestIndicatorCreateManyLabTestInputEnvelope
+    connect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+  }
+
+  export type EnumLabTestTypeFieldUpdateOperationsInput = {
+    set?: $Enums.LabTestType
+  }
+
+  export type LabTestIndicatorUpdateManyWithoutLabTestNestedInput = {
+    create?: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput> | LabTestIndicatorCreateWithoutLabTestInput[] | LabTestIndicatorUncheckedCreateWithoutLabTestInput[]
+    connectOrCreate?: LabTestIndicatorCreateOrConnectWithoutLabTestInput | LabTestIndicatorCreateOrConnectWithoutLabTestInput[]
+    upsert?: LabTestIndicatorUpsertWithWhereUniqueWithoutLabTestInput | LabTestIndicatorUpsertWithWhereUniqueWithoutLabTestInput[]
+    createMany?: LabTestIndicatorCreateManyLabTestInputEnvelope
+    set?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    disconnect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    delete?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    connect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    update?: LabTestIndicatorUpdateWithWhereUniqueWithoutLabTestInput | LabTestIndicatorUpdateWithWhereUniqueWithoutLabTestInput[]
+    updateMany?: LabTestIndicatorUpdateManyWithWhereWithoutLabTestInput | LabTestIndicatorUpdateManyWithWhereWithoutLabTestInput[]
+    deleteMany?: LabTestIndicatorScalarWhereInput | LabTestIndicatorScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutLabTestsNestedInput = {
+    create?: XOR<UserCreateWithoutLabTestsInput, UserUncheckedCreateWithoutLabTestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLabTestsInput
+    upsert?: UserUpsertWithoutLabTestsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLabTestsInput, UserUpdateWithoutLabTestsInput>, UserUncheckedUpdateWithoutLabTestsInput>
+  }
+
+  export type LabTestIndicatorUncheckedUpdateManyWithoutLabTestNestedInput = {
+    create?: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput> | LabTestIndicatorCreateWithoutLabTestInput[] | LabTestIndicatorUncheckedCreateWithoutLabTestInput[]
+    connectOrCreate?: LabTestIndicatorCreateOrConnectWithoutLabTestInput | LabTestIndicatorCreateOrConnectWithoutLabTestInput[]
+    upsert?: LabTestIndicatorUpsertWithWhereUniqueWithoutLabTestInput | LabTestIndicatorUpsertWithWhereUniqueWithoutLabTestInput[]
+    createMany?: LabTestIndicatorCreateManyLabTestInputEnvelope
+    set?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    disconnect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    delete?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    connect?: LabTestIndicatorWhereUniqueInput | LabTestIndicatorWhereUniqueInput[]
+    update?: LabTestIndicatorUpdateWithWhereUniqueWithoutLabTestInput | LabTestIndicatorUpdateWithWhereUniqueWithoutLabTestInput[]
+    updateMany?: LabTestIndicatorUpdateManyWithWhereWithoutLabTestInput | LabTestIndicatorUpdateManyWithWhereWithoutLabTestInput[]
+    deleteMany?: LabTestIndicatorScalarWhereInput | LabTestIndicatorScalarWhereInput[]
+  }
+
+  export type LabTestCreateNestedOneWithoutLabTestIndicatorsInput = {
+    create?: XOR<LabTestCreateWithoutLabTestIndicatorsInput, LabTestUncheckedCreateWithoutLabTestIndicatorsInput>
+    connectOrCreate?: LabTestCreateOrConnectWithoutLabTestIndicatorsInput
+    connect?: LabTestWhereUniqueInput
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type LabTestUpdateOneRequiredWithoutLabTestIndicatorsNestedInput = {
+    create?: XOR<LabTestCreateWithoutLabTestIndicatorsInput, LabTestUncheckedCreateWithoutLabTestIndicatorsInput>
+    connectOrCreate?: LabTestCreateOrConnectWithoutLabTestIndicatorsInput
+    upsert?: LabTestUpsertWithoutLabTestIndicatorsInput
+    connect?: LabTestWhereUniqueInput
+    update?: XOR<XOR<LabTestUpdateToOneWithWhereWithoutLabTestIndicatorsInput, LabTestUpdateWithoutLabTestIndicatorsInput>, LabTestUncheckedUpdateWithoutLabTestIndicatorsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8480,6 +11561,50 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedEnumLabTestTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.LabTestType | EnumLabTestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumLabTestTypeFilter<$PrismaModel> | $Enums.LabTestType
+  }
+
+  export type NestedEnumLabTestTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LabTestType | EnumLabTestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LabTestType[] | ListEnumLabTestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumLabTestTypeWithAggregatesFilter<$PrismaModel> | $Enums.LabTestType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLabTestTypeFilter<$PrismaModel>
+    _max?: NestedEnumLabTestTypeFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type AccountCreateWithoutUserInput = {
     type: string
     provider: string
@@ -8571,6 +11696,32 @@ export namespace Prisma {
 
   export type AuthenticatorCreateManyUserInputEnvelope = {
     data: AuthenticatorCreateManyUserInput | AuthenticatorCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LabTestCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+    labTestIndicators?: LabTestIndicatorCreateNestedManyWithoutLabTestInput
+  }
+
+  export type LabTestUncheckedCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+    labTestIndicators?: LabTestIndicatorUncheckedCreateNestedManyWithoutLabTestInput
+  }
+
+  export type LabTestCreateOrConnectWithoutUserInput = {
+    where: LabTestWhereUniqueInput
+    create: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput>
+  }
+
+  export type LabTestCreateManyUserInputEnvelope = {
+    data: LabTestCreateManyUserInput | LabTestCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -8666,6 +11817,33 @@ export namespace Prisma {
     transports?: StringNullableFilter<"Authenticator"> | string | null
   }
 
+  export type LabTestUpsertWithWhereUniqueWithoutUserInput = {
+    where: LabTestWhereUniqueInput
+    update: XOR<LabTestUpdateWithoutUserInput, LabTestUncheckedUpdateWithoutUserInput>
+    create: XOR<LabTestCreateWithoutUserInput, LabTestUncheckedCreateWithoutUserInput>
+  }
+
+  export type LabTestUpdateWithWhereUniqueWithoutUserInput = {
+    where: LabTestWhereUniqueInput
+    data: XOR<LabTestUpdateWithoutUserInput, LabTestUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LabTestUpdateManyWithWhereWithoutUserInput = {
+    where: LabTestScalarWhereInput
+    data: XOR<LabTestUpdateManyMutationInput, LabTestUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LabTestScalarWhereInput = {
+    AND?: LabTestScalarWhereInput | LabTestScalarWhereInput[]
+    OR?: LabTestScalarWhereInput[]
+    NOT?: LabTestScalarWhereInput | LabTestScalarWhereInput[]
+    id?: StringFilter<"LabTest"> | string
+    userId?: StringFilter<"LabTest"> | string
+    type?: EnumLabTestTypeFilter<"LabTest"> | $Enums.LabTestType
+    summary?: StringFilter<"LabTest"> | string
+    createdAt?: DateTimeFilter<"LabTest"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -8676,6 +11854,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     sessions?: SessionCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    labTests?: LabTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -8688,6 +11867,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    labTests?: LabTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -8716,6 +11896,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -8728,6 +11909,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -8740,6 +11922,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    labTests?: LabTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -8752,6 +11935,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    labTests?: LabTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -8780,6 +11964,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -8792,6 +11977,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAuthenticatorInput = {
@@ -8804,6 +11990,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    labTests?: LabTestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthenticatorInput = {
@@ -8816,6 +12003,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    labTests?: LabTestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthenticatorInput = {
@@ -8844,6 +12032,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthenticatorInput = {
@@ -8856,6 +12045,183 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    labTests?: LabTestUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LabTestIndicatorCreateWithoutLabTestInput = {
+    id?: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+  }
+
+  export type LabTestIndicatorUncheckedCreateWithoutLabTestInput = {
+    id?: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+  }
+
+  export type LabTestIndicatorCreateOrConnectWithoutLabTestInput = {
+    where: LabTestIndicatorWhereUniqueInput
+    create: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput>
+  }
+
+  export type LabTestIndicatorCreateManyLabTestInputEnvelope = {
+    data: LabTestIndicatorCreateManyLabTestInput | LabTestIndicatorCreateManyLabTestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutLabTestsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLabTestsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLabTestsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLabTestsInput, UserUncheckedCreateWithoutLabTestsInput>
+  }
+
+  export type LabTestIndicatorUpsertWithWhereUniqueWithoutLabTestInput = {
+    where: LabTestIndicatorWhereUniqueInput
+    update: XOR<LabTestIndicatorUpdateWithoutLabTestInput, LabTestIndicatorUncheckedUpdateWithoutLabTestInput>
+    create: XOR<LabTestIndicatorCreateWithoutLabTestInput, LabTestIndicatorUncheckedCreateWithoutLabTestInput>
+  }
+
+  export type LabTestIndicatorUpdateWithWhereUniqueWithoutLabTestInput = {
+    where: LabTestIndicatorWhereUniqueInput
+    data: XOR<LabTestIndicatorUpdateWithoutLabTestInput, LabTestIndicatorUncheckedUpdateWithoutLabTestInput>
+  }
+
+  export type LabTestIndicatorUpdateManyWithWhereWithoutLabTestInput = {
+    where: LabTestIndicatorScalarWhereInput
+    data: XOR<LabTestIndicatorUpdateManyMutationInput, LabTestIndicatorUncheckedUpdateManyWithoutLabTestInput>
+  }
+
+  export type LabTestIndicatorScalarWhereInput = {
+    AND?: LabTestIndicatorScalarWhereInput | LabTestIndicatorScalarWhereInput[]
+    OR?: LabTestIndicatorScalarWhereInput[]
+    NOT?: LabTestIndicatorScalarWhereInput | LabTestIndicatorScalarWhereInput[]
+    id?: StringFilter<"LabTestIndicator"> | string
+    labTestId?: StringFilter<"LabTestIndicator"> | string
+    label?: StringFilter<"LabTestIndicator"> | string
+    desc?: StringFilter<"LabTestIndicator"> | string
+    refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
+  }
+
+  export type UserUpsertWithoutLabTestsInput = {
+    update: XOR<UserUpdateWithoutLabTestsInput, UserUncheckedUpdateWithoutLabTestsInput>
+    create: XOR<UserCreateWithoutLabTestsInput, UserUncheckedCreateWithoutLabTestsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLabTestsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLabTestsInput, UserUncheckedUpdateWithoutLabTestsInput>
+  }
+
+  export type UserUpdateWithoutLabTestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLabTestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type LabTestCreateWithoutLabTestIndicatorsInput = {
+    id?: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutLabTestsInput
+  }
+
+  export type LabTestUncheckedCreateWithoutLabTestIndicatorsInput = {
+    id?: string
+    userId: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
+  }
+
+  export type LabTestCreateOrConnectWithoutLabTestIndicatorsInput = {
+    where: LabTestWhereUniqueInput
+    create: XOR<LabTestCreateWithoutLabTestIndicatorsInput, LabTestUncheckedCreateWithoutLabTestIndicatorsInput>
+  }
+
+  export type LabTestUpsertWithoutLabTestIndicatorsInput = {
+    update: XOR<LabTestUpdateWithoutLabTestIndicatorsInput, LabTestUncheckedUpdateWithoutLabTestIndicatorsInput>
+    create: XOR<LabTestCreateWithoutLabTestIndicatorsInput, LabTestUncheckedCreateWithoutLabTestIndicatorsInput>
+    where?: LabTestWhereInput
+  }
+
+  export type LabTestUpdateToOneWithWhereWithoutLabTestIndicatorsInput = {
+    where?: LabTestWhereInput
+    data: XOR<LabTestUpdateWithoutLabTestIndicatorsInput, LabTestUncheckedUpdateWithoutLabTestIndicatorsInput>
+  }
+
+  export type LabTestUpdateWithoutLabTestIndicatorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLabTestsNestedInput
+  }
+
+  export type LabTestUncheckedUpdateWithoutLabTestIndicatorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -8888,6 +12254,13 @@ export namespace Prisma {
     credentialDeviceType: string
     credentialBackedUp: boolean
     transports?: string | null
+  }
+
+  export type LabTestCreateManyUserInput = {
+    id?: string
+    type: $Enums.LabTestType
+    summary: string
+    createdAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -8984,6 +12357,69 @@ export namespace Prisma {
     credentialDeviceType?: StringFieldUpdateOperationsInput | string
     credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
     transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type LabTestUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labTestIndicators?: LabTestIndicatorUpdateManyWithoutLabTestNestedInput
+  }
+
+  export type LabTestUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    labTestIndicators?: LabTestIndicatorUncheckedUpdateManyWithoutLabTestNestedInput
+  }
+
+  export type LabTestUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumLabTestTypeFieldUpdateOperationsInput | $Enums.LabTestType
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorCreateManyLabTestInput = {
+    id?: string
+    label: string
+    desc: string
+    refMin: Decimal | DecimalJsLike | number | string
+    refMax: Decimal | DecimalJsLike | number | string
+    unit: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+  }
+
+  export type LabTestIndicatorUpdateWithoutLabTestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorUncheckedUpdateWithoutLabTestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LabTestIndicatorUncheckedUpdateManyWithoutLabTestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    desc?: StringFieldUpdateOperationsInput | string
+    refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
