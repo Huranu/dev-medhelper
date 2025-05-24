@@ -7,7 +7,7 @@ const TermsDialog = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <p className='hover:underline'>Terms and Conditions</p>
+                <p className='hover:underline'>Үйлчилгээний нөхцөл</p>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] overflow-y-auto">
                 <DialogHeader>

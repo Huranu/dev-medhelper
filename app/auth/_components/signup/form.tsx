@@ -16,11 +16,11 @@ import TermsDialog from './terms-modal'
 import { signUp } from '../../_lib/queries'
 
 const formSchema = z.object({
-    fullName: z.string().min(2, 'Full name is required'),
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
+    fullName: z.string().min(2, 'Бүтэн нэр оруулах шаардлагатай'),
+    email: z.string().email('Буруу имэйл хаяг'),
+    password: z.string().min(6, 'Нууц үг дор хаяж 8 тэмдэгттэй байх ёстой'),
     terms: z.any().refine(val => val === true, {
-        message: 'You must accept the terms',
+        message: 'Та нөхцөлийг зөвшөөрөх ёстой',
     }),
 })
 
@@ -44,22 +44,23 @@ const RegisterForm = () => {
         try {
             const res = await signUp(data)
             console.log(res)
-            toast.success('Account created successfully')
+            toast.success('Бүртгэл амжилттай үүслээ')
             router.push('/')
         } catch (error: any) {
-            toast.error(error?.message || 'Something went wrong')
+            toast.error(error?.message || 'Алдаа гарлаа')
         } finally {
             setLoading(false)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[300px] sm:w-[400px] flex flex-col gap-6">
+            <p className='text-center font-mono font-bold text-primary text-4xl mb-6'>Бүртгүүлэх</p>
             <div className="flex flex-col gap-2">
-                <Label className="text-sm text-gray-500">Full Name</Label>
+                <Label className="text-sm text-gray-500">Овог нэр</Label>
                 <Input
                     placeholder="John Doe"
-                    className="py-6"
+                    className="py-6 rounded"
                     {...register('fullName')}
                 />
                 {errors.fullName && (
@@ -68,10 +69,10 @@ const RegisterForm = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-                <Label className="text-sm text-gray-500">Email</Label>
+                <Label className="text-sm text-gray-500">И-Мэйл</Label>
                 <Input
                     placeholder="example@gmail.com"
-                    className="py-6"
+                    className="py-6 rounded"
                     {...register('email')}
                 />
                 {errors.email && (
@@ -80,11 +81,11 @@ const RegisterForm = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-                <Label className="text-sm text-gray-500">Password</Label>
+                <Label className="text-sm text-gray-500">Нууц үг</Label>
                 <Input
                     type="password"
                     placeholder="********"
-                    className="py-6"
+                    className="py-6 rounded"
                     {...register('password')}
                 />
                 {errors.password && (
@@ -104,7 +105,7 @@ const RegisterForm = () => {
                                 onCheckedChange={field.onChange}
                             />
                             <Label htmlFor="terms" className="text-sm cursor-pointer">
-                                I agree to the <TermsDialog />
+                                Би зөвшөөрч байна <TermsDialog />
                             </Label>
                         </div>
                     )}
@@ -116,19 +117,17 @@ const RegisterForm = () => {
                 </p>
             )}
 
-            <Button type="submit" className="py-6" disabled={loading}>
-                {loading ? 'Creating Account...' : 'Create Account'}
+            <Button type="submit" className="py-6 rounded-full" disabled={loading}>
+                {loading ? 'Үүсгэж байна...' : 'Бүртгэл үүсгэх'}
             </Button>
 
             <div className="flex items-center gap-4">
                 <div className="flex-grow h-px bg-gray-300" />
-                <span className="text-gray-400 text-sm">or</span>
+                <span className="text-gray-400 text-sm">эсвэл</span>
                 <div className="flex-grow h-px bg-gray-300" />
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-                <GoogleLoginButton />
-            </div>
+            <GoogleLoginButton />
         </form>
     )
 }
