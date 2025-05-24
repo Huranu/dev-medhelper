@@ -24,7 +24,7 @@ RUN npm run build
 FROM node:20-alpine AS runner
 
 # Set production environment
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 WORKDIR /app
 
