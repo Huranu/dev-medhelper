@@ -36,18 +36,24 @@ const Steps = () => {
   const stepper = useStepper();
   const currentStep = stepper.current;
 
+  const isLastStep = stepper.isLast;
+  
   return (
     <div className="">
       {stepper.when('first', () => <Forms />)}
       {stepper.when('second', () => <SpecimenSelection />)}
       {stepper.when('third', () => <TypeSelection />)}
-      {stepper.when('fourth', () => <LabTestUpload />)}
+      {stepper.when('fourth', () => <LabTestUpload onBack={stepper.prev}/>)}
     </div>
   )
 }
 
 const Actions = () => {
   const stepper = useStepper();
+
+  if (stepper.current.id === 'fourth' || stepper.current.id === 'last') {
+    return null;
+  }
 
   return !stepper.isLast ? (
     <div className="flex items-center gap-2 mx-auto">
@@ -56,11 +62,7 @@ const Actions = () => {
       </Button>
 
       <Button onClick={stepper.next}>
-        {stepper.when(
-          'fourth',
-          () => 'Илгээх',
-          () => 'Дараах'
-        )}
+        Дараах
       </Button>
     </div>
   ) : (
