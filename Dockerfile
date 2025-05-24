@@ -16,7 +16,9 @@ COPY prisma ./prisma
 RUN npm install --include=dev
 
 # Generate Prisma client
-RUN npx prisma generate
+RUN npx prisma generate && \
+   mkdir -p node_modules/.prisma/client && \
+   cp node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node node_modules/.prisma/client/
 
 # Copy the rest of the files
 COPY . .
