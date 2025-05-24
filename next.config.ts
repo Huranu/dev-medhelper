@@ -7,9 +7,17 @@ const nextConfig: NextConfig = {
   output: "standalone",
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client", "prisma"],
-    // Add only this for Prisma engine
-    outputFileTracingIncludes: {
-      '/*': ['./node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node']
+    // Remove outputFileTracingIncludes and use this instead:
+    outputFileTracingExports: {},
+    turbo: {
+      rules: {
+        '*.node': {
+          next: {
+            // Ensure Prisma engine files are included
+            require: ['@prisma/client', 'prisma']
+          }
+        }
+      }
     }
   }
 };
