@@ -213,6 +213,14 @@ const config = {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -230,7 +238,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -239,8 +247,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String          @id @default(cuid())\n  name          String?\n  email         String          @unique\n  emailVerified DateTime?\n  image         String?\n  accounts      Account[]\n  sessions      Session[]\n  // Optional for WebAuthn support\n  Authenticator Authenticator[]\n  labTests      LabTest[]\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime? @updatedAt\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n}\n\nmodel Session {\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String\n  expires    DateTime\n\n  @@id([identifier, token])\n}\n\n// Optional for WebAuthn support\nmodel Authenticator {\n  credentialID         String  @unique\n  userId               String\n  providerAccountId    String\n  credentialPublicKey  String\n  counter              Int\n  credentialDeviceType String\n  credentialBackedUp   Boolean\n  transports           String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([userId, credentialID])\n}\n\n// Hereglegchiin oruulsan neg shinjilgee hadgalah table. jishee n tsusnii erunhii ...\nmodel LabTest {\n  id                String             @id @default(cuid())\n  userId            String // oruulsan hereglegchiin id\n  type              LabTestType // shinjilgeenii turul jishee n : blood, urine ...\n  summary           String // gpt-ees irsen dugnelt\n  labTestIndicators LabTestIndicator[] // shinjilgeenii uzuuleltuud\n\n  createdAt DateTime @default(now())\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\n// Shinjilgeenii hariunii uzuulelt buriig hadgalah table. jishee tsagaan es, ulaan es ...\nmodel LabTestIndicator {\n  id        String  @id @default(cuid())\n  labTestId String\n  label     String\n  desc      String\n  refMin    Decimal\n  refMax    Decimal\n  unit      Decimal\n\n  createdAt DateTime @default(now())\n\n  labTest LabTest @relation(fields: [labTestId], references: [id], onDelete: Cascade)\n}\n\nenum LabTestType {\n  blood // tsus\n  urine // shees\n}\n\n// Hiigdeh API-uud\n// 1. Hereglegchiin oruulsan shinjilgeeg(shinjilgee bolon dotorh uzuuleltuud) hadgalah API\n// 2. Graph haruulah API - LabTestType bolon nevtersen hereglegcheer shuugeed labtest-uud bolon tedgeeriin  \n// holbogdoh labtestindicator-uudiig butsaana.\n",
-  "inlineSchemaHash": "7b5d878cfdbe4f64931f15c9dd928b5b6027322f9723355d1ef222b1faabc17c",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../app/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"linux-musl-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id            String          @id @default(cuid())\n  name          String?\n  email         String          @unique\n  emailVerified DateTime?\n  image         String?\n  accounts      Account[]\n  sessions      Session[]\n  // Optional for WebAuthn support\n  Authenticator Authenticator[]\n  labTests      LabTest[]\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime? @updatedAt\n}\n\nmodel Account {\n  userId            String\n  type              String\n  provider          String\n  providerAccountId String\n  refresh_token     String?\n  access_token      String?\n  expires_at        Int?\n  token_type        String?\n  scope             String?\n  id_token          String?\n  session_state     String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([provider, providerAccountId])\n}\n\nmodel Session {\n  sessionToken String   @unique\n  userId       String\n  expires      DateTime\n  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel VerificationToken {\n  identifier String\n  token      String\n  expires    DateTime\n\n  @@id([identifier, token])\n}\n\n// Optional for WebAuthn support\nmodel Authenticator {\n  credentialID         String  @unique\n  userId               String\n  providerAccountId    String\n  credentialPublicKey  String\n  counter              Int\n  credentialDeviceType String\n  credentialBackedUp   Boolean\n  transports           String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@id([userId, credentialID])\n}\n\n// Hereglegchiin oruulsan neg shinjilgee hadgalah table. jishee n tsusnii erunhii ...\nmodel LabTest {\n  id                String             @id @default(cuid())\n  userId            String // oruulsan hereglegchiin id\n  type              LabTestType // shinjilgeenii turul jishee n : blood, urine ...\n  summary           String // gpt-ees irsen dugnelt\n  labTestIndicators LabTestIndicator[] // shinjilgeenii uzuuleltuud\n\n  createdAt DateTime @default(now())\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n}\n\n// Shinjilgeenii hariunii uzuulelt buriig hadgalah table. jishee tsagaan es, ulaan es ...\nmodel LabTestIndicator {\n  id        String  @id @default(cuid())\n  labTestId String\n  label     String\n  desc      String\n  refMin    Decimal\n  refMax    Decimal\n  unit      Decimal\n\n  createdAt DateTime @default(now())\n\n  labTest LabTest @relation(fields: [labTestId], references: [id], onDelete: Cascade)\n}\n\nenum LabTestType {\n  blood // tsus\n  urine // shees\n}\n\n// Hiigdeh API-uud\n// 1. Hereglegchiin oruulsan shinjilgeeg(shinjilgee bolon dotorh uzuuleltuud) hadgalah API\n// 2. Graph haruulah API - LabTestType bolon nevtersen hereglegcheer shuugeed labtest-uud bolon tedgeeriin  \n// holbogdoh labtestindicator-uudiig butsaana.\n",
+  "inlineSchemaHash": "a8ec35a74fb6865ef579a072da41e5a34149be0dc0b5047518a6ae16d5c3301d",
   "copyEngine": true
 }
 
@@ -281,6 +289,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(process.cwd(), "app/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-linux-musl-openssl-3.0.x.so.node");
+path.join(process.cwd(), "app/prisma/libquery_engine-linux-musl-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "app/prisma/schema.prisma")
