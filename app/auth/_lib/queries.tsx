@@ -1,6 +1,6 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { compare } from 'bcryptjs'
+import { compare, hash } from 'bcryptjs'
 
 export async function handwrittenLogin(data: { email: string; password: string }) {
     const { email, password } = data
@@ -28,4 +28,32 @@ export async function handwrittenLogin(data: { email: string; password: string }
     }
 
     return account.user
+}
+
+export async function signUp(data: { fullName: string; email: string; password: string }) {
+    const { fullName, email, password } = data
+
+    const existingUser = await prisma.user.findUnique({ where: { email } })
+    if (existingUser) {
+        throw new Error('Email already in use')
+    }
+
+    const hashedPassword = await hash(password, 10)
+
+    const newUser = await prisma.user.create({
+        data: {
+            name: fullName,
+            email,
+            accounts: {
+                create: {
+                    type: 'credentials',
+                    provider: 'credentials',
+                    providerAccountId: email,
+                    access_token: hashedPassword,
+                },
+            },
+        },
+    })
+
+    return newUser
 }
