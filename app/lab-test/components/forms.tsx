@@ -21,11 +21,7 @@ type MedicalFormData = {
   symptoms?: string;
 };
 
-interface FormsProps {
-  onSubmit: (data: MedicalFormData) => void;
-}
-
-export default function Forms({ onSubmit }: FormsProps) {
+export default function Forms() {
   const form = useForm<MedicalFormData>({
     defaultValues: {
         age: 0,
@@ -36,19 +32,14 @@ export default function Forms({ onSubmit }: FormsProps) {
     },
   });
 
-  const handleSubmit = (data: MedicalFormData) => {
-    onSubmit(data);
-  };
 
   return (
     <div className="max-w-md mx-auto mt-8">
-    
-    
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-          {/* Age Field */}
+
+        <div className="mb-4">
           <FormField
             control={form.control}
             name="age"
@@ -62,8 +53,9 @@ export default function Forms({ onSubmit }: FormsProps) {
               </FormItem>
             )}
           />
+        </div>
 
-          {/* Gender Select */}
+        <div className="mb-4">
           <FormField
             control={form.control}
             name="gender"
@@ -85,7 +77,9 @@ export default function Forms({ onSubmit }: FormsProps) {
               </FormItem>
             )}
           />
+        </div>
 
+        <div className="mb-4">
           <FormField
             control={form.control}
             name="height"
@@ -99,7 +93,9 @@ export default function Forms({ onSubmit }: FormsProps) {
               </FormItem>
             )}
           />
+        </div>
 
+        <div className="mb-4">
           <FormField
             control={form.control}
             name="weight"
@@ -113,15 +109,14 @@ export default function Forms({ onSubmit }: FormsProps) {
               </FormItem>
             )}
           />
-
-          <Button
+        </div>
+          {/* <Button
   type="submit"
   className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15 mt-auto mx-auto block"
 >
   <p className="text-lg">Үргэлжлүүлэх</p>
-</Button>
+</Button> */}
 
-        </form>
       </Form>
     </div>
   );

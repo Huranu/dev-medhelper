@@ -8,10 +8,10 @@ interface Types {
   mn: string;
 }
 
-interface TypeSelectionProps {
-  onNext: () => void;
-  onBack: () => void;
-}
+// interface TypeSelectionProps {
+//   onNext: () => void;
+//   onBack: () => void;
+// }
 
 const types: Types[] = [
   { en: "microbiology", mn: "Микробиологи" },
@@ -24,7 +24,7 @@ const types: Types[] = [
   { en: "other", mn: "Бусад" },
 ];
 
-const TypeSelection: React.FC<TypeSelectionProps> = ({ onNext, onBack }) => {
+const TypeSelection: React.FC = () => {
   const [selectedTypes, setSelectedTypes] = useState<Types[]>([]);
 
   const toggleType = (type: Types) => {
@@ -63,7 +63,7 @@ const TypeSelection: React.FC<TypeSelectionProps> = ({ onNext, onBack }) => {
         </div>
       </div>
 
-      <div className="flex justify-between px-4">
+      {/* <div className="flex justify-between px-4">
         <Button className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent mt-5 w-50 h-15" variant="outline" onClick={onBack}>
   
   <p className="text-lg">Буцах</p>
@@ -75,7 +75,7 @@ const TypeSelection: React.FC<TypeSelectionProps> = ({ onNext, onBack }) => {
             <p className="text-lg">Үргэлжлүүлэх</p>
             </Button>
 
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -3,10 +3,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-interface SpecimenProps {
-  onNext: () => void;
-  onBack: () => void;
-}
 
 const specimens = [
   { en: "blood", mn: "Цус" },
@@ -19,7 +15,7 @@ const specimens = [
   { en: "swab", mn: "Тампон" },
 ];
 
-const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
+const SpecimenSelection: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
@@ -49,7 +45,7 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
         </div>
       </div>
 
-      <div className="flex justify-between px-4">
+      {/* <div className="flex justify-between px-4">
         <Button className="mt-5 w-50 h-15" variant="outline" onClick={onBack}>
 
           <p className="text-lg">Буцах</p>
@@ -61,7 +57,7 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
           <p className="text-lg">Үргэлжлүүлэх</p>
         </Button>
 
-      </div>
+      </div> */}
     </div>
   );
 };

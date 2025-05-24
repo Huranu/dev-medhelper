@@ -13,7 +13,7 @@ interface LabTestUploadProps {
   onBack: () => void;
 }
 
-const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
+const LabTestUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -140,7 +140,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
           )}
         </div>
       </div>
-      <div className="mt-5 flex justify-center items-center gap-4">
+      {/* <div className="mt-5 flex justify-center items-center gap-4">
         <Button
           handler={onBack}
           className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
@@ -161,7 +161,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
             {loading ? "Уншиж байна..." : "Үргэлжлүүлэх"}
           </p>
         </Button>
-      </div>
+      </div> */}
 
     </div>
   );
