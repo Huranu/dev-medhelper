@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface Types {
@@ -36,7 +36,7 @@ const TypeSelection: React.FC = () => {
   };
 
   return (
-    <div className="h-full max-w-2xl mx-auto space-y-6">
+    <div className="h-full max-w-2xl mx-auto space-y-6 sm:mb-0 mb-15">
       <div className="p-4">
         <Image
             src="/types.png"
@@ -46,7 +46,7 @@ const TypeSelection: React.FC = () => {
             height={90}
                             />
               <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний төрлийг сонгоно уу.</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto">
           {types.map((t) => (
             <div
               key={t.en}

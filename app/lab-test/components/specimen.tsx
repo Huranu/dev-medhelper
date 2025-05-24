@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 
@@ -19,7 +19,7 @@ const SpecimenSelection: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="h-full max-w-md mx-auto space-y-6">
+    <div className="h-full max-w-md mx-auto space-y-6 sm:mb-0 mb-30">
       <div className="p-4">
         <Image
           src="/specimen.png"
@@ -29,7 +29,7 @@ const SpecimenSelection: React.FC = () => {
           height={90}
         />
         <h1 className="text-2xl font-bold mb-6 text-center">Сорьцын төрлийг сонгоно уу.</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto">
           {specimens.map((specimen) => (
             <div
               key={specimen.en}

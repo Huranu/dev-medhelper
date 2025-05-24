@@ -99,7 +99,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
       />
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
-      <div className="w-full max-w-[900px] h-full mx-auto">
+      <div className="w-full max-w-[450px] h-full mx-auto">
         <div
           className=" border-2 border-dashed h-full border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
         >
@@ -112,8 +112,8 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
               }} />
               {previewUrl ? (
                 <Image
-                  height={350}
-                  width={350}
+                  height={100}
+                  width={100}
                   src={previewUrl}
                   alt="Preview"
                   className="object-cover rounded-md border"
@@ -130,7 +130,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
               <Cloud className="h-25 w-25 text-blue-500 mb-2" />
               <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
               <Input
-                className="w-full h-auto border-none shadow-none px-auto py-2"
+                className="h-auto border-none shadow-none"
                 id="lab-test"
                 type="file"
                 accept="image/*"
@@ -140,7 +140,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
           )}
         </div>
       </div>
-      <div className="mt-5 flex justify-center items-center gap-4">
+      <div className="sm:mt-5 mt-30 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
         <Button
           handler={onBack}
           className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"

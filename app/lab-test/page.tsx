@@ -20,12 +20,14 @@ const { useStepper, Scoped, steps } = defineStepper(
 
 const LabTestsScreening: React.FC = () => {
   return (
-    <div className=" flex flex-col gap-4 p-4 my-auto rounded-md w-full h-full">
+    <div className="static flex flex-col gap-4 p-4 mt-20 rounded-md w-full h-full mx-auto">
         
     <Scoped>
       <ProgressBar />
       <Steps/>
-      <Actions/>
+      {/* <div className=""> */}
+        <Actions/>
+      {/* </div> */}
     </Scoped>
     </div>
   );
@@ -57,8 +59,7 @@ const Actions = () => {
   }
 
   return !stepper.isLast ? (
-    <div className="flex items-center gap-2 mx-auto">
-
+    <div className="flex items-center sm:gap-20 gap-10 mx-auto">
       {stepper.isFirst ? <Link href="/">
         <Button
         // disabled={stepper.isFirst} 
@@ -85,7 +86,7 @@ const Actions = () => {
       </Button>
     </div>
   ) : (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 mx-auto">
       <Button handler={stepper.reset}>Дахин эхлэх</Button>
     </div>
   );

@@ -10,7 +10,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type MedicalFormData = {
@@ -34,7 +34,7 @@ export default function Forms() {
 
 
   return (
-    <div className="max-w-md mx-auto mt-8">
+    <div className="max-w-md mx-auto mt-20 sm:mb-0 mb-30 p-5">
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
       <Form {...form}>
