@@ -101,7 +101,7 @@ model LabTestIndicator {
   desc      String
   refMin    Decimal
   refMax    Decimal
-  unit      Decimal
+  unit      String
 
   createdAt DateTime @default(now())
 

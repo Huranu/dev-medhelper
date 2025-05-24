@@ -8157,13 +8157,11 @@ export namespace Prisma {
   export type LabTestIndicatorAvgAggregateOutputType = {
     refMin: Decimal | null
     refMax: Decimal | null
-    unit: Decimal | null
   }
 
   export type LabTestIndicatorSumAggregateOutputType = {
     refMin: Decimal | null
     refMax: Decimal | null
-    unit: Decimal | null
   }
 
   export type LabTestIndicatorMinAggregateOutputType = {
@@ -8173,7 +8171,7 @@ export namespace Prisma {
     desc: string | null
     refMin: Decimal | null
     refMax: Decimal | null
-    unit: Decimal | null
+    unit: string | null
     createdAt: Date | null
   }
 
@@ -8184,7 +8182,7 @@ export namespace Prisma {
     desc: string | null
     refMin: Decimal | null
     refMax: Decimal | null
-    unit: Decimal | null
+    unit: string | null
     createdAt: Date | null
   }
 
@@ -8204,13 +8202,11 @@ export namespace Prisma {
   export type LabTestIndicatorAvgAggregateInputType = {
     refMin?: true
     refMax?: true
-    unit?: true
   }
 
   export type LabTestIndicatorSumAggregateInputType = {
     refMin?: true
     refMax?: true
-    unit?: true
   }
 
   export type LabTestIndicatorMinAggregateInputType = {
@@ -8340,7 +8336,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal
     refMax: Decimal
-    unit: Decimal
+    unit: string
     createdAt: Date
     _count: LabTestIndicatorCountAggregateOutputType | null
     _avg: LabTestIndicatorAvgAggregateOutputType | null
@@ -8433,7 +8429,7 @@ export namespace Prisma {
       desc: string
       refMin: Prisma.Decimal
       refMax: Prisma.Decimal
-      unit: Prisma.Decimal
+      unit: string
       createdAt: Date
     }, ExtArgs["result"]["labTestIndicator"]>
     composites: {}
@@ -8865,7 +8861,7 @@ export namespace Prisma {
     readonly desc: FieldRef<"LabTestIndicator", 'String'>
     readonly refMin: FieldRef<"LabTestIndicator", 'Decimal'>
     readonly refMax: FieldRef<"LabTestIndicator", 'Decimal'>
-    readonly unit: FieldRef<"LabTestIndicator", 'Decimal'>
+    readonly unit: FieldRef<"LabTestIndicator", 'String'>
     readonly createdAt: FieldRef<"LabTestIndicator", 'DateTime'>
   }
     
@@ -9920,7 +9916,7 @@ export namespace Prisma {
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
     labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
   }
@@ -9947,7 +9943,7 @@ export namespace Prisma {
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
     labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
   }, "id">
@@ -9978,7 +9974,7 @@ export namespace Prisma {
     desc?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     refMin?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
-    unit?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeWithAggregatesFilter<"LabTestIndicator"> | Date | string
   }
 
@@ -10417,7 +10413,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
     labTest: LabTestCreateNestedOneWithoutLabTestIndicatorsInput
   }
@@ -10429,7 +10425,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
   }
 
@@ -10439,7 +10435,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     labTest?: LabTestUpdateOneRequiredWithoutLabTestIndicatorsNestedInput
   }
@@ -10451,7 +10447,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10462,7 +10458,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
   }
 
@@ -10472,7 +10468,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10483,7 +10479,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10985,7 +10981,6 @@ export namespace Prisma {
   export type LabTestIndicatorAvgOrderByAggregateInput = {
     refMin?: SortOrder
     refMax?: SortOrder
-    unit?: SortOrder
   }
 
   export type LabTestIndicatorMaxOrderByAggregateInput = {
@@ -11013,7 +11008,6 @@ export namespace Prisma {
   export type LabTestIndicatorSumOrderByAggregateInput = {
     refMin?: SortOrder
     refMax?: SortOrder
-    unit?: SortOrder
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -12054,7 +12048,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
   }
 
@@ -12064,7 +12058,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
   }
 
@@ -12135,7 +12129,7 @@ export namespace Prisma {
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    unit?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
   }
 
@@ -12388,7 +12382,7 @@ export namespace Prisma {
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
-    unit: Decimal | DecimalJsLike | number | string
+    unit: string
     createdAt?: Date | string
   }
 
@@ -12398,7 +12392,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12408,7 +12402,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12418,7 +12412,7 @@ export namespace Prisma {
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    unit?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
