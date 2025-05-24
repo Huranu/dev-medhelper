@@ -12,6 +12,7 @@ const History: React.FC = () => {
 
   useEffect(() => {
     const storedResult = localStorage.getItem("labTestResult");
+    console.log(storedResult)
     // if (storedResult) {
     //   setResult(JSON.parse(storedResult));
     //   localStorage.removeItem("labTestResult");
@@ -27,7 +28,7 @@ const History: React.FC = () => {
             unit: '10³/µL',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.'
           },
           {
@@ -38,7 +39,7 @@ const History: React.FC = () => {
             unit: '10⁶/µL',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.'
           },
           {
@@ -49,7 +50,7 @@ const History: React.FC = () => {
             unit: 'g/L',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: "Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг."
           },
           {
@@ -60,7 +61,7 @@ const History: React.FC = () => {
             unit: '%',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: "Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна."
           },
           {
@@ -71,7 +72,7 @@ const History: React.FC = () => {
             unit: 'fL',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.'
           },
           {
@@ -82,7 +83,7 @@ const History: React.FC = () => {
             unit: 'pg',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.'
           },
           {
@@ -93,7 +94,7 @@ const History: React.FC = () => {
             unit: 'g/L',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.'
           },
           {
@@ -104,7 +105,7 @@ const History: React.FC = () => {
             unit: '10³/µL',
             prevValue: 42,
             currentValue: 15,
-            date:"May",
+            date: "May",
             desc: 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
           }
         ],
@@ -152,9 +153,9 @@ const History: React.FC = () => {
           </div>
 
           <div className="w-full">
-              <div className="bg-white shadow-md rounded-lg p-4">
-                <BloodWorkChart data={result.indicators} />
-              </div>
+            <div className="bg-white shadow-md rounded-lg p-4">
+              <BloodWorkChart data={result.indicators} />
+            </div>
           </div>
         </div>
       ) : (

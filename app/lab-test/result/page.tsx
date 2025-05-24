@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import BloodWorkChart, { Ref } from "../components/chart";
+import BloodWorkChart from "../components/chart";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,7 @@ const Result: React.FC = () => {
 
   useEffect(() => {
     const storedResult = localStorage.getItem("labTestResult");
+    console.log(storedResult)
     // if (storedResult) {
     //   setResult(JSON.parse(storedResult));
     //   localStorage.removeItem("labTestResult");
@@ -147,9 +148,9 @@ const Result: React.FC = () => {
           </div>
 
           <div className="w-full">
-              <div className="bg-white shadow-md rounded-lg p-4">
-                <BloodWorkChart data={result.indicators} />
-              </div>
+            <div className="bg-white shadow-md rounded-lg p-4">
+              <BloodWorkChart data={result.indicators} />
+            </div>
           </div>
         </div>
       ) : (

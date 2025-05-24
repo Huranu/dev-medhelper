@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button"; 
-import { Syringe } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface SpecimenProps {
@@ -27,22 +26,21 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
     <div className="h-full space-y-6">
       <div className="p-4">
         <Image
-                            src="/specimen.png"
-                            alt="Lab Icon"
-                            className="mx-auto mb-2"
-                            width={90}
-                            height={90}
-                    />
-      <h1 className="text-2xl font-bold mb-6 text-center">Сорьцын төрлийг сонгоно уу.</h1>
+          src="/specimen.png"
+          alt="Lab Icon"
+          className="mx-auto mb-2"
+          width={90}
+          height={90}
+        />
+        <h1 className="text-2xl font-bold mb-6 text-center">Сорьцын төрлийг сонгоно уу.</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto">
           {specimens.map((specimen) => (
             <div
               key={specimen.en}
-              className={`p-3 text-lg border rounded-lg text-center cursor-pointer ${
-                selected === specimen.en
+              className={`p-3 text-lg border rounded-lg text-center cursor-pointer ${selected === specimen.en
                   ? "border-blue-200 bg-blue-100"
                   : "border-gray-300"
-              }`}
+                }`}
               onClick={() => setSelected(specimen.en)}
             >
               {specimen.mn}
@@ -53,15 +51,15 @@ const SpecimenSelection: React.FC<SpecimenProps> = ({ onNext, onBack }) => {
 
       <div className="flex justify-between px-4">
         <Button className="mt-5 w-50 h-15" variant="outline" onClick={onBack}>
-  
-  <p className="text-lg">Буцах</p>
-</Button>
-<Button
-  onClick={onNext}
-  className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15"
->
-  <p className="text-lg">Үргэлжлүүлэх</p>
-</Button>
+
+          <p className="text-lg">Буцах</p>
+        </Button>
+        <Button
+          onClick={onNext}
+          className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15"
+        >
+          <p className="text-lg">Үргэлжлүүлэх</p>
+        </Button>
 
       </div>
     </div>
