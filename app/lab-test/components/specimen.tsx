@@ -19,7 +19,7 @@ const SpecimenSelection: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="h-full space-y-6">
+    <div className="h-full max-w-md mx-auto space-y-6">
       <div className="p-4">
         <Image
           src="/specimen.png"

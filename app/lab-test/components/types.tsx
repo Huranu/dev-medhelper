@@ -36,7 +36,7 @@ const TypeSelection: React.FC = () => {
   };
 
   return (
-    <div className="h-full space-y-6">
+    <div className="h-full max-w-2xl mx-auto space-y-6">
       <div className="p-4">
         <Image
             src="/types.png"
