@@ -1,3 +1,7 @@
+'use server';
+
+import prisma  from '@/lib/prisma';
+
 export async function saveLabTest(data: {
   userId: string;
   type: 'blood' | 'urine';
@@ -10,27 +14,52 @@ export async function saveLabTest(data: {
     unit: string;
   }[];
 }) {
-  const res = await fetch('/api/lab-tests', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const result = await prisma.labTest.create({
+      data: {
+        userId: data.userId,
+        type: data.type,
+        summary: data.summary,
+        labTestIndicators: {
+          create: data.indicators.map((i) => ({
+            label: i.label,
+            desc: i.description,
+            refMin: i.refMin,
+            refMax: i.refMax,
+            unit: i.unit,
+          })),
+        },
+      },
+      include: {
+        labTestIndicators: true,
+      },
+    });
 
-  if (!res.ok) {
-    throw new Error('Шинжилгээ хадгалах үед алдаа гарлаа');
+    return result;
+  } catch (error) {
+    console.error('LabTest хадгалах үед алдаа:', error);
+    throw new Error('Хадгалах үед алдаа гарлаа');
   }
-
-  return res.json();
 }
 
-export async function getLabTests(userId: string, type: 'blood' | 'urine') {
-  const res = await fetch(`/api/lab-tests?userId=${userId}&type=${type}`);
 
-  if (!res.ok) {
-    throw new Error('Шинжилгээ татах үед алдаа гарлаа');
+
+export async function getLabTests(userId: string, type?: 'blood' | 'urine') {
+  const where: any = { userId };
+
+  if (type) {
+    where.type = type;
   }
 
-  return res.json();
+  const labTests = await prisma.labTest.findMany({
+    where,
+    include: {
+      labTestIndicators: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  return labTests;
 }

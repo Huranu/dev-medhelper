@@ -45,6 +45,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
       const result = await res.json();
       console.log("AI response:", result);
 
+
       localStorage.setItem("labTestResult", JSON.stringify(result.result));
       router.push("lab-test/result");
 
