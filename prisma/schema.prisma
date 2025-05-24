@@ -97,12 +97,12 @@ model LabTest {
 // Shinjilgeenii hariunii uzuulelt buriig hadgalah table. jishee tsagaan es, ulaan es ...
 model LabTestIndicator {
   id           String          @id @default(cuid())
-  labTestId       String
+  labTestId    String
   label        String
   desc         String
   refMin       Decimal
   refMax       Decimal
-  unit         Decimal
+  unit         String
  
   createdAt    DateTime @default(now())
 

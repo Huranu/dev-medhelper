@@ -12,7 +12,7 @@ export const config = {
 const api = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
-
+console.log("api: ",api);
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
@@ -80,6 +80,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ],
     });
     const result = response.choices[0].message.content;
+    
+    
     const cleaned = result!
       .trim()
       .replace(/^"+/, '')
@@ -90,6 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let parsed;
     try {
       parsed = JSON.parse(cleaned);
+      console.log("gpt result: ",parsed);
     } catch (e) {
       console.log(e);
       parsed = {

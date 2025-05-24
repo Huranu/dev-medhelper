@@ -1,0 +1,119 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../app/prisma"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+  labTests      LabTest[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+// Hereglegchiin oruulsan neg shinjilgee hadgalah table. jishee n tsusnii erunhii ...
+model LabTest {
+  id                String             @id @default(cuid())
+  userId            String // oruulsan hereglegchiin id
+  type              LabTestType // shinjilgeenii turul jishee n : blood, urine ...
+  summary           String // gpt-ees irsen dugnelt
+  labTestIndicators LabTestIndicator[] // shinjilgeenii uzuuleltuud
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Shinjilgeenii hariunii uzuulelt buriig hadgalah table. jishee tsagaan es, ulaan es ...
+model LabTestIndicator {
+  id        String  @id @default(cuid())
+  labTestId String
+  label     String
+  desc      String
+  refMin    Decimal
+  refMax    Decimal
+  unit      Decimal
+
+  createdAt DateTime @default(now())
+
+  labTest LabTest @relation(fields: [labTestId], references: [id], onDelete: Cascade)
+}
+
+enum LabTestType {
+  blood // tsus
+  urine // shees
+}
+
+// Hiigdeh API-uud
+// 1. Hereglegchiin oruulsan shinjilgeeg(shinjilgee bolon dotorh uzuuleltuud) hadgalah API
+// 2. Graph haruulah API - LabTestType bolon nevtersen hereglegcheer shuugeed labtest-uud bolon tedgeeriin  
+// holbogdoh labtestindicator-uudiig butsaana.
