@@ -3,45 +3,49 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install OS dependencies
+# Install required system dependencies
 RUN apk add --no-cache libc6-compat openssl
 
-# Copy dependencies
+# Copy dependency files first (to leverage Docker cache)
 COPY package*.json ./
-COPY prisma ./prisma
 
-# Install dependencies and generate Prisma client
+# Install dependencies
 RUN npm install
+
+# Copy Prisma schema and generate client
+COPY prisma ./prisma
 RUN npx prisma generate
 
-# Copy the rest of the application
+# Copy rest of the application
 COPY . .
 
-# Build Next.js app
+# Build the Next.js app
 RUN npm run build
 
-# Stage 2: Production Image
+# Stage 2: Production image
 FROM node:20-alpine AS runner
-
-# Set production environment
-ENV NODE_ENV=development
 
 WORKDIR /app
 
-# Install OS dependencies again for runtime
+ENV NODE_ENV=production
+
+# Install runtime OS dependencies
 RUN apk add --no-cache libc6-compat openssl
 
-# Copy production build artifacts
+# Copy needed files from builder
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.* ./
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/next.config.* ./
 COPY --from=builder /app/middleware.ts ./middleware.ts
 
-# Expose port (Next.js default)
+# Copy prisma client engine (important for Alpine)
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+
+# Default port for Next.js
 EXPOSE 3000
 
-# Start the app
+# Start app with Next.js built-in server
 CMD ["npm", "start"]
