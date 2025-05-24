@@ -142,14 +142,14 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         </div>
       </div>
       <div className="sm:mt-5 mt-30 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
-        {/* <Button
+        <Button
           handler={onBack}
           className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
           size="large"
         >
           <p className="text-lg">Буцах</p>
 
-        </Button>  */}
+        </Button> 
 
         <Button
           variant="submit"
@@ -159,14 +159,13 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
           handler={handleSend}
         >
           <p className="text-lg">
-            {loading ? "Уншиж байна..." : "Шинжилгээний хариуг илгээх"}
+            {loading ? "Уншиж байна..." : "Шинжилгээ илгээх"}
           </p>
         </Button>
       </div>
 
     </div>
   );
-
 };
 
 export default LabTestUpload;
