@@ -202,7 +202,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\asus\\Desktop\\coding\\hackathon\\dev-medhelper\\app\\prisma",
+      "value": "C:\\Users\\Javkhaa\\Code\\next\\dev-medhelper\\app\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -220,7 +220,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\asus\\Desktop\\coding\\hackathon\\dev-medhelper\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Javkhaa\\Code\\next\\dev-medhelper\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

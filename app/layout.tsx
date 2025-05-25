@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner"
 import { SessionProvider } from "next-auth/react";
 import "./globals.css";
+import SideBar from "@/components/partails/sidebar";
 
 export const metadata: Metadata = {
   title: "Welcome to Med Helper",
@@ -23,7 +24,12 @@ export default function RootLayout({
       >
         <Toaster />
         <SessionProvider>
-          {children}
+          <div className="flex flex-grow h-screen overflow-hidden">
+            <SideBar />
+            <div className="flex-1 bg-[#F2F8FC] overflow-auto max-h-screen">
+              {children}
+            </div>
+          </div>
         </SessionProvider>
       </body>
     </html>
