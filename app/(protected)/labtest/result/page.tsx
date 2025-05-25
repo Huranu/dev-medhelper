@@ -13,97 +13,98 @@ const Result: React.FC = () => {
   useEffect(() => {
     const storedResult = localStorage.getItem("labTestResult");
     console.log(storedResult)
-    // if (storedResult) {
-    //   setResult(JSON.parse(storedResult));
-    //   localStorage.removeItem("labTestResult");
-    // }
-    setResult(
-      {
-        indicators: [
-          {
-            label: 'Цагаан цусны эс (WBC)',
-            value: 8.86,
-            refMin: 4,
-            refMax: 8,
-            unit: '10³/µL',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.'
-          },
-          {
-            label: 'Улаан цусны эс (RBC)',
-            value: 4.69,
-            refMin: 3.5,
-            refMax: 5.5,
-            unit: '10⁶/µL',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.'
-          },
-          {
-            label: 'Гемоглобин (HGB)',
-            value: 140,
-            refMin: 115,
-            refMax: 165,
-            unit: 'g/L',
-            prevValue: 42,
-            currentValue: 15,
-            desc: "Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг."
-          },
-          {
-            label: 'Гематокрит (HCT)',
-            value: 41.3,
-            refMin: 35,
-            refMax: 48,
-            unit: '%',
-            prevValue: 42,
-            currentValue: 15,
-            desc: "Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна."
-          },
-          {
-            label: 'Дундаж биетэвч (MCV)',
-            value: 88.1,
-            refMin: 86,
-            refMax: 100,
-            unit: 'fL',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.'
-          },
-          {
-            label: 'Дундаж цус задлагч (MCH)',
-            value: 29.9,
-            refMin: 27,
-            refMax: 32,
-            unit: 'pg',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.'
-          },
-          {
-            label: 'Дундаж цус задлагч концентрац (MCHC)',
-            value: 342,
-            refMin: 310,
-            refMax: 370,
-            unit: 'g/L',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.'
-          },
-          {
-            label: 'Хавтгай цусны хавтгай эсүүд (PLT)',
-            value: 191,
-            refMin: 150,
-            refMax: 400,
-            unit: '10³/µL',
-            prevValue: 42,
-            currentValue: 15,
-            desc: 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
-          }
-        ],
-        summary: 'Таны цусны шинжилгээний ихэнх утгууд хэвийн байгаа боловч цагаан цусны эсүүд дээд хязгаараас бага зэрэг давсан байна. Энэ нь өвчин, бэртэл эсвэл үрэвслийн үед тохиолдож болох юм. Тохиолдолын чихахгүй зовиур байгаа эсэхийг ажиглаж, шаардлага гарвал нарийн шинжилгээ хийлгэх нь зүйтэй байна. Амин дэм, эрүүл хоол хүнсийг хангалттай хэмжээгээр авахыг зөвлөж байна.'
-      }
-    )
+    if (storedResult) {
+      setResult(JSON.parse(storedResult));
+      localStorage.removeItem("labTestResult");
+    }
+    // setResult(
+      // storedResult
+    //   {
+    //     indicators: [
+    //       {
+    //         label: 'Цагаан цусны эс (WBC)',
+    //         value: 8.86,
+    //         refMin: 4,
+    //         refMax: 8,
+    //         unit: '10³/µL',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга нь дээд хязгаараас бага зэрэг давна. Энэ нь яаралтай шуурхай бэртэл, үрэвслийн эсвэл халдварт өвчинтэй холбоотой байж болно.'
+    //       },
+    //       {
+    //         label: 'Улаан цусны эс (RBC)',
+    //         value: 4.69,
+    //         refMin: 3.5,
+    //         refMax: 5.5,
+    //         unit: '10⁶/µL',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга нь хэвийн байна. Эрүүл хүний улаан цусны эсүүдийн түвшин зохистой байна.'
+    //       },
+    //       {
+    //         label: 'Гемоглобин (HGB)',
+    //         value: 140,
+    //         refMin: 115,
+    //         refMax: 165,
+    //         unit: 'g/L',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: "Энэ утга хэвийн байна. Энэ нь цусны хүчилтөрөгч зөөвөрлөх чадвар сайн гэсэн үг."
+    //       },
+    //       {
+    //         label: 'Гематокрит (HCT)',
+    //         value: 41.3,
+    //         refMin: 35,
+    //         refMax: 48,
+    //         unit: '%',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: "Энэ утга нь хэвийн хүрээнд байна. Цусны улаан эсийн эзлэх хувь сайн байна."
+    //       },
+    //       {
+    //         label: 'Дундаж биетэвч (MCV)',
+    //         value: 88.1,
+    //         refMin: 86,
+    //         refMax: 100,
+    //         unit: 'fL',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга хэвийн байна. Цусны эсийн дундаж хэмжээ зохистой.'
+    //       },
+    //       {
+    //         label: 'Дундаж цус задлагч (MCH)',
+    //         value: 29.9,
+    //         refMin: 27,
+    //         refMax: 32,
+    //         unit: 'pg',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга хэвийн байна. Энэ нь цусны эсүүдийн дундаж гемоглобиний агууламж зохистой байна гэсэн үг.'
+    //       },
+    //       {
+    //         label: 'Дундаж цус задлагч концентрац (MCHC)',
+    //         value: 342,
+    //         refMin: 310,
+    //         refMax: 370,
+    //         unit: 'g/L',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга хэвийн байна. Цусны эсүүдийн дундаж гемоглобиний концентрацийн түвшин зохистой байна.'
+    //       },
+    //       {
+    //         label: 'Хавтгай цусны хавтгай эсүүд (PLT)',
+    //         value: 191,
+    //         refMin: 150,
+    //         refMax: 400,
+    //         unit: '10³/µL',
+    //         prevValue: 42,
+    //         currentValue: 15,
+    //         desc: 'Энэ утга хэвийн байна. Энэ нь цус тогтвортой, зөв коагуляцийн чадавхид байна гэсэн үг.'
+    //       }
+    //     ],
+    //     summary: 'Таны цусны шинжилгээний ихэнх утгууд хэвийн байгаа боловч цагаан цусны эсүүд дээд хязгаараас бага зэрэг давсан байна. Энэ нь өвчин, бэртэл эсвэл үрэвслийн үед тохиолдож болох юм. Тохиолдолын чихахгүй зовиур байгаа эсэхийг ажиглаж, шаардлага гарвал нарийн шинжилгээ хийлгэх нь зүйтэй байна. Амин дэм, эрүүл хоол хүнсийг хангалттай хэмжээгээр авахыг зөвлөж байна.'
+    //   }
+    // )
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -112,7 +113,7 @@ const Result: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden"
+      className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-4 sm:px-14 py-4 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
@@ -141,9 +142,17 @@ const Result: React.FC = () => {
       {result ? (
         <div className="flex flex-col w-full mx-auto pt-3">
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Шинжилгээний хариуны дүгнэлт</h2>
-            <div className="rounded-lg ml-5 p-4 max-h-[200px] overflow-y-auto">
-              <p className="text-gray-700 text-xl">{result.summary}</p>
+            <h2 className="text-2xl font-bold mb-4 text-center">Шинжилгээний хариуны дүгнэлт</h2>
+            <div className="ml-5 py-2 px-8 flex flex-row gap-8">
+              {/* <Image src="/result_robot.png" alt="resultRobot" width={120} height={50} className="hidden sm:object-contain" /> */}
+              <Image
+                        src="/result_robot.png"
+                        alt="resultRobot"
+                        width={120}
+                        height={50}
+                        className="hidden sm:object-contain"
+                      />
+              <p className="text-gray-700 text-lg">{result.summary}</p>
             </div>
           </div>
 

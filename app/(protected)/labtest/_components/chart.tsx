@@ -9,14 +9,13 @@ import {
 } from "@/components/ui/accordion";
 
 export type Ref = {
-  label: string;
+  labelMn: string;
+  labelEn: string;
   value: number;
   refMin: number;
   refMax: number;
   unit: string;
   desc: string;
-  prevValue?: number;
-  currentValue?: number;
 };
 
 const BloodWorkChart = ({ data }: { data: Ref[] }) => {
@@ -34,12 +33,12 @@ const BloodWorkChart = ({ data }: { data: Ref[] }) => {
               const refMaxWidth = (item.refMax / maxScaleValue) * maxWidth;
 
               return (
-                <AccordionItem value={item.label} key={index}>
+                <AccordionItem value={item.labelEn} key={index}>
                   <AccordionTrigger>
-                    <div className="w-full py-4 px-3 bg-white grid grid-cols-[0.7fr_0.8fr_0.5fr_1.8fr] items-center gap-2 rounded-lg shadow-md">
+                    <div className="w-full py-4 px-3 bg-white grid grid-cols-[1fr_1fr_1fr] sm:grid-cols-[0.5fr_0.8fr_0.5fr_1.8fr] items-center gap-2 rounded-lg shadow-md">
                       <div className="items-start">
                         <span className="font-semibold text-gray-800 text-sm">
-                          {item.label}
+                          {item.labelMn}
                         </span>
                       </div>
 
@@ -56,78 +55,59 @@ const BloodWorkChart = ({ data }: { data: Ref[] }) => {
                         </span>
                       </div>
 
-                      <div className="flex flex-col items-start">
-                        <div className="relative h-12 w-full">
-                          {item.prevValue !== undefined &&
-                            item.value !== undefined && (
-                              <>
-                                <div
-                                  className="absolute text-xs text-gray-700"
-                                  style={{
-                                    left: `${patientWidth}%`,
-                                    transform: "translateX(-50%)",
-                                    top: "-0.5rem",
-                                  }}
-                                >
-                                  Current
-                                </div>
-                              </>
-                            )}
+                      <div className="relative h-12 w-full hidden sm:block">
+                        <div className="relative h-2 bg-gray-200 rounded-full top-1/2 transform -translate-y-1/2">
+                          <div
+                            className="absolute h-full bg-green-400 rounded-full"
+                            style={{
+                              left: `${refMinWidth}%`,
+                              width: `${refMaxWidth - refMinWidth}%`,
+                            }}
+                          />
+                          <div
+                            className="absolute h-full bg-red-300 rounded-full"
+                            style={{
+                              left: 0,
+                              width: `${refMinWidth}%`,
+                            }}
+                          />
+                          <div
+                            className="absolute h-full bg-red-300 rounded-full"
+                            style={{
+                              left: `${refMaxWidth}%`,
+                              width: `${100 - refMaxWidth}%`,
+                            }}
+                          />
+                          <div
+                            className="absolute w-4 h-4 bg-blue-500 rounded-full"
+                            style={{
+                              left: `${patientWidth}%`,
+                              transform: "translateX(-50%) translateY(-50%)",
+                              top: "50%",
+                            }}
+                          />
+                        </div>
 
-                          <div className="relative h-2 bg-gray-200 rounded-full top-1/2 transform -translate-y-1/2">
+                        {item.value !== undefined && (
+                          <>
                             <div
-                              className="absolute h-full bg-green-400 rounded-full"
-                              style={{
-                                left: `${refMinWidth}%`,
-                                width: `${refMaxWidth - refMinWidth}%`,
-                              }}
-                            />
-                            <div
-                              className="absolute h-full bg-red-300 rounded-full"
-                              style={{
-                                left: 0,
-                                width: `${refMinWidth}%`,
-                              }}
-                            />
-                            <div
-                              className="absolute h-full bg-red-300 rounded-full"
-                              style={{
-                                left: `${refMaxWidth}%`,
-                                width: `${100 - refMaxWidth}%`,
-                              }}
-                            />
-                            <div
-                              className="absolute w-4 h-4 bg-blue-500 rounded-full"
+                              className="absolute text-xs text-gray-700"
                               style={{
                                 left: `${patientWidth}%`,
-                                transform: "translateX(-50%) translateY(-50%)",
-                                top: "50%",
+                                transform: "translateX(-50%)",
+                                bottom: "-0.5rem",
                               }}
-                            />
-                          </div>
-
-                          {item.prevValue !== undefined &&
-                            item.value !== undefined && (
-                              <>
-                                <div
-                                  className="absolute text-xs text-gray-700"
-                                  style={{
-                                    left: `${patientWidth}%`,
-                                    transform: "translateX(-50%)",
-                                    bottom: "-0.5rem",
-                                  }}
-                                >
-                                  {item.value}
-                                </div>
-                              </>
-                            )}
-                        </div>
+                            >
+                              {item.value}
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div>
-                      <span className="text-sm font-medium">{item.desc}</span>
+                      <span className="text-sm px-4">{item.desc}</span>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
