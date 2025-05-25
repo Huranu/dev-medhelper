@@ -9,7 +9,7 @@ import Image from 'next/image';
 const sidebarItems = [
     { id: 1, link: '/', name: 'Нүүр хуудас', icon: <HomeIcon className="h-5 w-5 text-gray-700 group-hover:text-[#39ae9f] transition-colors duration-300" /> },
     { id: 2, link: '/labtest', name: 'Шинжилгээ', icon: <TestTubeIcon className="h-5 w-5 text-gray-700 group-hover:text-[#39ae9f] transition-colors duration-300" /> },
-    { id: 3, link: '/advice', name: 'Зөвөлгөө', icon: <LightbulbIcon className="h-5 w-5 text-gray-700 group-hover:text-[#39ae9f] transition-colors duration-300" /> },
+    { id: 3, link: '/advice', name: 'Зөвлөгөө', icon: <LightbulbIcon className="h-5 w-5 text-gray-700 group-hover:text-[#39ae9f] transition-colors duration-300" /> },
     { id: 4, link: '/history', name: 'Түүх', icon: <HistoryIcon className="h-5 w-5 text-gray-700 group-hover:text-[#39ae9f] transition-colors duration-300" /> },
 ];
 
