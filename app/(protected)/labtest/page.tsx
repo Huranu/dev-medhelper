@@ -6,7 +6,8 @@ import Forms from "./_components//forms";
 // import SpecimenSelection from "./_components//specimen";
 import TypeSelection from "./_components//types";
 
-import Button from "./_components/button";
+// import Button from "./_components/button";
+import { Button } from "@/components/ui/button";
 import { defineStepper } from '@stepperize/react';
 // import Image from "next/image";
 import Link from "next/link";
@@ -54,7 +55,7 @@ const LabTestsScreening: React.FC = () => {
           </Link>
         </div>
       </motion.header> */}
-      <div className="flex flex-col w-full h-full mt-30 px-4">
+      <div className="flex flex-col w-full h-full mt-20 px-4">
         <Scoped>
           <ProgressBar />
           <Steps />
@@ -98,38 +99,34 @@ const Actions = () => {
         <Button
           // disabled={stepper.isFirst} 
           // handler={stepper.prev}
-          className="cursor-pointer bg-[#39ae9f] text-green-600 border-green-600 bg-clip-text w-35 h-15"
-          size="large">
+          variant="outline"
+          // onClick={() => setOpen(false)}
+          className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
+          // size="large"
+          >
           Буцах
         </Button>
       </Link> : <Button
         // disabled={stepper.isFirst}
-        handler={stepper.prev}
-        className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-
-        size="large">
-        Өмнөх
+        onClick={stepper.prev}
+        variant="outline"
+        className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
+        // size="large"
+        >
+          <p className="text-lg">Өмнөх</p>
       </Button>}
       <Button
-          handler={stepper.next}
-          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-          size="large"
+          onClick={stepper.next}
+          className="bg-gradient-to-r from-[#39ae9f] to-[#2c8c80] text-white hover:scale-105 transition-all duration-300 rounded-lg"
+          // size="large"
         >
           <p className="text-lg">Дараах</p>
 
         </Button>
-{/* 
-      <Button
-        handler={stepper.next}
-        className="cursor-pointer bg-[#39ae9f] text-black border-green-600 bg-clip-text w-35 h-13"
-        size="large"
-      >
-        Дараах
-      </Button> */}
     </div>
   ) : (
     <div className="flex items-center gap-2 mx-auto">
-      <Button handler={stepper.reset}>Дахин эхлэх</Button>
+      <Button onClick={stepper.reset}>Дахин эхлэх</Button>
     </div>
   );
 }

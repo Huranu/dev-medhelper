@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Input } from "../_components/input";
-import Button from "../_components/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CircleX, FileIcon, Frown } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -148,25 +148,46 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         </div>
       </div>
       <div className="sm:mt-5 mt-30 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
-        <Button
-          handler={onBack}
+        {/* <Button
+          // handler={onBack}
           className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-          size="large"
+          // size="large"
         >
           <p className="text-lg">Буцах</p>
 
         </Button>
 
         <Button
-          variant="submit"
-          className="h-15"
-          size="large"
+          // variant="submit"
+          // className="h-15"
+          // size="large"
           disabled={!file || loading}
-          handler={handleSend}
+          // handler={handleSend}
         >
           <p className="text-lg">
             {loading ? "Уншиж байна..." : "Шинжилгээ илгээх"}
           </p>
+        </Button>
+         */}
+
+
+        <Button
+        // disabled={stepper.isFirst}
+        onClick={onBack}
+        variant="outline"
+        className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
+        // size="large"
+        >
+          <p className="text-lg">Өмнөх</p>
+      </Button>
+      <Button
+          disabled={!file || loading}
+          onClick={handleSend}
+          className="bg-gradient-to-r from-[#39ae9f] to-[#2c8c80] text-white hover:scale-105 transition-all duration-300 rounded-lg"
+          // size="large"
+        >
+          <p className="text-lg">{loading ? "Уншиж байна..." : "Шинжилгээ илгээх"}</p>
+
         </Button>
       </div>
 
