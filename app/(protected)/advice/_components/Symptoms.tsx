@@ -63,13 +63,13 @@ function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="border-gray-100 w-[450px] justify-between cursor-pointer"
+          className="border-gray-100 w-[260px] sm:w-[450px] justify-between cursor-pointer"
         >
           {value.length ? `${value.length} шинж тэмдэг сонгогдсон` : "Шинж тэмдэг сонгох"}
           <ChevronsUpDown className="h-4 w-6 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="border-gray-100 ml-2 w-[400px] p-0">
+      <PopoverContent className="border-gray-100 ml-2 w-[260px] sm:w-[400px] p-0">
         <Command>
           <CommandInput placeholder="Шинж тэмдэг хайх..." />
           <CommandList>
@@ -103,7 +103,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
   const [unit, setUnit] = useState("hours")
 
   return (
-    <Card className="border-gray-100 ml-2 w-[512px]">
+    <Card className="border-gray-100 ml-2 w-[260px] sm:w-[512px]">
       <CardHeader>
         <CardTitle className="text-sm">
           Таны шинж тэмдэг хэр удаан үргэлжилсэн бэ?
@@ -192,7 +192,7 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
 
       {/* Scrollable Symptoms Area */}
       <div className="overflow-y-auto flex-grow px-10 py-2">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           {addedSymptoms.map((s, i) => (
             <div key={i} className="h-10 shadow rounded-full items-center justify-between py-1 px-4 flex">
               <div className="pr-2 font-medium text-sm">

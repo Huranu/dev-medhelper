@@ -45,7 +45,7 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
           <BriefcaseMedical className="mr-2" />
           Өвчний шинж тэмдгүүдийн үнэлгээний дүн:
         </div>
-        <div>
+        <div className="max-h-[66vh] overflow-y-auto ">
           <div className=" text-xl font-semibold">Дүгнэлт:</div>
           <p className="text-gray-700 text-lg">{result.result.summary}</p>
           <div className=" text-xl font-semibold">Үүсэх шалтгаанууд:</div>

@@ -375,11 +375,11 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                 />
                                 <div className="mt-40 flex justify-between ">
                                     <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer border-green-700'>
-                                        <span className="w-35 bg-gradient-to-br from-blue-500 to-green-500 bg-clip-text text-transparent">
+                                        <span className="px-8 sm:px-0 sm:w-35 bg-gradient-to-br from-blue-500 to-green-500 bg-clip-text text-transparent">
                                             Буцах
                                         </span>
                                     </Button>
-                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 cursor-pointer w-40">
+                                    <Button type="submit" className="px-8 sm:px-0 bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 cursor-pointer sm:w-40">
                                         Дараах
                                     </Button>
                                 </div>
