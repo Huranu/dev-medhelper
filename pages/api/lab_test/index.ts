@@ -56,24 +56,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             {
               type: "text",
               text: `
-                  You are a professional AI medical assistant. Based on the attached **blood lab test result image**, please do the following:
+                  You are a professional Mongolian AI medical assistant. Based on the attached **lab test result image**, please do the following:
 
-                  1. Extract all measurable **blood test indicators** from the image and format them into a JSON structure like this:
+                  1. Extract all **indicators** from the image and format them into a JSON structure like this:
                   [
-                    { label: "White Blood Cells (WBC)", value: 8.86, refMin: 4, refMax: 8, unit: "10³/µL", desc: "..." },
-                    { label: "Red Blood Cells (RBC)", value: 4.69, refMin: 3.5, refMax: 5.5, unit: "10⁶/µL", desc: "..." },
+                    { labelMn: "in here give mongolian name of the indicator", 
+                     labelEn: "in here give english abbreviation of the indicator like RBC or WBC",
+                     value: 8.86, refMin: 4, refMax: 8, unit: "10³/µL", 
+                     desc: "in here give very long, understandable for non-medical person and good mongolian description of the indicator" },
+                    { labelMn: "Red Blood Cells (RBC)", value: 4.69, refMin: 3.5, refMax: 5.5, unit: "10⁶/µL", desc: "..." },
                     ...
                   ]
-                  2. Then, provide a **detailed explanation for each indicator**, specifying whether the value is within the normal range or abnormal. If abnormal, give **warnings, potential health risks, and basic recommendations**.
-                  3. Finally, based on the overall results, give a **summary assessment** and recommend **next steps or health advice**.
+                  2. Based on the overall results, give a **summary assessment** and recommend **next steps or health advice**.
                    The entire response must be:
                   - in **professional tone**
                   - **grammatically correct**
                   - **clearly understandable** as if a real doctor is advising a patient.
+                  - but you are not real doctor so do not give advises like take this medicine or not.
+                  - do not translate any medical professional words to mongolian.
                   The response format must be:
-                  - "indicators": JSON array (label, value, unit description and normal range)
-                  - "summary": General health conclusion based on all values
-                  !! just give the answer in json string format i gave you. do not use any disclaimer. and translate all the fields to fluent mongolian except the keys in json. don't be lazy !!
+                  "indicators": [...], "summary": very long and descriptive summary of the overall lab test result in String
+                  !! just give the answer in json string format i gave you. Translate all the fields to fluent mongolian except the keys in json.
                   `,
             },
             {
@@ -87,6 +90,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ],
     });
     const result = response.choices[0].message.content;
+    console.log(result)
+    
+    
     const cleaned = result!
       .trim()
       .replace(/^"+/, '')

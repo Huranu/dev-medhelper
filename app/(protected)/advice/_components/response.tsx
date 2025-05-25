@@ -41,14 +41,14 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
   return (
     result ? (
       <div className="w-full h-full p-4 bg-white space-y-4 flex flex-col justify-between">
-        <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">
+        <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-[#39ae9f] font-semibold">
           <BriefcaseMedical className="mr-2" />
           Өвчний шинж тэмдгүүдийн үнэлгээний дүн:
         </div>
         <div>
-          <div className="text-blue-500 text-xl font-semibold">Дүгнэлт:</div>
+          <div className=" text-xl font-semibold">Дүгнэлт:</div>
           <p className="text-gray-700 text-lg">{result.result.summary}</p>
-          <div className="text-blue-500 text-xl font-semibold">Үүсэх шалтгаанууд:</div>
+          <div className=" text-xl font-semibold">Үүсэх шалтгаанууд:</div>
           <ul>
             {result.result.causes.map((cause: any, index: number) => (
               <li key={index} className="mb-4">
@@ -58,7 +58,7 @@ export default function Response({ privateInfo, symptoms }: { privateInfo: any, 
           </ul>
         </div>
         <Link href="/">
-          <Button className="w-32 flex flex-cols items-center justify-center hover:bg-blue-500 bg-blue-700 cursor-pointer" onClick={() => router.push("/")} >
+          <Button className="w-32 flex flex-cols items-center justify-center bg-[#39ae9f] cursor-pointer" onClick={() => router.push("/")} >
             Ойлголоо.
           </Button>
         </Link>

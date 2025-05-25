@@ -121,7 +121,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                         exit={{ opacity: 0, x: -40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="flex flex-row items-center text-2xl gap-2 text-blue-600 font-semibold mb-6">
+                        <div className="flex flex-row items-center text-2xl gap-2 text-[#39ae9f] font-semibold mb-6">
                             <ClipboardPlus strokeWidth={2} />
                             Хувийн мэдээлэл
                         </div>
@@ -245,9 +245,11 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         </FormItem>
                                     )}
                                 />
-                                <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 cursor-pointer">
+                                <div className='flex justify-end'>
+                                <Button type="submit" className="w-40 bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 cursor-pointer">
                                     Дараах
                                 </Button>
+                                </div>
                             </form>
                         </Form>
                     </motion.div>
@@ -261,7 +263,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                         exit={{ opacity: 0, x: 40 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="flex flex-row items-center gap-2 text-blue-600 text-2xl font-semibold mb-6">
+                        <div className="flex flex-row items-center gap-2 text-[#39ae9f] text-2xl font-semibold mb-6">
                             <Dumbbell size={25} strokeWidth={1.5} />
                             Амьдралын хэв маяг
                         </div>
@@ -303,7 +305,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         name="pregnant"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Та жирэмсэн үү?</FormLabel>
+                                                <FormLabel>Жирэмсэн эсэх</FormLabel>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} value={field.value}>
                                                         <SelectTrigger>
@@ -320,7 +322,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     />
                                 )}
                                 <div>
-                                    <FormLabel>Танд архаг хууч өвчин байгаа уу?</FormLabel>
+                                    <FormLabel>Танд архаг хууч өвчин байгаа юу?</FormLabel>
                                     <div className="flex gap-2 mt-2">
                                         <Input
                                             value={diseaseInput}
@@ -339,7 +341,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     </div>
                                     <ul className="flex flex-wrap gap-2 mt-3">
                                         {diseases.map((disease, index) => (
-                                            <li key={index} className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 border shadow">
+                                            <li key={index} className="flex items-center gap-2 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm rounded-full px-3 py-1 shadow">
                                                 {disease}
                                                 <button type="button" onClick={() => removeDisease(index)} className="text-red-500 hover:text-red-700 cursor-pointer">
                                                     <X size={16} />
@@ -353,7 +355,7 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     name="exercisePerWeek"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Долоо хоногт дасгал хийдэг удаа</FormLabel>
+                                            <FormLabel>Долоо хоногт хэдэн удаа дасгал хийдэг вэ?</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="number"
@@ -371,13 +373,13 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                         </FormItem>
                                     )}
                                 />
-                                <div className="flex gap-2">
-                                    <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer border-purple-700'>
-                                        <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                                <div className="mt-40 flex justify-between ">
+                                    <Button type="button" onClick={() => setStep(1)} variant="outline" className='cursor-pointer border-green-700'>
+                                        <span className="w-35 bg-gradient-to-br from-blue-500 to-green-500 bg-clip-text text-transparent">
                                             Буцах
                                         </span>
                                     </Button>
-                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer">
+                                    <Button type="submit" className="bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 cursor-pointer w-40">
                                         Дараах
                                     </Button>
                                 </div>

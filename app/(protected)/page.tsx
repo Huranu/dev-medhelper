@@ -6,46 +6,72 @@ import { Input } from '@/components/ui/input';
 import DashCardBG from '@/components/dashcardbg';
 import {
   BarChart, Bar, CartesianGrid, Tooltip,
-  Legend, ResponsiveContainer, LineChart, Line
+  Legend, ResponsiveContainer, LineChart, Line,
+  ReferenceArea,
 }
   from 'recharts';
 
-const barChartData = [
-  { name: 'Jan', value: 400 },
-  { name: 'Feb', value: 300 },
-  { name: 'Mar', value: 600 },
-  { name: 'Apr', value: 800 },
-  { name: 'May', value: 500 },
+const labtestCountByMonth = [
+  { name: '1-р сар', value: 1 },
+  { name: '2-р сар', value: 0 },
+  { name: '3-р сар', value: 0 },
+  { name: '4-р сар', value: 3 },
+  { name: '5-р сар', value: 5 },
 ];
 
-const lineChartData = [
-  { name: 'Jan', value: 240 },
-  { name: 'Feb', value: 139 },
-  { name: 'Mar', value: 980 },
-  { name: 'Apr', value: 390 },
-  { name: 'May', value: 480 },
+const cholesterolData = [
+  { name: '1-р сар', value: 180 },
+  { name: '2-р сар', value: 180 },
+  { name: '3-р сар', value: 180 },
+  { name: '4-р сар', value: 195 },
+  { name: '5-р сар', value: 182 },
 ];
 
-const data1 = [
-  { name: 'Jan', value: 30 },
-  { name: 'Feb', value: 45 },
-  { name: 'Mar', value: 25 },
-  { name: 'Apr', value: 60 },
-  { name: 'May', value: 35 },
+const hemoglobinData = [
+  { name: '1-р сар', value: 14.5 },
+  { name: '2-р сар', value: 13.8 },
+  { name: '3-р сар', value: 14.0 },
+  { name: '4-р сар', value: 15.2 },
+  { name: '5-р сар', value: 14.8 },
 ];
 
-const data2 = [
-  { name: 'Jan', value: 20 },
-  { name: 'Feb', value: 35 },
-  { name: 'Mar', value: 50 },
-  { name: 'Apr', value: 30 },
-  { name: 'May', value: 55 },
+const glucoseData = [
+  { name: '1-р сар', value: 95 },
+  { name: '2-р сар', value: 90 },
+  { name: '3-р сар', value: 100 },
+  { name: '4-р сар', value: 105 },
+  { name: '5-р сар', value: 98 },
 ];
 
-const MiniLineChart = ({ data, color }: { data: { name: string; value: number }[]; color: string }) => {
+const ranges = {
+  hemoglobin: { min: 12, max: 18 },
+  glucose: { min: 70, max: 100 },
+  cholesterol: { min: 125, max: 200 },
+  labTestCount: { min: 0, max: 10 },
+};
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const { name, value } = payload[0].payload;
+    return (
+      <div className="bg-white/90 border-none rounded-lg shadow-md p-2 text-sm text-gray-900">
+        {`${name}, ${value}`}
+      </div>
+    );
+  }
+  return null;
+};
+
+const MiniLineChart = ({ data, color, type }: { data: { name: string; value: number }[]; color: string; type: "hemoglobin" | "glucose" }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+        <ReferenceArea
+          y1={type === "hemoglobin" ? ranges.hemoglobin.min : ranges.glucose.min}
+          y2={type === "hemoglobin" ? ranges.hemoglobin.max : ranges.glucose.max}
+          fill={type === "hemoglobin" ? "#FCA5A5" : "#39ae9f"}
+          fillOpacity={0.1}
+        />
         <Line
           type="monotone"
           dataKey="value"
@@ -62,6 +88,7 @@ const MiniLineChart = ({ data, color }: { data: { name: string; value: number }[
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             color: '#333',
           }}
+          content={<CustomTooltip />}
         />
       </LineChart>
     </ResponsiveContainer>
@@ -89,15 +116,15 @@ const DashboardClient = () => {
               </div>
             </div>
             <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
-              <h3 className="text-xl font-semibold text-[#FCA5A5]">-18%</h3>
+              <h3 className="text-xl font-semibold text-[#FCA5A5]">Гемоглобин -18%</h3>
               <div className="flex-1">
-                <MiniLineChart data={data1} color="#FCA5A5" />
+                <MiniLineChart data={hemoglobinData} color="#FCA5A5" type="hemoglobin" />
               </div>
             </div>
             <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
-              <h3 className="text-xl font-semibold text-[#39ae9f]">+2%</h3>
+              <h3 className="text-xl font-semibold text-[#39ae9f]">Глюкоз +2%</h3>
               <div className="flex-1">
-                <MiniLineChart data={data2} color="#39ae9f" />
+                <MiniLineChart data={glucoseData} color="#39ae9f" type="glucose" />
               </div>
             </div>
           </div>
@@ -109,12 +136,12 @@ const DashboardClient = () => {
         </div>
         <div className="row-span-6 grid grid-cols-5 gap-4 h-full">
           <div className="col-span-3 bg-white p-4 rounded-md flex flex-col">
-            <h3 className="text-lg font-semibold mb-2">Chart 1 - Bar Chart</h3>
+            <h3 className="text-lg font-semibold mb-2">Шинжилгээний тоо (Сараар)</h3>
             <div className="flex-1">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={barChartData}>
+                <BarChart data={labtestCountByMonth}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <Tooltip />
+                  <Tooltip content={<CustomTooltip />} />
                   <Legend />
                   <Bar dataKey="value" fill="#39ae9f" />
                 </BarChart>
@@ -122,12 +149,18 @@ const DashboardClient = () => {
             </div>
           </div>
           <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
-            <h3 className="text-lg font-semibold mb-2">Chart 2 - Line Chart</h3>
+            <h3 className="text-lg font-semibold mb-2">Холестерин</h3>
             <div className="flex-1">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={lineChartData}>
+                <LineChart data={cholesterolData} >
+                  <ReferenceArea
+                    y1={ranges.cholesterol.min}
+                    y2={ranges.cholesterol.max}
+                    fill={"#39ae9f"}
+                    fillOpacity={0.1}
+                  />
                   <CartesianGrid strokeDasharray="3 3" />
-                  <Tooltip />
+                  <Tooltip content={<CustomTooltip />} />
                   <Legend />
                   <Line type="monotone" dataKey="value" stroke="#39ae9f" />
                 </LineChart>

@@ -134,7 +134,7 @@ function SymptomDuration({ onAdd }: { onAdd: (duration: number, unit: string) =>
           </SelectContent>
         </Select>
         <Button
-          className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer"
+          className="bg-gradient-to-br from-blue-500 to-green-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer"
           onClick={() => {
             if (duration !== "") onAdd(Number(duration), unit)
           }}
@@ -184,7 +184,7 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
     <div className="w-full min-h-[500px] p-4 bg-white flex flex-col relative overflow-hidden">
       {/* Sticky Title */}
       <div className="sticky top-0 bg-white py-2 z-10">
-        <div className="mb-2 flex justify-center items-center space-x-2 text-2xl text-blue-600 font-semibold">
+        <div className="mb-2 flex justify-center text-center items-center  text-2xl text-[#39ae9f] font-semibold">
           <ScanHeart className="mr-2" />
           Танд ямар шинж тэмдгүүд илэрч байна вэ?
         </div>
@@ -233,11 +233,11 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
       {!isAddingNewSymptom && (
         <div className="sticky bottom-4 z-10 flex justify-center bg-white pt-2">
           <Button
-            className="flex flex-cols justify-center items-center w-64 text-blue-400 bg-white hover:text-blue-800 hover:bg-white border-1 border-purple-500 shadow-none cursor-pointer"
+            className="flex flex-cols justify-center items-center w-64 text-blue-400 bg-white hover:text-blue-900 hover:bg-white border-1 border-green-500 shadow-none cursor-pointer"
             onClick={() => setIsAddingNewSymptom(true)}
           >
             <Plus className="mr-2" />
-            <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent" >Шинж тэмдэг нэмэх</span>
+            <span className="bg-gradient-to-br from-blue-500 to-green-500 bg-clip-text text-transparent" >Шинж тэмдэг нэмэх</span>
           </Button>
         </div>
       )}
@@ -245,12 +245,12 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
       {/* Finish Button Row */}
       {showOptions && (
         <div className="mt-6 space-x-2 flex justify-between">
-          <Button className='cursor-pointer border-purple-700' variant="outline" onClick={onBack}>
-            <span className="bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
+          <Button className='cursor-pointer border-green-700' variant="outline" onClick={onBack}>
+            <span className="bg-gradient-to-br from-blue-500 to-green-500 bg-clip-text text-transparent">
               Буцах
             </span>
           </Button>
-          <Button className="bg-gradient-to-br from-blue-500 to-purple-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer" onClick={() => onComplete(addedSymptoms)}>
+          <Button className="bg-gradient-to-br from-blue-500 to-green-500 hover:bg-gradient-to-br hover:from-blue-600 cursor-pointer" onClick={() => onComplete(addedSymptoms)}>
             Илгээх
           </Button>
         </div>

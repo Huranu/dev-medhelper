@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/accordion";
 import { DescChart } from "./desc-chart";
 
-export type Ref = {
-  label: string;
+export type HistoryRef = {
+  labelMn: string;
+  labelEn: string;
   type: string;
   value: number;
   refMin: number;
@@ -18,10 +19,10 @@ export type Ref = {
   unit: string;
   desc: string;
   prevValue?: number;
-  date: string
+  date: string;
 };
 
-const BloodWorkChart = ({ data }: { data: Ref[] }) => {
+const BloodWorkChart = ({ data }: { data: HistoryRef[] }) => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <div className="w-full">
@@ -44,12 +45,12 @@ const BloodWorkChart = ({ data }: { data: Ref[] }) => {
                 : refMinWidth;
 
               return (
-                <AccordionItem value={item.label} key={index}>
+                <AccordionItem value={item.unit} key={index}>
                   <AccordionTrigger>
-                    <div className="w-full py-4 px-3 bg-white grid grid-cols-[0.7fr_0.8fr_0.5fr_1.8fr] items-center gap-2 rounded-lg shadow-md">
+                    <div className="w-full py-4 px-3 bg-white grid grid-cols-[1fr_1fr_1fr] sm:grid-cols-[0.5fr_0.8fr_0.5fr_1.8fr] items-center gap-2 rounded-lg shadow-md">
                       <div className="flex flex-col items-start">
                         <span className="font-semibold text-gray-800 text-sm">
-                          {item.label}
+                          {item.unit}
                         </span>
                       </div>
 
@@ -67,7 +68,7 @@ const BloodWorkChart = ({ data }: { data: Ref[] }) => {
                       </div>
 
                       <div className="flex flex-col items-start">
-                        <div className="relative h-12 w-full">
+                        <div className="relative h-12 w-full hidden sm:block">
                           {item.prevValue !== undefined &&
                             item.value !== undefined && (
                               <>
@@ -169,9 +170,9 @@ const BloodWorkChart = ({ data }: { data: Ref[] }) => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="grid grid-cols-2 gap-4 p-4">
-                    <DescChart data={item} />
-                    <div>{item.desc}</div>
+                    <div className="grid grid-cols-[1fr_1fr] gap-4 p-4">
+                      <DescChart data={item} />
+                      <div>{item.desc}</div>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

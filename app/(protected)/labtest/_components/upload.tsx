@@ -53,7 +53,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
 
 
       localStorage.setItem("labTestResult", JSON.stringify(result.result));
-      router.push("lab-test/result");
+      router.push("labtest/result");
 
     } catch (err) {
       setError("Failed to analyze the image. Please try again.");

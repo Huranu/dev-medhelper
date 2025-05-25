@@ -14,7 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Ref } from "./prev-chart";
+import { HistoryRef } from "./prev-chart";
 
 const chartConfig = {
   desktop: {
@@ -55,14 +55,14 @@ const chartData = [
   },
 ];
 
-export function DescChart({ data }: { data: Ref }) {
+export function DescChart({ data }: { data: HistoryRef }) {
   const thresholdMax = data.refMax;
   const thresholdMin = data.refMin;
 
   return (
     <Card className="border-gray-200">
       <CardHeader>
-        <CardTitle>{data.label}</CardTitle>
+        <CardTitle>{data.labelMn}</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

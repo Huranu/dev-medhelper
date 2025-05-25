@@ -43,16 +43,16 @@ export default function WizardPage() {
       </motion.header> */}
 
       {/* Main content */}
-      <div className="flex flex-row justify-center items-center w-full h-full mt-50 px-4">
+      <div className="flex flex-row justify-center items-center w-full h-full px-4">
         {/* Progress Bar */}
         <div className="flex flex-col items-center mr-10">
           {[1, 2, 3].map((s, i) => (
             <div key={s} className="flex flex-col items-center">
               <div
                 className={`w-15 h-15 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${step === s
-                  ? 'bg-blue-600 text-white border-blue-600'
+                  ? 'bg-[#39ae9f] text-white'
                   : step > s
-                    ? 'bg-blue-500 text-white border-blue-500'
+                    ? 'bg-[#39ae9f] text-white'
                     : 'bg-white text-gray-500 border-gray-300'
                   }`}
               >
@@ -60,7 +60,7 @@ export default function WizardPage() {
               </div>
               {i < totalSteps - 1 && (
                 <div
-                  className={`w-px h-50 transition-all duration-500 ease-in-out ${step > s ? 'bg-blue-500' : 'bg-gray-300'
+                  className={`w-px h-50 transition-all duration-500 ease-in-out ${step > s ? 'bg-[#39ae9f]' : 'bg-gray-300'
                     }`}
                 />
               )}
