@@ -14,7 +14,7 @@ interface LabTestUploadProps {
   selected: string | null
 }
 
-const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
+const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack, selected }) => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,10 +32,10 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
     setError(null);
     const formData = new FormData();
     formData.append("file", file);
-    console.log("selected passed in upload: ",selected);
+    console.log("selected passed in upload: ", selected);
     if (selected) {
-      formData.append("selected", selected);  
-      
+      formData.append("selected", selected);
+
     }
 
     try {
@@ -53,7 +53,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
 
 
       localStorage.setItem("labTestResult", JSON.stringify(result.result));
-      router.push("lab-test/result");
+      router.push("labtest/result");
 
     } catch (err) {
       setError("Failed to analyze the image. Please try again.");
