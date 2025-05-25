@@ -20,13 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const form = new IncomingForm();
   try {
-    const { files } = await new Promise<{ fields: Fields; files: Files }>((resolve, reject) => {
+    const { fields, files } = await new Promise<{ fields: Fields; files: Files }>((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
         if (err) reject(err);
         resolve({ fields, files });
       });
     });
-
+    const selected = fields.selected?.[0];
+    console.log("Selected value from client:", selected);
+    
     const file = files.file?.[0];
     if (!file || !file.mimetype?.startsWith("image/")) {
       return res.status(400).json({ error: "Please upload a valid image file" });

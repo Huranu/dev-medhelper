@@ -69,6 +69,7 @@ const LabTestsScreening: React.FC = () => {
 export default LabTestsScreening;
 
 const Steps = () => {
+  const [selected, setSelected] = useState<string | null>(null)
   const stepper = useStepper();
   // const currentStep = stepper.current;
 
@@ -77,9 +78,9 @@ const Steps = () => {
   return (
     <div className="">
       {stepper.when('first', () => <Forms />)}
-      {stepper.when('second', () => <SpecimenSelection />)}
+      {stepper.when('second', () => <SpecimenSelection selected={selected} setSelected={setSelected}/>)}
       {stepper.when('third', () => <TypeSelection />)}
-      {stepper.when('fourth', () => <LabTestUpload onBack={stepper.prev} />)}
+      {stepper.when('fourth', () => <LabTestUpload selected={selected} onBack={stepper.prev} />)}
     </div>
   )
 }

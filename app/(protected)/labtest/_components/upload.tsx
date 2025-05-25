@@ -11,9 +11,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 interface LabTestUploadProps {
   onBack: () => void;
+  selected: string | null
 }
 
-const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
+const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -31,6 +32,11 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
     setError(null);
     const formData = new FormData();
     formData.append("file", file);
+    console.log("selected passed in upload: ",selected);
+    if (selected) {
+      formData.append("selected", selected);  
+      
+    }
 
     try {
       const res = await fetch("/api/lab_test", {

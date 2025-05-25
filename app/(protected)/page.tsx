@@ -26,6 +26,48 @@ const lineChartData = [
   { name: 'May', value: 480 },
 ];
 
+const data1 = [
+  { name: 'Jan', value: 30 },
+  { name: 'Feb', value: 45 },
+  { name: 'Mar', value: 25 },
+  { name: 'Apr', value: 60 },
+  { name: 'May', value: 35 },
+];
+
+const data2 = [
+  { name: 'Jan', value: 20 },
+  { name: 'Feb', value: 35 },
+  { name: 'Mar', value: 50 },
+  { name: 'Apr', value: 30 },
+  { name: 'May', value: 55 },
+];
+
+const MiniLineChart = ({ data, color }: { data: { name: string; value: number }[]; color: string }) => {
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+        <Line
+          type="monotone"
+          dataKey="value"
+          stroke={color}
+          strokeWidth={2}
+          dot={{ r: 4, fill: color }}
+          activeDot={{ r: 6 }}
+        />
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            border: 'none',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            color: '#333',
+          }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
+
 const DashboardClient = () => {
   return (
     <div className="h-full flex flex-grow">
@@ -46,8 +88,18 @@ const DashboardClient = () => {
                 <p className="text-2xl font-semibold font-mono z-10">Өдрийн мэнд, {"Guest"}!</p>
               </div>
             </div>
-            <div className="col-span-2 rounded-md bg-white p-4">Analys 1</div>
-            <div className="col-span-2 rounded-md bg-white p-4">Analys 2</div>
+            <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
+              <h3 className="text-xl font-semibold text-[#FCA5A5]">-18%</h3>
+              <div className="flex-1">
+                <MiniLineChart data={data1} color="#FCA5A5" />
+              </div>
+            </div>
+            <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
+              <h3 className="text-xl font-semibold text-[#39ae9f]">+2%</h3>
+              <div className="flex-1">
+                <MiniLineChart data={data2} color="#39ae9f" />
+              </div>
+            </div>
           </div>
         </div>
         <div className="row-span-2 grid grid-cols-3 gap-4 text-white">
