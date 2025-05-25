@@ -5,7 +5,7 @@ import React from 'react'
 
 const sidebaritems = [
     { id: 1, link: '/', name: 'Dashboard', icon: <HomeIcon className="h-5 w-5" /> },
-    { id: 2, link: '/lab-test', name: 'Labtest', icon: <TestTubeIcon className="h-5 w-5" /> },
+    { id: 2, link: '/labtest', name: 'Labtest', icon: <TestTubeIcon className="h-5 w-5" /> },
     { id: 3, link: '/advice', name: 'Advice', icon: <LightbulbIcon className="h-5 w-5" /> },
     { id: 4, link: '/history', name: 'History', icon: <HistoryIcon className="h-5 w-5" /> },
 ];

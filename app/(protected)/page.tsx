@@ -4,7 +4,7 @@ import React from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import DashCardBG from '@/components/dashcardbg';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const barChartData = [
   { name: 'Jan', value: 400 },
@@ -46,10 +46,10 @@ const DashboardClient = () => {
             <div className="col-span-2 rounded-md bg-white p-4">Analys 2</div>
           </div>
         </div>
-        <div className="row-span-2 grid grid-cols-3 gap-4">
-          <div className="rounded-md bg-white p-4">AA</div>
-          <div className="rounded-md bg-white p-4">AA</div>
-          <div className="rounded-md bg-white p-4">AA</div>
+        <div className="row-span-2 grid grid-cols-3 gap-4 text-white">
+          <div className="rounded-md bg-red-300 p-4">Appointments today</div>
+          <div className="rounded-md bg-amber-400 p-4">New patients</div>
+          <div className="rounded-md bg-[#39ae9f] p-4">Total patients</div>
         </div>
         <div className="row-span-6 grid grid-cols-5 gap-4 h-full">
           <div className="col-span-3 bg-white p-4 rounded-md flex flex-col">
@@ -58,8 +58,6 @@ const DashboardClient = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={barChartData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
                   <Tooltip />
                   <Legend />
                   <Bar dataKey="value" fill="#39ae9f" />
@@ -73,8 +71,6 @@ const DashboardClient = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={lineChartData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
                   <Tooltip />
                   <Legend />
                   <Line type="monotone" dataKey="value" stroke="#39ae9f" />

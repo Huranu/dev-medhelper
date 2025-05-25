@@ -11,7 +11,6 @@ export default function AdviceLayout({
 }) {
     return (
         <div className="">
-            {/* Add navigation, layout wrapper, etc. if needed */}
             {children}
         </div>
     )

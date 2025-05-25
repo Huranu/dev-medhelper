@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import BloodWorkChart from "../lab-test/components/prev-chart";
+import BloodWorkChart from "../labtest/_components//prev-chart";
 
 const History: React.FC = () => {
   const [result, setResult] = useState<any>();

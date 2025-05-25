@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Input } from "../components/input";
-import Button from "../components/button";
+import { Input } from "../_components/input";
+import Button from "../_components/button";
 import Image from "next/image";
 import { CircleX, Cloud, FileIcon, Frown } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -149,7 +149,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         >
           <p className="text-lg">Буцах</p>
 
-        </Button> 
+        </Button>
 
         <Button
           variant="submit"

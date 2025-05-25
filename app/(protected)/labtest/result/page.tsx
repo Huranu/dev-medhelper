@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import BloodWorkChart from "../components/chart";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import BloodWorkChart from "../_components/chart";
 
 const Result: React.FC = () => {
   const [result, setResult] = useState<any>();

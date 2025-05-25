@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 
-import LabTestUpload from "./components/upload";
-import Forms from "./components/forms";
-import SpecimenSelection from "./components/specimen";
-import TypeSelection from "./components/types";
+import LabTestUpload from "./_components//upload";
+import Forms from "./_components//forms";
+import SpecimenSelection from "./_components//specimen";
+import TypeSelection from "./_components//types";
 
-import Button from "./components/button";
-import  {defineStepper } from '@stepperize/react';
+import Button from "./_components/button";
+import { defineStepper } from '@stepperize/react';
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -54,13 +54,13 @@ const LabTestsScreening: React.FC = () => {
           </Link>
         </div>
       </motion.header>
-    <div className="flex flex-col items-center justify-center w-full h-full mt-50 px-4">
-      <Scoped>
-        <ProgressBar />
-        <Steps/>
-        <Actions/>
-      </Scoped>
-    </div>
+      <div className="flex flex-col items-center justify-center w-full h-full mt-50 px-4">
+        <Scoped>
+          <ProgressBar />
+          <Steps />
+          <Actions />
+        </Scoped>
+      </div>
     </div>
     // </div>
   );
@@ -73,13 +73,13 @@ const Steps = () => {
   // const currentStep = stepper.current;
 
   // const isLastStep = stepper.isLast;
-  
+
   return (
     <div className="">
       {stepper.when('first', () => <Forms />)}
       {stepper.when('second', () => <SpecimenSelection />)}
       {stepper.when('third', () => <TypeSelection />)}
-      {stepper.when('fourth', () => <LabTestUpload onBack={stepper.prev}/>)}
+      {stepper.when('fourth', () => <LabTestUpload onBack={stepper.prev} />)}
     </div>
   )
 }
@@ -95,25 +95,25 @@ const Actions = () => {
     <div className="flex items-center sm:gap-20 gap-10 mx-auto">
       {stepper.isFirst ? <Link href="/">
         <Button
-        // disabled={stepper.isFirst} 
-        // handler={stepper.prev}
-        className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-        size="large">
+          // disabled={stepper.isFirst} 
+          // handler={stepper.prev}
+          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
+          size="large">
           Буцах
         </Button>
       </Link> : <Button
-      disabled={stepper.isFirst} 
-      handler={stepper.prev}
-      className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-      size="large">
+        disabled={stepper.isFirst}
+        handler={stepper.prev}
+        className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
+        size="large">
         Өмнөх
       </Button>}
 
 
-      <Button  
-      handler={stepper.next}
-      className="w-35 h-15"
-      size="large"
+      <Button
+        handler={stepper.next}
+        className="w-35 h-15"
+        size="large"
       >
         Дараах
       </Button>
@@ -135,21 +135,19 @@ const ProgressBar: React.FC = () => {
         <div key={step.id} className="flex flex-row items-center">
           {/* <span className="mb-1 text-xs font-medium text-gray-700">{step.title}</span> */}
           <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-xl font-semibold border transition-colors duration-500 ${
-              currentIndex === i
-                ? "bg-blue-600 text-white border-blue-600"
-                : currentIndex > i
+            className={`w-10 h-10 rounded-full flex items-center justify-center text-xl font-semibold border transition-colors duration-500 ${currentIndex === i
+              ? "bg-blue-600 text-white border-blue-600"
+              : currentIndex > i
                 ? "bg-blue-500 text-white border-blue-500"
                 : "bg-white text-gray-500 border-gray-300"
-            }`}
+              }`}
           >
             {i + 1}
           </div>
           {i < steps.length - 2 && (
             <div
-              className={`w-12 sm:w-30 h-0.5 transition-all duration-500 ease-in-out ${
-                currentIndex > i ? "bg-blue-500" : "bg-gray-300"
-              }`}
+              className={`w-12 sm:w-30 h-0.5 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-blue-500" : "bg-gray-300"
+                }`}
             />
           )}
         </div>

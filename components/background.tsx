@@ -30,55 +30,55 @@ const GeometricShape = ({ type = '', className = '', delay = 0, duration = 8 }) 
     case 'hearthandshake':
       return (
         <motion.div {...floatingAnimation}>
-            <HeartHandshake className={`w-10 h-10 text-white ${className}`} />
+          <HeartHandshake className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'filemedical':
       return (
         <motion.div {...floatingAnimation}>
-            <LiaFileMedicalAltSolid className={`w-10 h-10 text-white ${className}`} />
+          <LiaFileMedicalAltSolid className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'medicalcross':
       return (
         <motion.div {...floatingAnimation}>
-            <CiMedicalCross className={`w-10 h-10 text-white ${className}`} />
+          <CiMedicalCross className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'medicines':
       return (
         <motion.div {...floatingAnimation}>
-            <GiMedicines className={`w-10 h-10 text-white ${className}`} />
+          <GiMedicines className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'healthrecognition':
       return (
         <motion.div {...floatingAnimation}>
-            <TbHealthRecognition className={`w-10 h-10 text-white ${className}`} />
+          <TbHealthRecognition className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'healthworld':
       return (
         <motion.div {...floatingAnimation}>
-            <SiWorldhealthorganization className={`w-10 h-10 text-white ${className}`} />
+          <SiWorldhealthorganization className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'sendmail':
       return (
         <motion.div {...floatingAnimation}>
-            <RiMailSendFill className={`w-10 h-10 text-white ${className}`} />
+          <RiMailSendFill className={`w-10 h-10 text-white ${className}`} />
         </motion.div>
       );
     case 'square':
       return (
-        <motion.div 
+        <motion.div
           className={`w-12 h-12 bg-gradient-to-br from-cyan-400 to-white rounded-lg shadow-lg ${className}`}
           {...floatingAnimation}
         />
       );
     case 'circle':
       return (
-        <motion.div 
+        <motion.div
           className={`w-16 h-16 bg-gradient-to-br to-cyan-400 from-blue-100 rounded-full shadow-lg ${className}`}
           {...floatingAnimation}
         />
@@ -126,9 +126,9 @@ const AnimatedBackground = ({ className = "fixed inset-0", asBackground = false 
   return (
     <div className={`${className} overflow-hidden ${asBackground ? 'absolute inset-0' : 'pointer-events-none'}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-[#39ae9f]" />
-      
+
       {isMounted && (
-        <motion.div 
+        <motion.div
           className="absolute inset-0 opacity-30"
           animate={{
             background: [
@@ -148,8 +148,8 @@ const AnimatedBackground = ({ className = "fixed inset-0", asBackground = false 
 
       {shapes.map((shape, index) => (
         <div key={index} className={`absolute ${shape.position}`}>
-          <GeometricShape 
-            type={shape.type} 
+          <GeometricShape
+            type={shape.type}
             delay={shape.delay}
             duration={shape.duration}
             className="opacity-80 hover:opacity-100 transition-opacity duration-300"
@@ -179,7 +179,7 @@ const AnimatedBackground = ({ className = "fixed inset-0", asBackground = false 
         />
       ))}
 
-      <div 
+      <div
         className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `

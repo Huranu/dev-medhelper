@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Activity, Brain, History, Zap, ArrowRight, Sparkles, Heart } from "lucide-react";
+import Link from "next/link";
 
 export default function HomePage() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -146,8 +147,9 @@ export default function HomePage() {
                         {features.map((feature, index) => {
                             const Icon = feature.icon;
                             return (
-                                <div
+                                <Link
                                     key={index}
+                                    href={feature.href}
                                     className="group relative p-8 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 cursor-pointer"
                                 >
                                     {/* Gradient overlay on hover */}
@@ -170,7 +172,7 @@ export default function HomePage() {
 
                                     {/* Hover glow effect */}
                                     <div className="absolute -inset-1 bg-gradient-to-r from-[#39ae9f]/20 to-[#2c8c80]/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"></div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>
