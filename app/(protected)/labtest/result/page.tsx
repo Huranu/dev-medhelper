@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import BloodWorkChart from "../_components/chart";
+import CloseDialog from "./_components/closedialog";
+import SaveDialog from "./_components/savedialog";
 
 const Result: React.FC = () => {
   const [result, setResult] = useState<any>();
@@ -12,11 +12,11 @@ const Result: React.FC = () => {
 
   useEffect(() => {
     if (!result) {
-    const storedResult = localStorage.getItem("labTestResult");
-    if (storedResult) {
-      setResult(JSON.parse(storedResult));
+      const storedResult = localStorage.getItem("labTestResult");
+      if (storedResult) {
+        setResult(JSON.parse(storedResult));
+      }
     }
-  }
   }, []);
 
   useEffect(() => {
@@ -42,27 +42,11 @@ const Result: React.FC = () => {
         />
       </motion.div>
 
-      <motion.header
-        className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto w-full"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
-          MedHelper
-          <Image width={30} height={15} src="/logo.jpg" alt="" />
-          <Link href="/labtest">
-            <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
-          </Link>
-        </div>
-      </motion.header>
-
       {result ? (
         <div className="flex flex-col w-full mx-auto pt-3">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 text-center">Шинжилгээний хариуны дүгнэлт</h2>
             <div className="ml-5 py-2 px-8 flex flex-row gap-8">
-              {/* <Image src="/result_robot.png" alt="resultRobot" width={120} height={50} /> */}
               <Image
                 src="/result_robot.png"
                 alt="resultRobot"
@@ -77,6 +61,11 @@ const Result: React.FC = () => {
           <div className="w-full">
             <div className="bg-white shadow-md rounded-lg p-4">
               <BloodWorkChart data={result.indicators} />
+
+              <div className="flex gap-4 justify-end">
+                <CloseDialog />
+                <SaveDialog result={result} />
+              </div>
             </div>
           </div>
         </div>

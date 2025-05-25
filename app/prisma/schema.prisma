@@ -97,11 +97,13 @@ model LabTest {
 model LabTestIndicator {
   id        String  @id @default(cuid())
   labTestId String
-  label     String
+  labelMn   String
   desc      String
   refMin    Decimal
   refMax    Decimal
   unit      String
+  value     Decimal
+  labelEn   String
 
   createdAt DateTime @default(now())
 

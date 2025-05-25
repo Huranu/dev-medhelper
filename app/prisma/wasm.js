@@ -182,11 +182,13 @@ exports.Prisma.LabTestScalarFieldEnum = {
 exports.Prisma.LabTestIndicatorScalarFieldEnum = {
   id: 'id',
   labTestId: 'labTestId',
-  label: 'label',
+  labelMn: 'labelMn',
   desc: 'desc',
   refMin: 'refMin',
   refMax: 'refMax',
   unit: 'unit',
+  value: 'value',
+  labelEn: 'labelEn',
   createdAt: 'createdAt'
 };
 

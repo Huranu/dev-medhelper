@@ -8157,43 +8157,51 @@ export namespace Prisma {
   export type LabTestIndicatorAvgAggregateOutputType = {
     refMin: Decimal | null
     refMax: Decimal | null
+    value: Decimal | null
   }
 
   export type LabTestIndicatorSumAggregateOutputType = {
     refMin: Decimal | null
     refMax: Decimal | null
+    value: Decimal | null
   }
 
   export type LabTestIndicatorMinAggregateOutputType = {
     id: string | null
     labTestId: string | null
-    label: string | null
+    labelMn: string | null
     desc: string | null
     refMin: Decimal | null
     refMax: Decimal | null
     unit: string | null
+    value: Decimal | null
+    labelEn: string | null
     createdAt: Date | null
   }
 
   export type LabTestIndicatorMaxAggregateOutputType = {
     id: string | null
     labTestId: string | null
-    label: string | null
+    labelMn: string | null
     desc: string | null
     refMin: Decimal | null
     refMax: Decimal | null
     unit: string | null
+    value: Decimal | null
+    labelEn: string | null
     createdAt: Date | null
   }
 
   export type LabTestIndicatorCountAggregateOutputType = {
     id: number
     labTestId: number
-    label: number
+    labelMn: number
     desc: number
     refMin: number
     refMax: number
     unit: number
+    value: number
+    labelEn: number
     createdAt: number
     _all: number
   }
@@ -8202,43 +8210,51 @@ export namespace Prisma {
   export type LabTestIndicatorAvgAggregateInputType = {
     refMin?: true
     refMax?: true
+    value?: true
   }
 
   export type LabTestIndicatorSumAggregateInputType = {
     refMin?: true
     refMax?: true
+    value?: true
   }
 
   export type LabTestIndicatorMinAggregateInputType = {
     id?: true
     labTestId?: true
-    label?: true
+    labelMn?: true
     desc?: true
     refMin?: true
     refMax?: true
     unit?: true
+    value?: true
+    labelEn?: true
     createdAt?: true
   }
 
   export type LabTestIndicatorMaxAggregateInputType = {
     id?: true
     labTestId?: true
-    label?: true
+    labelMn?: true
     desc?: true
     refMin?: true
     refMax?: true
     unit?: true
+    value?: true
+    labelEn?: true
     createdAt?: true
   }
 
   export type LabTestIndicatorCountAggregateInputType = {
     id?: true
     labTestId?: true
-    label?: true
+    labelMn?: true
     desc?: true
     refMin?: true
     refMax?: true
     unit?: true
+    value?: true
+    labelEn?: true
     createdAt?: true
     _all?: true
   }
@@ -8332,11 +8348,13 @@ export namespace Prisma {
   export type LabTestIndicatorGroupByOutputType = {
     id: string
     labTestId: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal
     refMax: Decimal
     unit: string
+    value: Decimal
+    labelEn: string
     createdAt: Date
     _count: LabTestIndicatorCountAggregateOutputType | null
     _avg: LabTestIndicatorAvgAggregateOutputType | null
@@ -8362,11 +8380,13 @@ export namespace Prisma {
   export type LabTestIndicatorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     labTestId?: boolean
-    label?: boolean
+    labelMn?: boolean
     desc?: boolean
     refMin?: boolean
     refMax?: boolean
     unit?: boolean
+    value?: boolean
+    labelEn?: boolean
     createdAt?: boolean
     labTest?: boolean | LabTestDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestIndicator"]>
@@ -8374,11 +8394,13 @@ export namespace Prisma {
   export type LabTestIndicatorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     labTestId?: boolean
-    label?: boolean
+    labelMn?: boolean
     desc?: boolean
     refMin?: boolean
     refMax?: boolean
     unit?: boolean
+    value?: boolean
+    labelEn?: boolean
     createdAt?: boolean
     labTest?: boolean | LabTestDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestIndicator"]>
@@ -8386,11 +8408,13 @@ export namespace Prisma {
   export type LabTestIndicatorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     labTestId?: boolean
-    label?: boolean
+    labelMn?: boolean
     desc?: boolean
     refMin?: boolean
     refMax?: boolean
     unit?: boolean
+    value?: boolean
+    labelEn?: boolean
     createdAt?: boolean
     labTest?: boolean | LabTestDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["labTestIndicator"]>
@@ -8398,15 +8422,17 @@ export namespace Prisma {
   export type LabTestIndicatorSelectScalar = {
     id?: boolean
     labTestId?: boolean
-    label?: boolean
+    labelMn?: boolean
     desc?: boolean
     refMin?: boolean
     refMax?: boolean
     unit?: boolean
+    value?: boolean
+    labelEn?: boolean
     createdAt?: boolean
   }
 
-  export type LabTestIndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "labTestId" | "label" | "desc" | "refMin" | "refMax" | "unit" | "createdAt", ExtArgs["result"]["labTestIndicator"]>
+  export type LabTestIndicatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "labTestId" | "labelMn" | "desc" | "refMin" | "refMax" | "unit" | "value" | "labelEn" | "createdAt", ExtArgs["result"]["labTestIndicator"]>
   export type LabTestIndicatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     labTest?: boolean | LabTestDefaultArgs<ExtArgs>
   }
@@ -8425,11 +8451,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       labTestId: string
-      label: string
+      labelMn: string
       desc: string
       refMin: Prisma.Decimal
       refMax: Prisma.Decimal
       unit: string
+      value: Prisma.Decimal
+      labelEn: string
       createdAt: Date
     }, ExtArgs["result"]["labTestIndicator"]>
     composites: {}
@@ -8857,11 +8885,13 @@ export namespace Prisma {
   interface LabTestIndicatorFieldRefs {
     readonly id: FieldRef<"LabTestIndicator", 'String'>
     readonly labTestId: FieldRef<"LabTestIndicator", 'String'>
-    readonly label: FieldRef<"LabTestIndicator", 'String'>
+    readonly labelMn: FieldRef<"LabTestIndicator", 'String'>
     readonly desc: FieldRef<"LabTestIndicator", 'String'>
     readonly refMin: FieldRef<"LabTestIndicator", 'Decimal'>
     readonly refMax: FieldRef<"LabTestIndicator", 'Decimal'>
     readonly unit: FieldRef<"LabTestIndicator", 'String'>
+    readonly value: FieldRef<"LabTestIndicator", 'Decimal'>
+    readonly labelEn: FieldRef<"LabTestIndicator", 'String'>
     readonly createdAt: FieldRef<"LabTestIndicator", 'DateTime'>
   }
     
@@ -9371,11 +9401,13 @@ export namespace Prisma {
   export const LabTestIndicatorScalarFieldEnum: {
     id: 'id',
     labTestId: 'labTestId',
-    label: 'label',
+    labelMn: 'labelMn',
     desc: 'desc',
     refMin: 'refMin',
     refMax: 'refMax',
     unit: 'unit',
+    value: 'value',
+    labelEn: 'labelEn',
     createdAt: 'createdAt'
   };
 
@@ -9912,11 +9944,13 @@ export namespace Prisma {
     NOT?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
     id?: StringFilter<"LabTestIndicator"> | string
     labTestId?: StringFilter<"LabTestIndicator"> | string
-    label?: StringFilter<"LabTestIndicator"> | string
+    labelMn?: StringFilter<"LabTestIndicator"> | string
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     unit?: StringFilter<"LabTestIndicator"> | string
+    value?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
     labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
   }
@@ -9924,11 +9958,13 @@ export namespace Prisma {
   export type LabTestIndicatorOrderByWithRelationInput = {
     id?: SortOrder
     labTestId?: SortOrder
-    label?: SortOrder
+    labelMn?: SortOrder
     desc?: SortOrder
     refMin?: SortOrder
     refMax?: SortOrder
     unit?: SortOrder
+    value?: SortOrder
+    labelEn?: SortOrder
     createdAt?: SortOrder
     labTest?: LabTestOrderByWithRelationInput
   }
@@ -9939,11 +9975,13 @@ export namespace Prisma {
     OR?: LabTestIndicatorWhereInput[]
     NOT?: LabTestIndicatorWhereInput | LabTestIndicatorWhereInput[]
     labTestId?: StringFilter<"LabTestIndicator"> | string
-    label?: StringFilter<"LabTestIndicator"> | string
+    labelMn?: StringFilter<"LabTestIndicator"> | string
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     unit?: StringFilter<"LabTestIndicator"> | string
+    value?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
     labTest?: XOR<LabTestScalarRelationFilter, LabTestWhereInput>
   }, "id">
@@ -9951,11 +9989,13 @@ export namespace Prisma {
   export type LabTestIndicatorOrderByWithAggregationInput = {
     id?: SortOrder
     labTestId?: SortOrder
-    label?: SortOrder
+    labelMn?: SortOrder
     desc?: SortOrder
     refMin?: SortOrder
     refMax?: SortOrder
     unit?: SortOrder
+    value?: SortOrder
+    labelEn?: SortOrder
     createdAt?: SortOrder
     _count?: LabTestIndicatorCountOrderByAggregateInput
     _avg?: LabTestIndicatorAvgOrderByAggregateInput
@@ -9970,11 +10010,13 @@ export namespace Prisma {
     NOT?: LabTestIndicatorScalarWhereWithAggregatesInput | LabTestIndicatorScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     labTestId?: StringWithAggregatesFilter<"LabTestIndicator"> | string
-    label?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    labelMn?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     desc?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     refMin?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     unit?: StringWithAggregatesFilter<"LabTestIndicator"> | string
+    value?: DecimalWithAggregatesFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    labelEn?: StringWithAggregatesFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeWithAggregatesFilter<"LabTestIndicator"> | Date | string
   }
 
@@ -10409,11 +10451,13 @@ export namespace Prisma {
 
   export type LabTestIndicatorCreateInput = {
     id?: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
     labTest: LabTestCreateNestedOneWithoutLabTestIndicatorsInput
   }
@@ -10421,21 +10465,25 @@ export namespace Prisma {
   export type LabTestIndicatorUncheckedCreateInput = {
     id?: string
     labTestId: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
   }
 
   export type LabTestIndicatorUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     labTest?: LabTestUpdateOneRequiredWithoutLabTestIndicatorsNestedInput
   }
@@ -10443,43 +10491,51 @@ export namespace Prisma {
   export type LabTestIndicatorUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     labTestId?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LabTestIndicatorCreateManyInput = {
     id?: string
     labTestId: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
   }
 
   export type LabTestIndicatorUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LabTestIndicatorUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     labTestId?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10970,44 +11026,52 @@ export namespace Prisma {
   export type LabTestIndicatorCountOrderByAggregateInput = {
     id?: SortOrder
     labTestId?: SortOrder
-    label?: SortOrder
+    labelMn?: SortOrder
     desc?: SortOrder
     refMin?: SortOrder
     refMax?: SortOrder
     unit?: SortOrder
+    value?: SortOrder
+    labelEn?: SortOrder
     createdAt?: SortOrder
   }
 
   export type LabTestIndicatorAvgOrderByAggregateInput = {
     refMin?: SortOrder
     refMax?: SortOrder
+    value?: SortOrder
   }
 
   export type LabTestIndicatorMaxOrderByAggregateInput = {
     id?: SortOrder
     labTestId?: SortOrder
-    label?: SortOrder
+    labelMn?: SortOrder
     desc?: SortOrder
     refMin?: SortOrder
     refMax?: SortOrder
     unit?: SortOrder
+    value?: SortOrder
+    labelEn?: SortOrder
     createdAt?: SortOrder
   }
 
   export type LabTestIndicatorMinOrderByAggregateInput = {
     id?: SortOrder
     labTestId?: SortOrder
-    label?: SortOrder
+    labelMn?: SortOrder
     desc?: SortOrder
     refMin?: SortOrder
     refMax?: SortOrder
     unit?: SortOrder
+    value?: SortOrder
+    labelEn?: SortOrder
     createdAt?: SortOrder
   }
 
   export type LabTestIndicatorSumOrderByAggregateInput = {
     refMin?: SortOrder
     refMax?: SortOrder
+    value?: SortOrder
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -12044,21 +12108,25 @@ export namespace Prisma {
 
   export type LabTestIndicatorCreateWithoutLabTestInput = {
     id?: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
   }
 
   export type LabTestIndicatorUncheckedCreateWithoutLabTestInput = {
     id?: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
   }
 
@@ -12125,11 +12193,13 @@ export namespace Prisma {
     NOT?: LabTestIndicatorScalarWhereInput | LabTestIndicatorScalarWhereInput[]
     id?: StringFilter<"LabTestIndicator"> | string
     labTestId?: StringFilter<"LabTestIndicator"> | string
-    label?: StringFilter<"LabTestIndicator"> | string
+    labelMn?: StringFilter<"LabTestIndicator"> | string
     desc?: StringFilter<"LabTestIndicator"> | string
     refMin?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
     unit?: StringFilter<"LabTestIndicator"> | string
+    value?: DecimalFilter<"LabTestIndicator"> | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFilter<"LabTestIndicator"> | string
     createdAt?: DateTimeFilter<"LabTestIndicator"> | Date | string
   }
 
@@ -12378,41 +12448,49 @@ export namespace Prisma {
 
   export type LabTestIndicatorCreateManyLabTestInput = {
     id?: string
-    label: string
+    labelMn: string
     desc: string
     refMin: Decimal | DecimalJsLike | number | string
     refMax: Decimal | DecimalJsLike | number | string
     unit: string
+    value: Decimal | DecimalJsLike | number | string
+    labelEn: string
     createdAt?: Date | string
   }
 
   export type LabTestIndicatorUpdateWithoutLabTestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LabTestIndicatorUncheckedUpdateWithoutLabTestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LabTestIndicatorUncheckedUpdateManyWithoutLabTestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
+    labelMn?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     refMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     refMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     unit?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    labelEn?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
