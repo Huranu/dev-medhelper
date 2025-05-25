@@ -1,41 +1,48 @@
 name: CI/CD Pipeline - Medhelper
 
 on:
-   push:
-      branches:
-         - deploy
-   pull_request:
-      branches:
-         - deploy
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-   deploy:
-      runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-         - name: Setup SSH Key
-           run: |
-              mkdir -p ~/.ssh
-              echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-              chmod 400 ~/.ssh/id_rsa
-              ssh-keyscan -H 35.208.42.42 >> ~/.ssh/known_hosts
-           shell: bash
+    steps:
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-keyscan -H 35.208.42.42 >> ~/.ssh/known_hosts
+        shell: bash
 
-         - name: Connect to GCP and Deploy
-           run: |
-              ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.208.42.42 << 'EOF'
-                cd /home/sukhbatsuugii2004/dev-medhelper
-                echo "success connected"
-               #  docker compose down
-                git pull origin deploy
-                rm -rf .next node_modules package-lock.json 
-                cd app
-                rm -rf prisma
-                cd ..
-               #  docker compose up -d --build
-               #  docker image prune -af
-               #  docker volume prune -f
-                npm run build 
-                npm start
-              EOF
-           shell: bash
+      - name: Connect to GCP and Deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.208.42.42 << 'EOF'
+            set -e
+            echo "✅ Connected to GCP instance"
+            cd /home/sukhbatsuugii2004/dev-medhelper
+            echo "🛑 Stopping existing PM2 process if running..."
+            if command -v pm2 >/dev/null 2>&1; then
+              pm2 delete med-helper || true
+            fi
+            echo "📥 Pulling latest code from deploy branch..."
+            git pull origin main
+            echo "🧹 Cleaning old build files..."
+            rm -rf .next node_modules package-lock.json
+            cd app && rm -rf prisma && cd ..
+            echo "📦 Installing dependencies..."
+            npm install
+            echo "🛠️ Building app..."
+            npm run build
+            echo "🚀 Installing PM2 and starting app..."
+            sudo npm install -g pm2
+            pm2 start npm --name med-helper -- start -- -H 0.0.0.0
+            pm2 save
+          EOF
+        shell: bash
