@@ -61,21 +61,21 @@ export default function PrivateInfoForm({ onComplete }: Props) {
     const formStep1 = useForm<Step1Values>({
         resolver: zodResolver(Step1Schema),
         defaultValues: {
-            name: '',
+            name: 'Javkhlan',
             gender: 'male',
-            birthday: '',
-            height: '',
-            weight: '',
+            birthday: '2004-10-29',
+            height: '163',
+            weight: '63',
         },
     })
 
     const formStep2 = useForm<Step2Values>({
         resolver: zodResolver(Step2Schema),
         defaultValues: {
-            smoking: '',
-            pregnant: '',
+            smoking: 'no',
+            pregnant: 'no',
             underlyingDiseases: [],
-            exercisePerWeek: '',
+            exercisePerWeek: '4',
         },
     })
 
@@ -246,9 +246,9 @@ export default function PrivateInfoForm({ onComplete }: Props) {
                                     )}
                                 />
                                 <div className='flex justify-end'>
-                                <Button type="submit" className="w-40 bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 cursor-pointer">
-                                    Дараах
-                                </Button>
+                                    <Button type="submit" className="w-40 bg-gradient-to-br from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 cursor-pointer">
+                                        Дараах
+                                    </Button>
                                 </div>
                             </form>
                         </Form>

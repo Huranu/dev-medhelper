@@ -2,12 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 // import { Button } from "@/components/ui/button";
@@ -21,14 +21,14 @@ type MedicalFormData = {
   symptoms?: string;
 };
 
-export default function Forms() {
+export default function Step1() {
   const form = useForm<MedicalFormData>({
     defaultValues: {
-        age: 0,
-        gender: "",
-        height: 0,
-        weight: 0,
-        symptoms: "",
+      age: 21,
+      gender: "male",
+      height: 170,
+      weight: 63,
+      symptoms: "",
     },
   });
 
@@ -36,12 +36,12 @@ export default function Forms() {
   return (
     <div className=" w-5/10 mx-auto">
       <Image
-                src="/info.png"
-                alt="Lab Icon"
-                className="mx-auto mb-2"
-                width={90}
-                height={90}
-              />
+        src="/info.png"
+        alt="Lab Icon"
+        className="mx-auto mb-2"
+        width={90}
+        height={90}
+      />
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
       <div className="grid grid-cols-2 gap-x-10 gap-y-6 overflow-y-auto">
@@ -118,7 +118,7 @@ export default function Forms() {
               )}
             />
           </div>
-            {/* <Button
+          {/* <Button
     type="submit"
     className="bg-gradient-to-br from-blue-500 to-purple-500 hover:from-blue-600 cursor-pointer mt-5 w-50 h-15 mt-auto mx-auto block"
   >

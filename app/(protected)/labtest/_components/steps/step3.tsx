@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Input } from "../_components/input";
+import { Input } from "../input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CircleX, FileIcon, Frown } from "lucide-react";
@@ -11,10 +11,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 interface LabTestUploadProps {
   onBack: () => void;
-  // selected: string | null
 }
 
-const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
+const Step3: React.FC<LabTestUploadProps> = ({ onBack }) => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,12 +31,6 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
     setError(null);
     const formData = new FormData();
     formData.append("file", file);
-    // console.log("selected passed in upload: ",selected);
-    // if (selected) {
-    //   formData.append("selected", selected);  
-
-    // }
-
     try {
       const res = await fetch("/api/lab_test", {
         method: "POST",
@@ -93,10 +86,8 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
             <div className="animate-spin ease-linear rounded-full w-10 h-10 border-t-2 border-b-2 border-blue-500 ml-3"></div>
           </div>
           <div className="flex justify-center items-center py-2">Таны шинжилгээний хариуг боловсруулж байна...</div>
-
         </DialogContent>
       </Dialog>
-
 
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
@@ -148,43 +139,17 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         </div>
       </div>
       <div className="sm:mt-5 mt-30 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
-        {/* <Button
-          // handler={onBack}
-          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
-          // size="large"
-        >
-          <p className="text-lg">Буцах</p>
-
-        </Button>
-
         <Button
-          // variant="submit"
-          // className="h-15"
-          // size="large"
-          disabled={!file || loading}
-          // handler={handleSend}
-        >
-          <p className="text-lg">
-            {loading ? "Уншиж байна..." : "Шинжилгээ илгээх"}
-          </p>
-        </Button>
-         */}
-
-
-        <Button
-        // disabled={stepper.isFirst}
-        onClick={onBack}
-        variant="outline"
-        className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
-        // size="large"
+          onClick={onBack}
+          variant="outline"
+          className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
         >
           <p className="text-lg">Өмнөх</p>
-      </Button>
-      <Button
+        </Button>
+        <Button
           disabled={!file || loading}
           onClick={handleSend}
           className="bg-gradient-to-r from-[#39ae9f] to-[#2c8c80] text-white hover:scale-105 transition-all duration-300 rounded-lg"
-          // size="large"
         >
           <p className="text-lg">{loading ? "Уншиж байна..." : "Шинжилгээ илгээх"}</p>
 
@@ -195,4 +160,4 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
   );
 };
 
-export default LabTestUpload;
+export default Step3;

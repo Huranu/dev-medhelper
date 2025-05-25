@@ -1,22 +1,15 @@
 "use client";
 import React, { useState } from "react";
-
-import LabTestUpload from "./_components//upload";
-import Forms from "./_components//forms";
-// import SpecimenSelection from "./_components//specimen";
-import TypeSelection from "./_components//types";
-
-// import Button from "./_components/button";
+import Step1 from "./_components/steps/step1";
+import Step3 from "./_components/steps/step3";
+import Step2 from "./_components/steps/step2";
 import { Button } from "@/components/ui/button";
 import { defineStepper } from '@stepperize/react';
-// import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-// import { ChevronLeft } from "lucide-react";
 
 const { useStepper, Scoped, steps } = defineStepper(
   { id: 'first', title: 'Ерөнхий мэдээлэл' },
-  // { id: 'second', title: 'Сорьц сонгох' },
   { id: 'second', title: 'Шинжилгээний төрөл' },
   { id: 'third', title: 'Хариу оруулах' },
   { id: 'last', title: 'Result' }
@@ -28,7 +21,6 @@ const LabTestsScreening: React.FC = () => {
     setMousePos({ x: e.clientX, y: e.clientY });
   };
   return (
-    // <div className="static flex flex-col gap-4 p-4 mt-1 rounded-md w-full h-full mx-auto">
     <div
       className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden"
       onMouseMove={handleMouseMove}
@@ -40,21 +32,6 @@ const LabTestsScreening: React.FC = () => {
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         />
       </motion.div>
-
-      {/* <motion.header
-        className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mx-auto w-full"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
-          MedHelper
-          <Image width={30} height={15} src="/logo.jpg" alt="" />
-          <Link href="/lab-test">
-            <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
-          </Link>
-        </div>
-      </motion.header> */}
       <div className="flex flex-col w-full h-full px-4">
         <Scoped>
           <ProgressBar />
@@ -63,25 +40,19 @@ const LabTestsScreening: React.FC = () => {
         </Scoped>
       </div>
     </div>
-    // </div>
   );
 };
 
 export default LabTestsScreening;
 
 const Steps = () => {
-  // const [selected, setSelected] = useState<string | null>(null)
   const stepper = useStepper();
-  // const currentStep = stepper.current;
-
-  // const isLastStep = stepper.isLast;
 
   return (
     <div className="">
-      {stepper.when('first', () => <Forms />)}
-      {/* {stepper.when('second', () => <SpecimenSelection selected={selected} setSelected={setSelected}/>)} */}
-      {stepper.when('second', () => <TypeSelection />)}
-      {stepper.when('third', () => <LabTestUpload  onBack={stepper.prev} />)}
+      {stepper.when('first', () => <Step1 />)}
+      {stepper.when('second', () => <Step2 />)}
+      {stepper.when('third', () => <Step3 onBack={stepper.prev} />)}
     </div>
   )
 }
@@ -102,8 +73,8 @@ const Actions = () => {
           variant="outline"
           // onClick={() => setOpen(false)}
           className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
-          // size="large"
-          >
+        // size="large"
+        >
           Буцах
         </Button>
       </Link> : <Button
@@ -111,18 +82,18 @@ const Actions = () => {
         onClick={stepper.prev}
         variant="outline"
         className="border-gray-300 text-gray-700 hover:bg-gray-100 rounded-lg"
-        // size="large"
-        >
-          <p className="text-lg">Өмнөх</p>
+      // size="large"
+      >
+        <p className="text-lg">Өмнөх</p>
       </Button>}
       <Button
-          onClick={stepper.next}
-          className="bg-gradient-to-r from-[#39ae9f] to-[#2c8c80] text-white hover:scale-105 transition-all duration-300 rounded-lg"
-          // size="large"
-        >
-          <p className="text-lg">Дараах</p>
+        onClick={stepper.next}
+        className="bg-gradient-to-r from-[#39ae9f] to-[#2c8c80] text-white hover:scale-105 transition-all duration-300 rounded-lg"
+      // size="large"
+      >
+        <p className="text-lg">Дараах</p>
 
-        </Button>
+      </Button>
     </div>
   ) : (
     <div className="flex items-center gap-2 mx-auto">
@@ -138,19 +109,19 @@ const ProgressBar: React.FC = () => {
   return (
     <div className="flex flex-row items-center justify-center mx-auto mt-4 mb-6">
       {steps.slice(0, -1).map((step, i) => (
-      <React.Fragment key={step.id}>
-        <div className="flex flex-col items-center">
-          <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
-              ? "bg-[#39ae9f] text-white border-green-600"
-              : currentIndex > i
-                ? "bg-[#39ae9f] text-white border-green-500"
-                : "bg-white text-gray-500 border-gray-300"
-              }`}
-          >
-            {i + 1}
-          </div>
-          <span className=" text-lg font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
+        <React.Fragment key={step.id}>
+          <div className="flex flex-col items-center">
+            <div
+              className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
+                ? "bg-[#39ae9f] text-white border-green-600"
+                : currentIndex > i
+                  ? "bg-[#39ae9f] text-white border-green-500"
+                  : "bg-white text-gray-500 border-gray-300"
+                }`}
+            >
+              {i + 1}
+            </div>
+            <span className=" text-lg font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
 
 
           </div>

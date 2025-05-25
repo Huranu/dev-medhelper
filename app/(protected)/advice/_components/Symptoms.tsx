@@ -150,7 +150,7 @@ export default function SymptomsForm({ onComplete, onBack }: { onComplete: (data
   const [selectedSymptom, setSelectedSymptom] = useState("")
   const [addedSymptoms, setAddedSymptoms] = useState<
     { symptom: string; duration: number; unit: string }[]
-  >([])
+  >([{ symptom: "hanialgah", duration: 2, unit: "hours" }, { symptom: "tolgoi-uvduh", duration: 2, unit: "hours" }])
   const [isAddingNewSymptom, setIsAddingNewSymptom] = useState(false)
   const [showOptions, setShowOptions] = useState(false)
 
