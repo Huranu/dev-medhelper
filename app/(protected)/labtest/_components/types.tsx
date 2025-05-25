@@ -14,13 +14,8 @@ interface Types {
 // }
 
 const types: Types[] = [
-  { en: "microbiology", mn: "Микробиологи" },
-  { en: "biochemistry", mn: "Биохими" },
-  { en: "hematology", mn: "Хематологи" },
-  { en: "molecule biology", mn: "Молекул биологи" },
-  { en: "tumor marker", mn: "Хавдрын маркер" },
-  { en: "immunology", mn: "Иммунологи" },
-  { en: "cytology", mn: "Цитологи" },
+  { en: "blood test", mn: "Цусны ерөнхий шинжилгээ" },
+  { en: "urine test", mn: "Шээсний ерөнхий шинжилгээ" },
   { en: "other", mn: "Бусад" },
 ];
 
@@ -36,7 +31,7 @@ const TypeSelection: React.FC = () => {
   };
 
   return (
-    <div className="h-full max-w-2xl mx-auto space-y-6 sm:mb-0 mb-15">
+    <div className="h-full mx-auto space-y-6 sm:mb-0 mb-15 w-9/10">
       <div className="p-4">
         <Image
             src="/types.png"
@@ -46,14 +41,14 @@ const TypeSelection: React.FC = () => {
             height={90}
                             />
               <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний төрлийг сонгоно уу.</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto">
+        <div className="flex flex-col w-6/10 justify-center mx-auto gap-4 overflow-y-auto">
           {types.map((t) => (
             <div
               key={t.en}
               className={`p-3 text-lg border rounded-lg text-center cursor-pointer ${
                 selectedTypes.some((e) => e.en === t.en)
-                  ? "border-blue-200 bg-blue-100"
-                  : "border-gray-300"
+                  ? "border-green-600 bg-blue-100"
+                  : "border-purple-500"
               }`}
               onClick={() => toggleType(t)}
             >
