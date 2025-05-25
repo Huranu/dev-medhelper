@@ -3,10 +3,10 @@ name: CI/CD Pipeline - Medhelper
 on:
    push:
       branches:
-         - main
+         - deploy
    pull_request:
       branches:
-         - main
+         - deploy
 
 jobs:
    deploy:
@@ -26,14 +26,16 @@ jobs:
               ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa sukhbatsuugii2004@35.208.42.42 << 'EOF'
                 cd /home/sukhbatsuugii2004/dev-medhelper
                 echo "success connected"
-                docker compose down
-                git pull origin main
+               #  docker compose down
+                git pull origin deploy
                 rm -rf .next node_modules package-lock.json 
                 cd app
                 rm -rf prisma
                 cd ..
-                docker compose up -d --build
-                docker image prune -af
-                docker volume prune -f
+               #  docker compose up -d --build
+               #  docker image prune -af
+               #  docker volume prune -f
+                npm run build 
+                npm start
               EOF
            shell: bash
