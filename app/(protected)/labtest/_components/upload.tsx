@@ -11,10 +11,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 interface LabTestUploadProps {
   onBack: () => void;
-  selected: string | null
+  // selected: string | null
 }
 
-const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
+const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,11 +32,11 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
     setError(null);
     const formData = new FormData();
     formData.append("file", file);
-    console.log("selected passed in upload: ",selected);
-    if (selected) {
-      formData.append("selected", selected);  
+    // console.log("selected passed in upload: ",selected);
+    // if (selected) {
+    //   formData.append("selected", selected);  
       
-    }
+    // }
 
     try {
       const res = await fetch("/api/lab_test", {
@@ -81,7 +81,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
   };
 
   return (
-    <div className="flex flex-col relative bg-none ">
+    <div className="flex flex-col relative bg-none w-full">
       <Dialog open={loading}>
         <DialogHeader>
           <DialogTitle></DialogTitle>
@@ -97,18 +97,18 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
         </DialogContent>
       </Dialog>
 
-      <Image
+      {/* <Image
         src="/testResult.png"
         alt="Lab Icon"
         className="mx-auto mb-2"
         width={250}
         height={250}
-      />
+      /> */}
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
-      <div className="w-full max-w-[450px] h-full mx-auto">
+      <div className="w-5/10 h-full mx-auto">
         <div
-          className=" border-2 border-dashed h-full border-blue-300 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
+          className=" border-2 border-dashed h-full border-green-700 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
         >
           {error && <p className="text-red-500 mt-2">{<Frown className="w-40 h-40" />}</p>}
           {file ? (
@@ -134,7 +134,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack,selected }) => {
             </div>
           ) : (
             <div className="flex flex-col items-center">
-              <Cloud className="h-25 w-25 text-blue-500 mb-2" />
+              <Cloud className="h-25 w-25 text-green-800 mb-2" />
               <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
               <Input
                 className="h-auto border-none shadow-none"

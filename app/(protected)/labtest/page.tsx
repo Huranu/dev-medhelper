@@ -3,21 +3,21 @@ import React, { useState } from "react";
 
 import LabTestUpload from "./_components//upload";
 import Forms from "./_components//forms";
-import SpecimenSelection from "./_components//specimen";
+// import SpecimenSelection from "./_components//specimen";
 import TypeSelection from "./_components//types";
 
 import Button from "./_components/button";
 import { defineStepper } from '@stepperize/react';
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
+// import { ChevronLeft } from "lucide-react";
 
 const { useStepper, Scoped, steps } = defineStepper(
   { id: 'first', title: 'Ерөнхий мэдээлэл' },
-  { id: 'second', title: 'Сорьц сонгох' },
-  { id: 'third', title: 'Шинжилгээний төрөл' },
-  { id: 'fourth', title: 'Хариу оруулах' },
+  // { id: 'second', title: 'Сорьц сонгох' },
+  { id: 'second', title: 'Шинжилгээний төрөл' },
+  { id: 'third', title: 'Хариу оруулах' },
   { id: 'last', title: 'Result' }
 );
 
@@ -54,7 +54,7 @@ const LabTestsScreening: React.FC = () => {
           </Link>
         </div>
       </motion.header> */}
-      <div className="flex flex-col items-center justify-center w-full h-full px-4">
+      <div className="flex flex-col w-full h-full mt-30 px-4">
         <Scoped>
           <ProgressBar />
           <Steps />
@@ -69,7 +69,7 @@ const LabTestsScreening: React.FC = () => {
 export default LabTestsScreening;
 
 const Steps = () => {
-  const [selected, setSelected] = useState<string | null>(null)
+  // const [selected, setSelected] = useState<string | null>(null)
   const stepper = useStepper();
   // const currentStep = stepper.current;
 
@@ -78,9 +78,9 @@ const Steps = () => {
   return (
     <div className="">
       {stepper.when('first', () => <Forms />)}
-      {stepper.when('second', () => <SpecimenSelection selected={selected} setSelected={setSelected}/>)}
-      {stepper.when('third', () => <TypeSelection />)}
-      {stepper.when('fourth', () => <LabTestUpload selected={selected} onBack={stepper.prev} />)}
+      {/* {stepper.when('second', () => <SpecimenSelection selected={selected} setSelected={setSelected}/>)} */}
+      {stepper.when('second', () => <TypeSelection />)}
+      {stepper.when('third', () => <LabTestUpload  onBack={stepper.prev} />)}
     </div>
   )
 }
@@ -88,36 +88,44 @@ const Steps = () => {
 const Actions = () => {
   const stepper = useStepper();
 
-  if (stepper.current.id === 'fourth' || stepper.current.id === 'last') {
+  if (stepper.current.id === 'third' || stepper.current.id === 'last') {
     return null;
   }
 
   return !stepper.isLast ? (
-    <div className="flex items-center sm:gap-20 gap-10 mx-auto">
+    <div className="flex items-center sm:gap-20 gap-10 mx-auto mt-6 ">
       {stepper.isFirst ? <Link href="/">
         <Button
           // disabled={stepper.isFirst} 
           // handler={stepper.prev}
-          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
+          className="cursor-pointer bg-[#39ae9f] text-green-600 border-green-600 bg-clip-text w-35 h-15"
           size="large">
           Буцах
         </Button>
       </Link> : <Button
-        disabled={stepper.isFirst}
+        // disabled={stepper.isFirst}
         handler={stepper.prev}
         className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
+
         size="large">
         Өмнөх
       </Button>}
+      <Button
+          handler={stepper.next}
+          className="cursor-pointer border-purple-700 bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent w-35 h-15"
+          size="large"
+        >
+          <p className="text-lg">Дараах</p>
 
-
+        </Button>
+{/* 
       <Button
         handler={stepper.next}
-        className="w-35 h-15"
+        className="cursor-pointer bg-[#39ae9f] text-black border-green-600 bg-clip-text w-35 h-13"
         size="large"
       >
         Дараах
-      </Button>
+      </Button> */}
     </div>
   ) : (
     <div className="flex items-center gap-2 mx-auto">
@@ -131,12 +139,12 @@ const ProgressBar: React.FC = () => {
   const currentIndex = steps.findIndex((s) => s.id === stepper.current.id);
 
   return (
-    <div className="flex flex-row items-center justify-center mx-auto mt-4">
+    <div className="flex flex-row items-center justify-center mx-auto mt-4 mb-10">
       {steps.slice(0, -1).map((step, i) => (
       <React.Fragment key={step.id}>
         <div className="flex flex-col items-center">
           <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-xl font-semibold border transition-colors duration-500 ${currentIndex === i
+            className={`w-18 h-18 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
               ? "bg-[#39ae9f] text-white border-green-600"
               : currentIndex > i
                 ? "bg-[#39ae9f] text-white border-green-500"
@@ -145,18 +153,20 @@ const ProgressBar: React.FC = () => {
           >
             {i + 1}
           </div>
-            <span className="mt-1 text-xs font-medium text-gray-700 items-center text-center justify-items-center
-">{step.title}</span>
+          <span className="mt-1 text-xl font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
+
 
           </div>
           {i < steps.length - 2 && (
             <div
-              className={`w-12 sm:w-30 h-0.5 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-[#39ae9f]" : "bg-gray-300"
+              className={`w-30 sm:w-40 h-1 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-[#39ae9f]" : "bg-gray-300"
                 }`}
             />
+
           )}
         </React.Fragment>
-      ))}
+      )
+      )}
     </div>
   );
 }

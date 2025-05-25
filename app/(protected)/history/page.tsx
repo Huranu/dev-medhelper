@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+// import { ChevronLeft } from "lucide-react";
+// import Link from "next/link";
+// import Image from "next/image";
 import BloodWorkChart from "../labtest/_components//prev-chart";
 
 const History: React.FC = () => {
@@ -131,7 +131,7 @@ const History: React.FC = () => {
         />
       </motion.div>
 
-      <motion.header
+      {/* <motion.header
         className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mb-2 mx-auto w-full"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -144,7 +144,7 @@ const History: React.FC = () => {
             <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
           </Link>
         </div>
-      </motion.header>
+      </motion.header> */}
 
       {result ? (
         <div className="flex flex-col w-full mx-auto pt-3">
