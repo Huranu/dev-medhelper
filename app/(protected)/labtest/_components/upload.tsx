@@ -97,13 +97,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         </DialogContent>
       </Dialog>
 
-      {/* <Image
-        src="/testResult.png"
-        alt="Lab Icon"
-        className="mx-auto mb-2"
-        width={250}
-        height={250}
-      /> */}
+      
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
       <div className="w-5/10 h-full mx-auto">
@@ -134,7 +128,13 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
             </div>
           ) : (
             <div className="flex flex-col items-center">
-              <Cloud className="h-25 w-25 text-green-800 mb-2" />
+              <Image
+                              src="/test.png"
+                              alt="Lab Icon"
+                              className="mx-auto mb-2"
+                              width={90}
+                              height={90}
+                            />
               <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
               <Input
                 className="h-auto border-none shadow-none"

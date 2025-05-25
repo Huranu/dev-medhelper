@@ -39,8 +39,8 @@ export default function Forms() {
                 src="/info.png"
                 alt="Lab Icon"
                 className="mx-auto mb-2"
-                width={80}
-                height={80}
+                width={90}
+                height={90}
               />
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
