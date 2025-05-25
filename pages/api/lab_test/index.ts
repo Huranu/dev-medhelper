@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
 import { Fields, Files, IncomingForm } from "formidable";
 import fs from "fs/promises";
+import { auth } from "@/app/auth";
+import { saveLabTest } from "@/app/(protected)/labtest/_lib/queries";
 
 export const config = {
   api: {
@@ -17,6 +19,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
+
+  // const session = await auth();
+  // console.log("user info: ",session?.user?.email);
 
   const form = new IncomingForm();
   try {
@@ -165,6 +170,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
     res.status(200).json({ result: parsed});
+    // const saved = await saveLabTest({
+    //   userId,
+    //   type: selected === "urine" ? "urine" : "blood",
+    //   summary: parsed.summary,
+    //   indicators: parsed.indicators.map((i: any) => ({
+    //     label: i.label,
+    //     description: i.desc || i.description,  // adapt based on your actual field name
+    //     refMin: i.refMin,
+    //     refMax: i.refMax,
+    //     unit: i.unit,
+    //   })),
+    // });
+
+    // res.status(200).json({ saved });
+
+
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Failed to process request" });
