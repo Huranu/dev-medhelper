@@ -14,9 +14,12 @@ const specimens = [
   { en: "fluid", mn: "Шингэн" },
   { en: "swab", mn: "Тампон" },
 ];
-
-const SpecimenSelection: React.FC = () => {
-  const [selected, setSelected] = useState<string | null>(null);
+type Props = {
+  selected: string | null
+  setSelected: (value: string) => void
+}
+const SpecimenSelection: React.FC<Props> = ({ selected, setSelected }) => {
+  // const [selected, setSelected] = useState<string | null>(null);
 
   return (
     <div className="h-full max-w-md mx-auto space-y-6 sm:mb-0 mb-30">
