@@ -55,7 +55,7 @@ const LabTestsScreening: React.FC = () => {
           </Link>
         </div>
       </motion.header> */}
-      <div className="flex flex-col w-full h-full mt-20 px-4">
+      <div className="flex flex-col w-full h-full px-4">
         <Scoped>
           <ProgressBar />
           <Steps />
@@ -136,12 +136,12 @@ const ProgressBar: React.FC = () => {
   const currentIndex = steps.findIndex((s) => s.id === stepper.current.id);
 
   return (
-    <div className="flex flex-row items-center justify-center mx-auto mt-4 mb-10">
+    <div className="flex flex-row items-center justify-center mx-auto mt-4 mb-6">
       {steps.slice(0, -1).map((step, i) => (
       <React.Fragment key={step.id}>
         <div className="flex flex-col items-center">
           <div
-            className={`w-18 h-18 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
+            className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
               ? "bg-[#39ae9f] text-white border-green-600"
               : currentIndex > i
                 ? "bg-[#39ae9f] text-white border-green-500"
@@ -150,7 +150,7 @@ const ProgressBar: React.FC = () => {
           >
             {i + 1}
           </div>
-          <span className="mt-1 text-xl font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
+          <span className=" text-lg font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
 
 
           </div>
