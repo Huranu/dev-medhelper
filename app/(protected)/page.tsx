@@ -109,17 +109,17 @@ const DashboardClient = () => {
   const userName = "Guest"
   return (
     <div className="h-full flex flex-grow">
-      <div className="flex-1 grid grid-rows-12 gap-6 p-4 h-full">
+      <div className="flex-1 overflow-y-auto grid sm:grid-rows-12 gap-4 sm:gap-6 p-4 h-full">
         <div className="row-span-4 flex flex-col gap-4">
           <div className="relative">
             <Input
               type="text"
               placeholder="Хайх . . ."
-              className="pl-8 w-[320px] bg-white"
+              className="pl-8 sm:w-[320px] w-full bg-white"
             />
             <Search className="absolute left-2 top-2.5 h-4 w-4" />
           </div>
-          <div className="flex-1 grid grid-cols-12 gap-6">
+          <div className="flex-1 sm:grid hidden grid-cols-12 gap-6">
             <div className="col-span-8 bg-[#39ae9f] p-6 rounded-md relative z-10">
               <DashCardBG asBackground={true} className="absolute inset-0 rounded-md" />
               <div className="relative z-10 flex flex-col gap-8 text-white font-semibold">
@@ -148,7 +148,7 @@ const DashboardClient = () => {
             </div>
           </div>
         </div>
-        <div className="row-span-2 grid grid-cols-3 gap-4 text-white">
+        <div className="row-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 text-white">
           <Link
             href="/labtest"
             className="relative group rounded-xl p-6 bg-gradient-to-br from-red-400 to-red-500 hover:from-red-500 hover:to-red-700 shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden"
@@ -199,8 +199,8 @@ const DashboardClient = () => {
             <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 rounded-xl transition-all duration-300" />
           </Link>
         </div>
-        <div className="row-span-6 grid grid-cols-5 gap-4 h-full">
-          <div className="col-span-3 bg-white p-4 rounded-md flex flex-col">
+        <div className="h-[300px] sm:row-span-6 grid grid-cols-1 sm:grid-cols-5 gap-4 sm:h-full">
+          <div className="h-[300px] sm:h-full col-span-3 bg-white p-4 rounded-md flex flex-col">
             <h3 className="text-lg font-semibold mb-2">Шинжилгээний тоо (Сараар)</h3>
             <div className="flex-1">
               <ResponsiveContainer width="100%" height="100%">
@@ -213,7 +213,7 @@ const DashboardClient = () => {
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="col-span-2 bg-white p-4 rounded-md flex flex-col">
+          <div className="h-[300px] sm:h-full col-span-2 bg-white p-4 rounded-md flex flex-col">
             <h3 className="text-lg font-semibold mb-2">Холестерин</h3>
             <div className="flex-1">
               <ResponsiveContainer width="100%" height="100%">
