@@ -34,7 +34,7 @@ export default function Step1() {
 
 
   return (
-    <div className=" w-5/10 mx-auto">
+    <div className=" sm:w-5/10 w-8/10 mx-auto">
       <Image
         src="/info.png"
         alt="Lab Icon"
@@ -44,10 +44,10 @@ export default function Step1() {
       />
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
-      <div className="grid grid-cols-2 gap-x-10 gap-y-6 overflow-y-auto">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-x-10 sm:gap-y-6 gap-y-3 overflow-y-auto overflow-x-auto">
         <Form {...form}>
 
-          <div className="mb-4 font-bold">
+          <div className="sm:mb-4 mb-0 sm:font-bold ">
             <FormField
               control={form.control}
               name="age"
@@ -63,7 +63,7 @@ export default function Step1() {
             />
           </div>
 
-          <div className="mb-4 font-bold">
+          <div className="sm:mb-4 sm:font-bold">
             <FormField
               control={form.control}
               name="gender"
@@ -87,7 +87,7 @@ export default function Step1() {
             />
           </div>
 
-          <div className="mb-4 font-bold">
+          <div className="sm:mb-4 sm:font-bold">
             <FormField
               control={form.control}
               name="height"
@@ -103,7 +103,7 @@ export default function Step1() {
             />
           </div>
 
-          <div className="mb-4 font-bold">
+          <div className="sm:mb-4 sm:font-bold">
             <FormField
               control={form.control}
               name="weight"

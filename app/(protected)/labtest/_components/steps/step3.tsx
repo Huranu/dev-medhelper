@@ -91,7 +91,7 @@ const Step3: React.FC<LabTestUploadProps> = ({ onBack }) => {
 
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
-      <div className="w-5/10 h-full mx-auto">
+      <div className="sm:w-5/10 w-8/10 h-full mx-auto">
         <div
           className=" border-2 border-dashed h-full border-green-700 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition-colors"
         >
@@ -138,7 +138,7 @@ const Step3: React.FC<LabTestUploadProps> = ({ onBack }) => {
           )}
         </div>
       </div>
-      <div className="sm:mt-5 mt-30 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
+      <div className="sm:mt-5 mt-40 flex justify-center items-center sm:gap-20 gap-10 mx-auto">
         <Button
           onClick={onBack}
           variant="outline"

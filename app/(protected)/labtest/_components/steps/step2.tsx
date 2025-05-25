@@ -25,7 +25,7 @@ const Step2: React.FC = () => {
   };
 
   return (
-    <div className="h-full mx-auto space-y-6 sm:mb-0 mb-15 w-9/10">
+    <div className="h-full mx-auto space-y-6 mb-0 sm:mb-15 w-full sm:w-6/10">
       <div className="p-4">
         <Image
           src="/types.png"
@@ -35,7 +35,7 @@ const Step2: React.FC = () => {
           height={90}
         />
         <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний төрлийг сонгоно уу.</h1>
-        <div className="flex flex-col w-6/10 justify-center mx-auto gap-4 overflow-y-auto">
+        <div className="flex flex-col w-9/10 justify-center mx-auto gap-4 overflow-y-auto">
           {types.map((t) => (
             <div
               key={t.en}

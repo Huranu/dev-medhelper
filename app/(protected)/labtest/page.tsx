@@ -112,7 +112,7 @@ const ProgressBar: React.FC = () => {
         <React.Fragment key={step.id}>
           <div className="flex flex-col items-center">
             <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
+              className={`sm:w-12 w-8 sm:h-12 h-8 rounded-full flex items-center justify-center text-2xl font-semibold border transition-colors duration-500 ${currentIndex === i
                 ? "bg-[#39ae9f] text-white border-green-600"
                 : currentIndex > i
                   ? "bg-[#39ae9f] text-white border-green-500"
@@ -121,13 +121,13 @@ const ProgressBar: React.FC = () => {
             >
               {i + 1}
             </div>
-            <span className=" text-lg font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
+            <span className="text-sm sm:text-lg font-medium text-gray-700 items-center text-center justify-items-center">{step.title}</span>
 
 
           </div>
           {i < steps.length - 2 && (
             <div
-              className={`w-30 sm:w-40 h-1 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-[#39ae9f]" : "bg-gray-300"
+              className={`w-10 sm:w-40 h-1 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-[#39ae9f]" : "bg-gray-300"
                 }`}
             />
 
