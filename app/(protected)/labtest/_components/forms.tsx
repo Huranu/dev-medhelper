@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 // import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
+import Image from "next/image";
 type MedicalFormData = {
   age: number;
   gender: string;
@@ -35,6 +35,13 @@ export default function Forms() {
 
   return (
     <div className="max-w-md mx-auto mt-20 sm:mb-0 mb-30 p-5">
+      <Image
+                src="/info.png"
+                alt="Lab Icon"
+                className="mx-auto mb-2"
+                width={90}
+                height={90}
+              />
       <h1 className="text-2xl font-bold mb-6 text-center">Ерөнхий мэдээлэл</h1>
 
       <Form {...form}>

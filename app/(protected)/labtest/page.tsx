@@ -40,7 +40,7 @@ const LabTestsScreening: React.FC = () => {
         />
       </motion.div>
 
-      <motion.header
+      {/* <motion.header
         className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mx-auto w-full"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -53,8 +53,8 @@ const LabTestsScreening: React.FC = () => {
             <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
           </Link>
         </div>
-      </motion.header>
-      <div className="flex flex-col items-center justify-center w-full h-full mt-50 px-4">
+      </motion.header> */}
+      <div className="flex flex-col items-center justify-center w-full h-full px-4">
         <Scoped>
           <ProgressBar />
           <Steps />
@@ -130,27 +130,31 @@ const ProgressBar: React.FC = () => {
   const currentIndex = steps.findIndex((s) => s.id === stepper.current.id);
 
   return (
-    <div className="flex flex-row items-center justify-center mx-auto">
+    <div className="flex flex-row items-center justify-center mx-auto mt-4">
       {steps.slice(0, -1).map((step, i) => (
-        <div key={step.id} className="flex flex-row items-center">
-          {/* <span className="mb-1 text-xs font-medium text-gray-700">{step.title}</span> */}
+      <React.Fragment key={step.id}>
+        <div className="flex flex-col items-center">
           <div
             className={`w-10 h-10 rounded-full flex items-center justify-center text-xl font-semibold border transition-colors duration-500 ${currentIndex === i
-              ? "bg-blue-600 text-white border-blue-600"
+              ? "bg-[#39ae9f] text-white border-green-600"
               : currentIndex > i
-                ? "bg-blue-500 text-white border-blue-500"
+                ? "bg-[#39ae9f] text-white border-green-500"
                 : "bg-white text-gray-500 border-gray-300"
               }`}
           >
             {i + 1}
           </div>
+            <span className="mt-1 text-xs font-medium text-gray-700 items-center text-center justify-items-center
+">{step.title}</span>
+
+          </div>
           {i < steps.length - 2 && (
             <div
-              className={`w-12 sm:w-30 h-0.5 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-blue-500" : "bg-gray-300"
+              className={`w-12 sm:w-30 h-0.5 transition-all duration-500 ease-in-out ${currentIndex > i ? "bg-[#39ae9f]" : "bg-gray-300"
                 }`}
             />
           )}
-        </div>
+        </React.Fragment>
       ))}
     </div>
   );
