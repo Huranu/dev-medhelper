@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import LabTestUpload from "./components/upload";
 import Forms from "./components/forms";
@@ -8,7 +8,10 @@ import TypeSelection from "./components/types";
 
 import Button from "./components/button";
 import  {defineStepper } from '@stepperize/react';
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ChevronLeft } from "lucide-react";
 
 const { useStepper, Scoped, steps } = defineStepper(
   { id: 'first', title: 'Ерөнхий мэдээлэл' },
@@ -19,17 +22,47 @@ const { useStepper, Scoped, steps } = defineStepper(
 );
 
 const LabTestsScreening: React.FC = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  };
   return (
-    <div className="static flex flex-col gap-4 p-4 mt-20 rounded-md w-full h-full mx-auto">
-        
-    <Scoped>
-      <ProgressBar />
-      <Steps/>
-      {/* <div className=""> */}
+    // <div className="static flex flex-col gap-4 p-4 mt-1 rounded-md w-full h-full mx-auto">
+    <div
+      className="flex flex-col relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-300 px-6 py-4 overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
+      <motion.div className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0">
+        <motion.div
+          className="absolute w-64 h-64 rounded-full bg-blue-300 opacity-20 mix-blend-overlay blur-3xl"
+          animate={{ left: mousePos.x - 128, top: mousePos.y - 128 }}
+          transition={{ type: "spring", stiffness: 100, damping: 30 }}
+        />
+      </motion.div>
+
+      <motion.header
+        className="flex justify-between items-center px-6 py-4 bg-white shadow-md rounded-xl mx-auto w-full"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="flex text-2xl font-extrabold text-blue-700 gap-6">
+          MedHelper
+          <Image width={30} height={15} src="/logo.jpg" alt="" />
+          <Link href="/lab-test">
+            <ChevronLeft className="cursor-pointer pt-1" height={33} width={33} />
+          </Link>
+        </div>
+      </motion.header>
+    <div className="flex flex-col items-center justify-center w-full h-full mt-50 px-4">
+      <Scoped>
+        <ProgressBar />
+        <Steps/>
         <Actions/>
-      {/* </div> */}
-    </Scoped>
+      </Scoped>
     </div>
+    </div>
+    // </div>
   );
 };
 
