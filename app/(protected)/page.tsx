@@ -4,7 +4,11 @@ import React from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import DashCardBG from '@/components/dashcardbg';
-import { BarChart, Bar, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import {
+  BarChart, Bar, CartesianGrid, Tooltip,
+  Legend, ResponsiveContainer, LineChart, Line
+}
+  from 'recharts';
 
 const barChartData = [
   { name: 'Jan', value: 400 },
@@ -30,7 +34,7 @@ const DashboardClient = () => {
           <div className="relative">
             <Input
               type="text"
-              placeholder="Search . . ."
+              placeholder="Хайх . . ."
               className="pl-8 w-[320px] bg-white"
             />
             <Search className="absolute left-2 top-2.5 h-4 w-4" />

@@ -5,7 +5,7 @@ import React from 'react'
 const SignOutButton = ({ className }: { className?: string }) => {
     return (
         <Button onClick={logout} className={className}>
-            Sign Out
+            Гарах
         </Button>
     )
 }
