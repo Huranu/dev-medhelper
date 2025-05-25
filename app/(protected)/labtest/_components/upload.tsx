@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Input } from "../_components/input";
 import Button from "../_components/button";
 import Image from "next/image";
-import { CircleX, Cloud, FileIcon, Frown } from "lucide-react";
+import { CircleX, FileIcon, Frown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -35,7 +35,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
     // console.log("selected passed in upload: ",selected);
     // if (selected) {
     //   formData.append("selected", selected);  
-      
+
     // }
 
     try {
@@ -97,7 +97,7 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
         </DialogContent>
       </Dialog>
 
-      
+
       <h1 className="text-2xl font-bold mb-6 text-center">Шинжилгээний хариугаа оруулна уу.</h1>
 
       <div className="w-5/10 h-full mx-auto">
@@ -129,12 +129,12 @@ const LabTestUpload: React.FC<LabTestUploadProps> = ({ onBack }) => {
           ) : (
             <div className="flex flex-col items-center">
               <Image
-                              src="/test.png"
-                              alt="Lab Icon"
-                              className="mx-auto mb-2"
-                              width={90}
-                              height={90}
-                            />
+                src="/test.png"
+                alt="Lab Icon"
+                className="mx-auto mb-2"
+                width={90}
+                height={90}
+              />
               <p className="text-xl text-gray-500 p-3">Файл оруулах</p>
               <Input
                 className="h-auto border-none shadow-none"
