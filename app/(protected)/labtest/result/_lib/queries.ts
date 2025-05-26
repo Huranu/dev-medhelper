@@ -70,12 +70,42 @@ export async function createLabTest(formData: any) {
   }
 }
 
-export async function getAllLabtests() {
-    try {
-        const labtests = await prisma.labTest.findMany();
-        return JSON.stringify(labtests);
-    } catch (error) {
-        console.log(error)
-        return { error: 'Failed to create lab test' };
-    }
+export async function getAllLabtests( type?: 'blood' | 'urine') {
+  try {
+  const session = await auth();
+
+    const labTests = await prisma.labTest.findFirst({
+      where:{ userId: session?.user?.id},
+      include: {
+        labTestIndicators: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+      return JSON.stringify(labTests);
+  } catch (error) {
+      console.log(error)
+      return 'Failed to create lab test' ;
+  }
+}
+
+export async function getLabtests( type?: 'blood' | 'urine') {
+  try {
+  const session = await auth();
+
+    const labTests = await prisma.labTest.findMany({
+      where:{ userId: session?.user?.id},
+      include: {
+        labTestIndicators: false,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+      return labTests.length;
+  } catch (error) {
+      console.log(error)
+      return 'Failed to create lab test' ;
+  }
 }

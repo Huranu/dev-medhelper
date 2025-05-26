@@ -61,5 +61,5 @@ export async function getLabTests(userId: string, type?: 'blood' | 'urine') {
     },
   });
 
-  return labTests;
+  return JSON.stringify(labTests);
 }
