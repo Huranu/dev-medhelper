@@ -22,7 +22,13 @@ export type HistoryRef = {
    date: string;
 };
 
-const BloodWorkChart = ({ data }: { data: HistoryRef[] }) => {
+const BloodWorkChart = ({
+   data,
+   count,
+}: {
+   data: HistoryRef[];
+   count: any;
+}) => {
    return (
       <Accordion type="single" collapsible className="w-full">
          <div className="w-full">
@@ -179,7 +185,7 @@ const BloodWorkChart = ({ data }: { data: HistoryRef[] }) => {
                            </AccordionTrigger>
                            <AccordionContent>
                               <div className="grid grid-cols-[1fr_1fr] gap-4 p-4">
-                                 <DescChart data={item} />
+                                 <DescChart data={item} count={count} />
                                  <div className="text-lg">{item.desc}</div>
                               </div>
                            </AccordionContent>

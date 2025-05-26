@@ -47,7 +47,7 @@ const History: React.FC = () => {
                <div
                   className="bg-white shadow-md rounded-lg p-8 flex flex-row justify-between hover:bg-gray-100"
                   onClick={() => {
-                     router.push("/historyitem?type=blood");
+                     router.push(`/historyitem?type=blood&count=${result}`);
                   }}
                >
                   <h2 className="text-xl font-semibold">Цусны шинжилгээ</h2>

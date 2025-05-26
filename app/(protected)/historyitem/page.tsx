@@ -11,11 +11,13 @@ const HistoryItem: React.FC = () => {
    const [labtests, setLabtests] = useState<any>();
    const searchParams = useSearchParams();
    const type = searchParams!.get("type") as LabTestType;
+   const count = searchParams!.get("count") as LabTestType;
 
    useEffect(() => {
       const fetchALL = async () => {
          const result = await getAllLabtests(type);
          console.log(type);
+         console.log(count);
          const data = JSON.parse(result);
          const historyRefs: HistoryRef[] = data.labTestIndicators.map(
             (indicator: any) => ({
@@ -67,7 +69,7 @@ const HistoryItem: React.FC = () => {
 
                <div className="w-full">
                   <div className="bg-white shadow-md rounded-lg p-4">
-                     <BloodWorkChart data={labtests} />
+                     <BloodWorkChart data={labtests} count={count} />
                   </div>
                </div>
             </div>
