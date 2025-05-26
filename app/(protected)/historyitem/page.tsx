@@ -3,21 +3,20 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import BloodWorkChart, { HistoryRef } from "../labtest/_components//prev-chart";
 import { getAllLabtests } from "../labtest/result/_lib/queries";
-import { useSearchParams } from "next/navigation";
-import { LabTestType } from "@/app/prisma";
-
+// import { useSearchParams } from "next/navigation";
+// import { LabTestType } from "@/app/prisma";
+//
 const HistoryItem: React.FC = () => {
    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
    const [labtests, setLabtests] = useState<any>();
-   const searchParams = useSearchParams();
-   const type = searchParams!.get("type") as LabTestType;
-   const count = searchParams!.get("count") as LabTestType;
+   // const searchParams = useSearchParams();
+   // const type = searchParams?.get("type") as LabTestType;
+   // const count = searchParams!.get("count") as LabTestType;
 
    useEffect(() => {
       const fetchALL = async () => {
-         const result = await getAllLabtests(type);
-         console.log(type);
-         console.log(count);
+         const result = await getAllLabtests("blood");
+         // console.log(type);
          const data = JSON.parse(result);
          const historyRefs: HistoryRef[] = data.labTestIndicators.map(
             (indicator: any) => ({
@@ -61,15 +60,13 @@ const HistoryItem: React.FC = () => {
             <div className="flex flex-col w-full mx-auto pt-3">
                <div className="mb-8">
                   <h2 className="text-2xl font-semibold text-center">
-                     {type == "blood"
-                        ? "Цусны шинжилгээний түүх"
-                        : "Шээсний шинжилгээний түүх"}
+                     Цусны шинжилгээний түүх
                   </h2>
                </div>
 
                <div className="w-full">
                   <div className="bg-white shadow-md rounded-lg p-4">
-                     <BloodWorkChart data={labtests} count={count} />
+                     <BloodWorkChart data={labtests} count={6} />
                   </div>
                </div>
             </div>
